@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
 import { Contract, ethers } from "ethers";
 import OzGovernor_ABI from "../utils/abis/OzGovernor_ABI.json";
-import {
-  getProposalState,
-} from "../utils/functions/getProposalState";
+import { getProposalState } from "../utils/functions/getProposalState";
+
+enum ProposalState {
+  Pending,
+  Active,
+  Canceled,
+  Defeated,
+  Succeeded,
+  Queued,
+  Expired,
+  Executed,
+}
 
 type Proposal = {
   id: number;
@@ -27,7 +36,7 @@ export type ParsedProposal = {
   startBlock: string;
   endBlock: string;
   description: string;
-  state: string | undefined;
+  state: ProposalState | undefined;
 };
 
 export function useParseProposals(
@@ -59,7 +68,7 @@ export function useParseProposals(
                   : [],
               startBlock: proposal.startBlock.toString(),
               endBlock: proposal.endBlock.toString(),
-              state: getProposalState(proposalState),
+              state: proposalState,
             },
           ]);
         });

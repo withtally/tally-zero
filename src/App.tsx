@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ChakraProvider,
   Box,
@@ -21,6 +21,12 @@ import { arbitrum, mainnet, optimism, polygon } from "wagmi/chains";
 import { Logo } from "./Logo";
 import { Header } from "./components/header";
 import { Search } from "./components/search";
+import { Home } from "./pages/home";
+
+interface ContractParams {
+  contractAddress?: string;
+  networkId?: string;
+}
 
 const chains = [arbitrum, mainnet, polygon, optimism];
 const projectId = "5f53b0299462693daec37a2c802d477a";
@@ -33,31 +39,35 @@ const wagmiClient = createClient({
 });
 const ethereumClient = new EthereumClient(wagmiClient, chains);
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <WagmiConfig client={wagmiClient}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <Header />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-            <Search/>
-          </VStack>
-        </Grid>
-      </Box>
-    </WagmiConfig>
-    <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-  </ChakraProvider>
-);
+export const App = () => {
+
+  return (
+    <ChakraProvider theme={theme}>
+      <WagmiConfig client={wagmiClient}>
+        <Box textAlign="center" fontSize="xl">
+          <Grid minH="100vh" p={3}>
+            <Header />
+            <VStack spacing={8}>
+              <Logo h="40vmin" pointerEvents="none" />
+              <Text>
+                Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
+              </Text>
+              <Link
+                color="teal.500"
+                href="https://chakra-ui.com"
+                fontSize="2xl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn Chakra
+              </Link>
+              <Home />
+              <Search />
+            </VStack>
+          </Grid>
+        </Box>
+      </WagmiConfig>
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+    </ChakraProvider>
+  );
+};

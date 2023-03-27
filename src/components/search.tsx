@@ -11,6 +11,7 @@ import TokenABI from "../utils/abis/ERC20Votes_ABI.json";
 import { useSearchProposals } from "../hooks/useSearchProposals";
 import { useParseProposals } from "../hooks/useParseProposals";
 import { ProposalTable } from "./proposalTable";
+import { updateNonNullChain } from "typescript";
 
 interface GovernorState {
   address: `0x${string}` | undefined;
@@ -42,12 +43,18 @@ interface Proposal {
 type ProposalState = Proposal[];
 
 interface State {
+  system: {
+    currentDeployBlock: number | undefined;
+  };
   governor: GovernorState;
   token: TokenState;
   proposals: ProposalState;
 }
 
 const initialState: State = {
+  system: {
+    currentDeployBlock: 0,
+  },
   governor: {
     address: undefined,
     contract: null,
@@ -63,7 +70,7 @@ const initialState: State = {
 };
 
 export const Search = () => {
-  const governorAddress = "0x80BAE65E9D56498c7651C34cFB37e2F417C4A703"; // testing address
+  const governorAddress = "0xf07DeD9dC292157749B6Fd268E37DF6EA38395B9"; // testing address
 
   const provider = useProvider();
   const [subscribe, setSubscribe] = useState<boolean>(false);
@@ -90,6 +97,12 @@ export const Search = () => {
 
       setState({
         ...state,
+        system: {
+          ...state.system,
+          currentDeployBlock: governorSearchResult?.currentSearchBlock
+            ? governorSearchResult?.currentSearchBlock
+            : undefined,
+        },
         governor: {
           address: governorAddress,
           contract: governorContract,
@@ -160,7 +173,10 @@ export const Search = () => {
 
   return (
     <div>
-      <ProposalTable proposals={parsedProposals} />
+      <ProposalTable
+        proposals={parsedProposals}
+        percentageComplete={state.system.currentDeployBlock}
+      />
     </div>
   );
 };

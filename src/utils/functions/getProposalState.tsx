@@ -9,14 +9,14 @@ enum ProposalState {
   Executed,
 }
 
-function getProposalState(stateNumber: number): string | undefined {
+function getProposalState(stateNumber: number): ProposalState | undefined {
   const stateKeys = Object.keys(ProposalState).filter(
     (k) => typeof ProposalState[k as any] === "number"
   ) as (keyof typeof ProposalState)[];
 
   const stateKey = stateKeys.find((key) => ProposalState[key] === stateNumber);
   if (stateKey !== undefined) {
-    return stateKey;
+    return ProposalState[stateKey];
   } else {
     return undefined;
   }
