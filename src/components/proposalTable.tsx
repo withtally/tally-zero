@@ -14,17 +14,22 @@ import {
 import { ParsedProposal } from "../hooks/useParseProposals";
 import { truncateWithEllipsis } from "../utils/functions/truncateText";
 import ProposalBadge from "./proposalStateBadge";
-import VoteButton from "./voteButton";
+import { ProposalModal } from "./proposalModal";
+import { useProvider } from "wagmi";
 
 type ProposalTableProps = {
   proposals: ParsedProposal[];
   percentageComplete: number | undefined;
+  governorAddress: string;
 };
 
 export const ProposalTable = ({
   proposals,
   percentageComplete,
+  governorAddress,
 }: ProposalTableProps) => {
+  const provider = useProvider();
+
   console.log(
     "🚀 ~ file: proposalTable.tsx:20 ~ ProposalTable ~ proposals:",
     proposals
@@ -56,7 +61,10 @@ export const ProposalTable = ({
                 <ProposalBadge state={proposal.state} />
               </Td>
               <Td>
-                <VoteButton state={proposal.state} />
+                <ProposalModal
+                  proposal={proposal}
+                  contractAddress={governorAddress}
+                />
               </Td>
             </Tr>
           ))}

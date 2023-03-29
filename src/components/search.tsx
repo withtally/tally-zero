@@ -176,6 +176,7 @@ export const Search = () => {
       <ProposalTable
         proposals={parsedProposals}
         percentageComplete={state.system.currentDeployBlock}
+        governorAddress={governorAddress}
       />
     </div>
   );
