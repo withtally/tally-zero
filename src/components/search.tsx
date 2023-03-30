@@ -11,8 +11,10 @@ import TokenABI from "../utils/abis/ERC20Votes_ABI.json";
 import { useSearchProposals } from "../hooks/useSearchProposals";
 import { useParseProposals } from "../hooks/useParseProposals";
 import { ProposalTable } from "./proposalTable";
-import { updateNonNullChain } from "typescript";
+import { Container, Flex, VStack } from "@chakra-ui/react";
+import { SearchStatus } from "./searchStatus";
 
+export type ContractAddress = `0x${string}`;
 interface GovernorState {
   address: `0x${string}` | undefined;
   contract: any;
@@ -69,28 +71,46 @@ const initialState: State = {
   proposals: [],
 };
 
-export const Search = () => {
-  const governorAddress = "0xf07DeD9dC292157749B6Fd268E37DF6EA38395B9"; // testing address
+interface SearchProps {
+  contractAddress: ContractAddress | undefined;
+  network: string | undefined;
+}
 
+export const Search: React.FC<SearchProps> = ({ contractAddress, network }) => {
   const provider = useProvider();
   const [subscribe, setSubscribe] = useState<boolean>(false);
 
   const [state, setState] = useState<State>(initialState);
 
   // search for deployment block of governor
-  const governorSearchResult = useDeploymentBlock(provider, governorAddress);
+  const {
+    blockNumber,
+    success,
+    error,
+    currentSearchBlock,
+    percentageComplete,
+    isSearching,
+  } = useDeploymentBlock(provider, contractAddress);
+  console.log(
+    "🚀 ~ file: search.tsx:94 :",
+    blockNumber,
+    success,
+    error,
+    currentSearchBlock,
+    percentageComplete,
+    isSearching
+  );
 
   // When governor is found, create a contract instance and set it on state
   useEffect(() => {
     if (
       !state.governor.address &&
       !state.governor.contract &&
-      governorSearchResult.success &&
-      governorSearchResult.blockNumber
+      success &&
+      blockNumber
     ) {
-      console.log("Found Govenor Contract Deployment Block");
       const governorContract = new ethers.Contract(
-        governorAddress,
+        contractAddress as string,
         GovernorABI,
         provider
       );
@@ -99,20 +119,20 @@ export const Search = () => {
         ...state,
         system: {
           ...state.system,
-          currentDeployBlock: governorSearchResult?.currentSearchBlock
-            ? governorSearchResult?.currentSearchBlock
+          currentDeployBlock: currentSearchBlock
+            ? currentSearchBlock
             : undefined,
         },
         governor: {
-          address: governorAddress,
+          address: contractAddress,
           contract: governorContract,
-          deploymentBlock: governorSearchResult.blockNumber,
+          deploymentBlock: blockNumber,
           name: undefined,
         },
       });
       //   ....
     }
-  }, [governorSearchResult]);
+  }, [success, error, percentageComplete]);
 
   // When governor is found, get state info
   useEffect(() => {
@@ -150,7 +170,6 @@ export const Search = () => {
     };
 
     if (!state.token.address && state.governor.contract) {
-      console.log("Find Token!");
       getTokenAddress();
     }
   }, [state.governor]);
@@ -171,13 +190,52 @@ export const Search = () => {
     true
   );
 
+  const activeProposals = parsedProposals.filter(
+    (proposal) => proposal.state === 1
+  );
+
+  const pendingProposals = parsedProposals.filter(
+    (proposal) => proposal.state === 0
+  );
+
+  const notActive = parsedProposals.filter(
+    (proposal) => proposal.state !== 1 && proposal.state !== 0
+  );
+
+  if (!success && !isSearching && parsedProposals.length === 0)
+    return (
+      <Container>
+        <Flex justifyContent="center" alignItems="center" m={6}>
+          <h1>No Proposals Found.</h1>
+        </Flex>
+      </Container>
+    );
+
   return (
-    <div>
-      <ProposalTable
-        proposals={parsedProposals}
-        percentageComplete={state.system.currentDeployBlock}
-        governorAddress={governorAddress}
+    <VStack alignItems={"flex-start"}>
+      <SearchStatus
+        header="Governor Search Results"
+        percentageComplete={percentageComplete}
+        currentBlock={currentSearchBlock}
       />
-    </div>
+      <ProposalTable
+        header={"Active Proposals"}
+        proposals={activeProposals}
+        percentageComplete={state.system.currentDeployBlock}
+        governorAddress={contractAddress}
+      />
+      <ProposalTable
+        header={"Pending Proposals"}
+        proposals={pendingProposals}
+        percentageComplete={state.system.currentDeployBlock}
+        governorAddress={contractAddress}
+      />
+      <ProposalTable
+        header={"Not Active Proposals"}
+        proposals={notActive}
+        percentageComplete={state.system.currentDeployBlock}
+        governorAddress={contractAddress}
+      />
+    </VStack>
   );
 };

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Contract, ethers } from "ethers";
 import OzGovernor_ABI from "../utils/abis/OzGovernor_ABI.json";
 import { getProposalState } from "../utils/functions/getProposalState";
+import { ContractAddress } from "../components/search";
 
 enum ProposalState {
   Pending,
@@ -41,7 +42,7 @@ export type ParsedProposal = {
 
 export function useParseProposals(
   provider: ethers.providers.Provider,
-  contractAddress: `0x${string}` | undefined,
+  contractAddress: ContractAddress | undefined,
   proposals: Proposal[],
   enabled: boolean
 ): ParsedProposal[] {

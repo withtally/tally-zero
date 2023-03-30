@@ -21,7 +21,7 @@ const useERC20TransferListener = (
   // Subscribe to Transfer event
   const handleTransfer: TransferHandler = (from, to, value) => {
     const formattedValue = ethers.utils.formatEther(value);
-    console.log(`From: ${from}\nTo: ${to}\nAmount: ${formattedValue} ETH`);
+    // console.log(`From: ${from}\nTo: ${to}\nAmount: ${formattedValue} ETH`);
   };
 
   useEffect(() => {

@@ -20,24 +20,27 @@ import { useProvider } from "wagmi";
 type ProposalTableProps = {
   proposals: ParsedProposal[];
   percentageComplete: number | undefined;
-  governorAddress: string;
+  governorAddress: `0x${string}` | undefined;
+  header: string;
 };
 
 export const ProposalTable = ({
   proposals,
   percentageComplete,
   governorAddress,
+  header,
 }: ProposalTableProps) => {
-  const provider = useProvider();
-
-  console.log(
-    "🚀 ~ file: proposalTable.tsx:20 ~ ProposalTable ~ proposals:",
-    proposals
-  );
   return (
-    <TableContainer>
-      <Text>Proposals</Text>
-      <Text>Percent Complete {percentageComplete}</Text>
+    <TableContainer
+      textAlign={"justify"}
+      border="1px"
+      borderColor="gray.200"
+      borderRadius="lg"
+      p={5}
+      bg="white"
+      minWidth={"100%"}
+    >
+      <Text>{header}</Text>
       <Table variant="simple">
         {/* <TableCaption>Proposals</TableCaption> */}
         <Thead>
@@ -69,15 +72,6 @@ export const ProposalTable = ({
             </Tr>
           ))}
         </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>Proposal ID</Th>
-            <Th>Proposer</Th>
-            <Th>Start Block</Th>
-            <Th>End Block</Th>
-            <Th>State</Th>
-          </Tr>
-        </Tfoot>
       </Table>
     </TableContainer>
   );

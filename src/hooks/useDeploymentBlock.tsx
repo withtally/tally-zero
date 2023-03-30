@@ -1,26 +1,29 @@
 import { useState, useEffect, useRef } from "react";
 import { providers } from "ethers";
+import { ContractAddress } from "../components/search";
 
 export type UseDeploymentBlockResult = {
-  blockNumber: number | null;
+  blockNumber: number | undefined;
   success: boolean;
-  error: string | null;
-  currentSearchBlock: number | null;
+  error: string | undefined;
+  currentSearchBlock: number | undefined;
   percentageComplete: number;
   cancelSearch: () => void;
+  isSearching: boolean;
 };
 
 export const useDeploymentBlock = (
   provider: providers.Provider,
-  contractAddress: string
+  contractAddress: ContractAddress | undefined
 ): UseDeploymentBlockResult => {
-  const [blockNumber, setBlockNumber] = useState<number | null>(null);
+  const [blockNumber, setBlockNumber] = useState<number | undefined>(undefined);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [currentSearchBlock, setCurrentSearchBlock] = useState<number | null>(
-    null
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [currentSearchBlock, setCurrentSearchBlock] = useState<number | undefined>(
+    undefined
   );
   const [percentageComplete, setPercentageComplete] = useState(0);
+  const [isSearching, setIsSearching] = useState(false);
   const cancelSearchRef = useRef(false);
 
   const cancelSearch = () => {
@@ -32,9 +35,11 @@ export const useDeploymentBlock = (
 
     const findDeploymentBlock = async () => {
       try {
+        setIsSearching(true);
         const currentBlockNumber = await provider.getBlockNumber();
+
         const currentCode = await provider.getCode(
-          contractAddress,
+          contractAddress as string,
           currentBlockNumber
         );
 
@@ -48,15 +53,18 @@ export const useDeploymentBlock = (
         let upperBound = currentBlockNumber;
         let deployedBlockNumber: number | null = null;
 
+        const maxIterations = Math.ceil(Math.log2(currentBlockNumber));
+        let currentIteration = 0;
+
         while (lowerBound <= upperBound && !cancelSearchRef.current) {
           const mid = Math.floor((lowerBound + upperBound) / 2);
           setCurrentSearchBlock(mid);
 
-          const progressPercentage =
-            ((mid - lowerBound) / (upperBound - lowerBound + 1)) * 100;
+          currentIteration++;
+          const progressPercentage = (currentIteration / maxIterations) * 100;
           setPercentageComplete(progressPercentage);
 
-          const code = await provider.getCode(contractAddress, mid);
+          const code = await provider.getCode(contractAddress as string, mid);
 
           if (code === "0x") {
             lowerBound = mid + 1;
@@ -64,7 +72,8 @@ export const useDeploymentBlock = (
             deployedBlockNumber = mid;
             if (
               mid === 0 ||
-              (await provider.getCode(contractAddress, mid - 1)) === "0x"
+              (await provider.getCode(contractAddress as string, mid - 1)) ===
+                "0x"
             ) {
               break;
             } else {
@@ -76,23 +85,25 @@ export const useDeploymentBlock = (
         if (cancelSearchRef.current) {
           setError("Search canceled");
           setSuccess(false);
-          setBlockNumber(null);
+          setIsSearching(false);
         } else if (deployedBlockNumber !== null) {
           setBlockNumber(deployedBlockNumber);
           setSuccess(true);
-          setError(null);
+          setIsSearching(false);
+          setPercentageComplete(100);
         } else {
-          setBlockNumber(null);
           setSuccess(false);
+          setIsSearching(false);
           setError("Unable to find deployment block");
         }
       } catch (err) {
-        setBlockNumber(null);
         setSuccess(false);
+        setIsSearching(false);
         setError(JSON.stringify(err));
       }
     };
 
+    if (!contractAddress) return;
     findDeploymentBlock();
 
     return () => {
@@ -106,6 +117,7 @@ export const useDeploymentBlock = (
     error,
     currentSearchBlock,
     percentageComplete,
+    isSearching,
     cancelSearch,
   };
 };

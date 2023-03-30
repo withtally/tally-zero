@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ethers, Contract } from "ethers";
 import OZGovernor_ABI from "../utils/abis/OzGovernor_ABI.json";
+import { ContractAddress } from "../components/search";
+import { filter } from "@chakra-ui/react";
 
 type Proposal = {
   id: number;
@@ -16,7 +18,7 @@ type Proposal = {
 
 type UseSearchProposals = (
   provider: ethers.providers.Provider | undefined,
-  contractAddress: `0x${string}` | undefined,
+  contractAddress: ContractAddress | undefined,
   startingBlock: number | null,
   enabled: boolean
 ) => { proposals: Proposal[]; percentage: number };
@@ -85,6 +87,7 @@ export const useSearchProposals: UseSearchProposals = (
       contract
         .queryFilter(contract.filters.ProposalCreated(), blockNumber)
         .then((events) => {
+          console.log("🚀 ~ file: useSearchProposals.tsx:90 ~ .then ~ events:", events)
           if (events.length === 0) return;
 
           const newProposals = events.map((event) => {

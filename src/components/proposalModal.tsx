@@ -15,6 +15,7 @@ import { ethers } from "ethers";
 import { usePrepareContractWrite, useContractWrite, useProvider } from "wagmi";
 import ReactMarkdown from "react-markdown";
 import OZ_Governor_ABI from "../utils/abis/OzGovernor_ABI.json";
+import { ContractAddress } from "./search";
 
 interface Proposal {
   id: number;
@@ -30,27 +31,18 @@ interface Proposal {
 
 interface Props {
   proposal: Proposal;
-  contractAddress: string;
+  contractAddress: ContractAddress | undefined;
 }
 
 export const ProposalModal: React.FC<Props> = ({
   proposal,
   contractAddress,
 }) => {
-  console.log("🚀 ~ file: proposalModal.tsx:40 ~ contractAddress:", contractAddress)
-  const web3Provider = useProvider();
-
   const [voteValue, setVoteValue] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isTransactionMined, setIsTransactionMined] = useState(false);
-  const governorContract = new ethers.Contract(
-    contractAddress,
-    OZ_Governor_ABI,
-    web3Provider
-  );
 
   const voteArgs = [proposal.id, parseInt(voteValue)];
-  console.log("🚀 ~ file: proposalModal.tsx:53 ~ voteArgs:", voteArgs);
 
   const { config, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
     abi: OZ_Governor_ABI,
@@ -67,12 +59,6 @@ export const ProposalModal: React.FC<Props> = ({
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
-  };
-
-  const handleSendTx = () => {
-    console.log(write);
-    if (!write) return;
-    write();
   };
 
   return (

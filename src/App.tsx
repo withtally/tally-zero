@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import {
   ChakraProvider,
   Box,
@@ -7,8 +8,9 @@ import {
   VStack,
   Code,
   Grid,
-  theme,
 } from "@chakra-ui/react";
+import "./theme/global/styles.css";
+import theme from "./theme";
 import {
   EthereumClient,
   w3mConnectors,
@@ -22,6 +24,7 @@ import { Logo } from "./Logo";
 import { Header } from "./components/header";
 import { Search } from "./components/search";
 import { Home } from "./pages/home";
+import { ConnectForm } from "./components/form";
 
 interface ContractParams {
   contractAddress?: string;
@@ -40,34 +43,19 @@ const wagmiClient = createClient({
 const ethereumClient = new EthereumClient(wagmiClient, chains);
 
 export const App = () => {
-
   return (
-    <ChakraProvider theme={theme}>
-      <WagmiConfig client={wagmiClient}>
-        <Box textAlign="center" fontSize="xl">
-          <Grid minH="100vh" p={3}>
-            <Header />
-            <VStack spacing={8}>
-              <Logo h="40vmin" pointerEvents="none" />
-              <Text>
-                Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-              </Text>
-              <Link
-                color="teal.500"
-                href="https://chakra-ui.com"
-                fontSize="2xl"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn Chakra
-              </Link>
+    <Router>
+      <ChakraProvider theme={theme}>
+        <WagmiConfig client={wagmiClient}>
+          <Box textAlign="center" fontSize="xl" bg={"gray.50"}>
+            <Grid minH="100vh" p={3} alignItems={"start"}>
+              <Header />
               <Home />
-              <Search />
-            </VStack>
-          </Grid>
-        </Box>
-      </WagmiConfig>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-    </ChakraProvider>
+            </Grid>
+          </Box>
+        </WagmiConfig>
+        <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      </ChakraProvider>
+    </Router>
   );
 };
