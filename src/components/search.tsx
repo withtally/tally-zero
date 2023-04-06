@@ -1,9 +1,8 @@
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
-import { useContractEvent, useProvider } from "wagmi";
+import { useProvider } from "wagmi";
 import {
   useDeploymentBlock,
-  UseDeploymentBlockResult,
 } from "../hooks/useDeploymentBlock";
 
 import GovernorABI from "../utils/abis/OzGovernor_ABI.json";
@@ -11,8 +10,22 @@ import TokenABI from "../utils/abis/ERC20Votes_ABI.json";
 import { useSearchProposals } from "../hooks/useSearchProposals";
 import { useParseProposals } from "../hooks/useParseProposals";
 import { ProposalTable } from "./proposalTable";
-import { Container, Flex, VStack } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  HStack,
+  VStack,
+  Spinner,
+  Text,
+  Button,
+} from "@chakra-ui/react";
 import { SearchStatus } from "./searchStatus";
+import { ConnectForm } from "./form";
+
+interface ContractParams {
+  contractAddress?: `0x${string}`;
+  networkId?: string;
+}
 
 export type ContractAddress = `0x${string}`;
 interface GovernorState {
@@ -71,16 +84,24 @@ const initialState: State = {
   proposals: [],
 };
 
-interface SearchProps {
-  contractAddress: ContractAddress | undefined;
-  network: string | undefined;
-}
-
-export const Search: React.FC<SearchProps> = ({ contractAddress, network }) => {
+export const Search: React.FC = () => {
   const provider = useProvider();
-  const [subscribe, setSubscribe] = useState<boolean>(false);
-
   const [state, setState] = useState<State>(initialState);
+  const [formContractParams, setFormContractParams] = useState<ContractParams>(
+    {}
+  );
+
+  useEffect(() => {
+    if (formContractParams.contractAddress && formContractParams.networkId) {
+      setState({
+        ...state,
+        governor: {
+          ...state.governor,
+          address: formContractParams.contractAddress,
+        },
+      });
+    }
+  }, [formContractParams, state]);
 
   // search for deployment block of governor
   const {
@@ -89,28 +110,13 @@ export const Search: React.FC<SearchProps> = ({ contractAddress, network }) => {
     error,
     currentSearchBlock,
     percentageComplete,
-    isSearching,
-  } = useDeploymentBlock(provider, contractAddress);
-  console.log(
-    "🚀 ~ file: search.tsx:94 :",
-    blockNumber,
-    success,
-    error,
-    currentSearchBlock,
-    percentageComplete,
-    isSearching
-  );
+  } = useDeploymentBlock(provider, state?.governor?.address);
 
   // When governor is found, create a contract instance and set it on state
   useEffect(() => {
-    if (
-      !state.governor.address &&
-      !state.governor.contract &&
-      success &&
-      blockNumber
-    ) {
+    if (!state.governor.contract && success && blockNumber) {
       const governorContract = new ethers.Contract(
-        contractAddress as string,
+        state?.governor?.address as string,
         GovernorABI,
         provider
       );
@@ -124,7 +130,7 @@ export const Search: React.FC<SearchProps> = ({ contractAddress, network }) => {
             : undefined,
         },
         governor: {
-          address: contractAddress,
+          ...state.governor,
           contract: governorContract,
           deploymentBlock: blockNumber,
           name: undefined,
@@ -132,7 +138,15 @@ export const Search: React.FC<SearchProps> = ({ contractAddress, network }) => {
       });
       //   ....
     }
-  }, [success, error, percentageComplete]);
+  }, [
+    success,
+    error,
+    percentageComplete,
+    blockNumber,
+    state,
+    provider,
+    currentSearchBlock,
+  ]);
 
   // When governor is found, get state info
   useEffect(() => {
@@ -172,10 +186,10 @@ export const Search: React.FC<SearchProps> = ({ contractAddress, network }) => {
     if (!state.token.address && state.governor.contract) {
       getTokenAddress();
     }
-  }, [state.governor]);
+  }, [state, provider]);
 
   // When Governor, find Proposals
-  const { proposals, percentage } = useSearchProposals(
+  const { proposals } = useSearchProposals(
     provider,
     state.governor.address,
     state.governor.deploymentBlock,
@@ -194,47 +208,29 @@ export const Search: React.FC<SearchProps> = ({ contractAddress, network }) => {
     (proposal) => proposal.state === 1
   );
 
-  const pendingProposals = parsedProposals.filter(
-    (proposal) => proposal.state === 0
-  );
-
-  const notActive = parsedProposals.filter(
-    (proposal) => proposal.state !== 1 && proposal.state !== 0
-  );
-
-  if (!success && !isSearching && parsedProposals.length === 0)
-    return (
-      <Container>
-        <Flex justifyContent="center" alignItems="center" m={6}>
-          <h1>No Proposals Found.</h1>
-        </Flex>
-      </Container>
-    );
+  const notActive = parsedProposals.filter((proposal) => proposal.state !== 1);
 
   return (
-    <VStack alignItems={"flex-start"}>
-      <SearchStatus
-        header="Governor Search Results"
-        percentageComplete={percentageComplete}
-        currentBlock={currentSearchBlock}
-      />
+    <VStack alignItems={"flex-start"} spacing={5} pt={55}>
+      <HStack width={"full"}>
+        <SearchStatus
+          header="Governor Search Results"
+          percentageComplete={percentageComplete}
+          currentBlock={currentSearchBlock}
+        />
+        <ConnectForm setState={setFormContractParams} />
+      </HStack>
       <ProposalTable
         header={"Active Proposals"}
         proposals={activeProposals}
         percentageComplete={state.system.currentDeployBlock}
-        governorAddress={contractAddress}
+        governorAddress={state?.governor?.address}
       />
       <ProposalTable
-        header={"Pending Proposals"}
-        proposals={pendingProposals}
-        percentageComplete={state.system.currentDeployBlock}
-        governorAddress={contractAddress}
-      />
-      <ProposalTable
-        header={"Not Active Proposals"}
+        header={"Proposals"}
         proposals={notActive}
         percentageComplete={state.system.currentDeployBlock}
-        governorAddress={contractAddress}
+        governorAddress={state?.governor?.address}
       />
     </VStack>
   );

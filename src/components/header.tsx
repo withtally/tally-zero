@@ -3,8 +3,6 @@ import { Web3Button } from "@web3modal/react";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
 import { HStack, Text } from "@chakra-ui/react";
 import { Web3NetworkSwitch } from "@web3modal/react";
-import Listener from "./sampleListener";
-import { Search } from "./search";
 export const Header = () => {
   return (
     <HStack w="full" justifyContent={"space-between"}>

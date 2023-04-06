@@ -4,9 +4,7 @@ import {
   StatLabel,
   StatNumber,
   StatHelpText,
-  StatArrow,
   StatGroup,
-  Box,
 } from "@chakra-ui/react";
 
 interface SearchProps {
@@ -14,6 +12,18 @@ interface SearchProps {
   percentageComplete: number;
   currentBlock: number | undefined;
 }
+
+function formatPercent(percent: number): number {
+  // Multiply by 100 to get the percentage as a whole number
+  const percentAsWholeNumber = percent;
+  
+  // Round to two decimal places and convert to a string
+  const roundedAsString = percentAsWholeNumber.toFixed(2);
+  
+  // Convert back to a number and return
+  return Number(roundedAsString);
+}
+
 
 export const SearchStatus: React.FC<SearchProps> = ({
   header,
@@ -31,7 +41,7 @@ export const SearchStatus: React.FC<SearchProps> = ({
       <Stat>
         <StatLabel>{header}</StatLabel>
         <StatNumber color={percentageComplete === 100 ? "green.500" : "black"}>
-          {percentageComplete}%
+          {formatPercent(percentageComplete)}%
         </StatNumber>
         <StatHelpText>
           {/* <StatArrow type="increase" /> */}

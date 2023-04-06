@@ -4,6 +4,8 @@ import type { PartsStyleObject } from "@chakra-ui/theme-tools"
 const baseStyle: PartsStyleObject<typeof parts> = {
   container: {
     display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
   },
   number: {
     color: "gray.700",
@@ -23,8 +25,9 @@ const baseStyle: PartsStyleObject<typeof parts> = {
 
 const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   sm: {
-    label: { fontSize: "sm" },
-    number: { fontSize: "lg" },
+    label: { fontSize: "md" },
+    number: { fontSize: "2xl" },
+    helpText: { fontSize: "2xs" },
   },
 }
 

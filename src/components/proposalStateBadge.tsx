@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge } from "@chakra-ui/react";
 
-enum ProposalState {
+export enum ProposalState {
   Pending,
   Active,
   Canceled,

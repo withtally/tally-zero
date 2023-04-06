@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ethers, Contract } from "ethers";
 import OZGovernor_ABI from "../utils/abis/OzGovernor_ABI.json";
 import { ContractAddress } from "../components/search";
-import { filter } from "@chakra-ui/react";
 
 type Proposal = {
   id: number;
@@ -21,7 +20,7 @@ type UseSearchProposals = (
   contractAddress: ContractAddress | undefined,
   startingBlock: number | null,
   enabled: boolean
-) => { proposals: Proposal[]; percentage: number };
+) => { proposals: Proposal[]; loading: boolean };
 
 export const useSearchProposals: UseSearchProposals = (
   provider,
@@ -30,7 +29,7 @@ export const useSearchProposals: UseSearchProposals = (
   enabled
 ) => {
   const [proposals, setProposals] = useState<Proposal[]>([]);
-  const [percentage, setPercentage] = useState(0);
+ const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!enabled || !provider || !contractAddress || !startingBlock) return;
@@ -38,6 +37,7 @@ export const useSearchProposals: UseSearchProposals = (
     const contract = new Contract(contractAddress, OZGovernor_ABI, provider);
 
     const fetchProposals = async () => {
+      setLoading(true);
       const currentBlock = await provider.getBlockNumber();
       const proposalCreatedFilter = contract.filters.ProposalCreated();
       const events = await contract.queryFilter(
@@ -72,22 +72,16 @@ export const useSearchProposals: UseSearchProposals = (
       });
 
       setProposals(newProposals);
-      setPercentage(100);
+      setLoading(false)
     };
 
     fetchProposals();
 
     const listener = (blockNumber: number) => {
-      if (percentage !== 100) {
-        setPercentage(
-          ((blockNumber - startingBlock) / (blockNumber - startingBlock)) * 100
-        );
-      }
 
       contract
         .queryFilter(contract.filters.ProposalCreated(), blockNumber)
         .then((events) => {
-          console.log("🚀 ~ file: useSearchProposals.tsx:90 ~ .then ~ events:", events)
           if (events.length === 0) return;
 
           const newProposals = events.map((event) => {
@@ -109,5 +103,5 @@ export const useSearchProposals: UseSearchProposals = (
     };
   }, [provider, contractAddress, startingBlock, enabled]);
 
-  return { proposals, percentage };
+  return { proposals, loading };
 };
