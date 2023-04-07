@@ -29,7 +29,7 @@ export const useSearchProposals: UseSearchProposals = (
   enabled
 ) => {
   const [proposals, setProposals] = useState<Proposal[]>([]);
- const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!enabled || !provider || !contractAddress || !startingBlock) return;
@@ -72,13 +72,12 @@ export const useSearchProposals: UseSearchProposals = (
       });
 
       setProposals(newProposals);
-      setLoading(false)
+      setLoading(false);
     };
 
     fetchProposals();
 
     const listener = (blockNumber: number) => {
-
       contract
         .queryFilter(contract.filters.ProposalCreated(), blockNumber)
         .then((events) => {
@@ -101,7 +100,7 @@ export const useSearchProposals: UseSearchProposals = (
     return () => {
       provider.off("block", listener);
     };
-  }, [provider, contractAddress, startingBlock, enabled]);
+  }, [contractAddress, startingBlock, enabled]);
 
   return { proposals, loading };
 };

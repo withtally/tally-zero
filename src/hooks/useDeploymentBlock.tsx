@@ -103,13 +103,13 @@ export const useDeploymentBlock = (
       }
     };
 
-    if (!contractAddress) return;
+    if (!contractAddress || !provider) return;
     findDeploymentBlock();
 
     return () => {
       cancelSearch();
     };
-  }, [provider, contractAddress]);
+  }, [contractAddress]);
 
   return {
     blockNumber,

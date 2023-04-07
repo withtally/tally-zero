@@ -60,7 +60,6 @@ export const ProposalModal: React.FC<Props> = ({
   };
   const stateEnum =
     proposal.state !== undefined ? ProposalState[proposal.state] : null;
-  console.log("🚀 ~ file: proposalModal.tsx:45 ~ proposal:", stateEnum);
 
   return (
     <>
