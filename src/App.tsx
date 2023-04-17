@@ -1,16 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import "./theme/global/styles.css";
 import theme from "./theme";
 import {
@@ -106,16 +96,8 @@ import {
   zkSync,
   zkSyncTestnet,
 } from "wagmi/chains";
-import { Logo } from "./Logo";
-import { Header } from "./components/header";
-import { Search } from "./components/search";
-import { Home } from "./pages/home";
-import { ConnectForm } from "./components/form";
 
-interface ContractParams {
-  contractAddress?: string;
-  networkId?: string;
-}
+import { Home } from "./pages/home";
 
 const chains = [
   arbitrum,
@@ -217,9 +199,7 @@ export const App = () => {
     <Router>
       <ChakraProvider theme={theme}>
         <WagmiConfig client={wagmiClient}>
-          <Box textAlign="center" fontSize="xl">
-            <Home />
-          </Box>
+          <Home />
         </WagmiConfig>
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       </ChakraProvider>

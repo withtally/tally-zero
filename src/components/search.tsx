@@ -4,11 +4,10 @@ import { useProvider } from "wagmi";
 import { useDeploymentBlock } from "../hooks/useDeploymentBlock";
 
 import GovernorABI from "../utils/abis/OzGovernor_ABI.json";
-import TokenABI from "../utils/abis/ERC20Votes_ABI.json";
 import { useSearchProposals } from "../hooks/useSearchProposals";
 import { useParseProposals } from "../hooks/useParseProposals";
 import { ProposalTable } from "./proposalTable";
-import { HStack, VStack, Text } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
 import { SearchStatus } from "./searchStatus";
 import { ConnectForm } from "./form";
 
@@ -81,7 +80,6 @@ export const Search: React.FC = () => {
     {}
   );
 
-  console.log("state: ", state?.governor.name);
   useEffect(() => {
     if (formContractParams.contractAddress && formContractParams.networkId) {
       setState((prevState) => ({
@@ -130,44 +128,7 @@ export const Search: React.FC = () => {
     }
   }, [success, error, percentageComplete, blockNumber, currentSearchBlock]);
 
-  // When governor is found, get state info
-  // useEffect(() => {
-  //   const getTokenAddress = async () => {
-  //     let tokenAddress: any | undefined;
 
-  //     try {
-  //       tokenAddress = await state.governor.contract.token();
-  //     } catch (error) {
-  //       console.log(
-  //         "Get Token Address Error: ",
-  //         JSON.stringify(error, null, 2)
-  //       );
-  //     }
-
-  //     let governorName: any | undefined;
-  //     try {
-  //       governorName = await state.governor.contract.name();
-  //     } catch (error) {
-  //       console.log(
-  //         "Get Governor Name Error: ",
-  //         JSON.stringify(error, null, 2)
-  //       );
-  //     }
-  //     setState((prevState) => ({
-  //       ...prevState,
-  //       governor: { ...prevState.governor, name: governorName },
-  //       // token: {
-  //       //   address: tokenAddress,
-  //       //   contract: new ethers.Contract(tokenAddress, TokenABI, provider),
-  //       //   deploymentBlock: null,
-  //       // },
-  //     }));
-  //   };
-
-  //   if (state.governor.address && state.governor.contract) {
-  //     getTokenAddress();
-  //   }
-  // }, [state]);
 
   // When Governor, find Proposals
   const { proposals } = useSearchProposals(
@@ -192,8 +153,8 @@ export const Search: React.FC = () => {
   const notActive = parsedProposals.filter((proposal) => proposal.state !== 1);
 
   return (
-    <VStack alignItems={"flex-start"} spacing={5} pt={55}>
-      <HStack width={"full"}>
+    <VStack alignItems={"flex-start"} spacing={5} minW="100%">
+      <HStack minW="100%">
         <SearchStatus
           header="Governor Search Results"
           percentageComplete={percentageComplete}
@@ -201,37 +162,22 @@ export const Search: React.FC = () => {
         />
         <ConnectForm setState={setFormContractParams} />
       </HStack>
-      {/* <HStack
-        textAlign={"justify"}
-        border="1px"
-        borderColor="gray.200"
-        borderRadius="lg"
-        p={5}
-        bg="white"
-        minWidth={"100%"}
-        justifyContent={"space-between"}
-      >
-        <HStack>
-          <Text>Governor Name: </Text>
-          {state.governor.name && <Text>{state.governor.name}</Text>}
-        </HStack>
-        <HStack>
-          <Text>Proposal Count:</Text>{" "}
-          <Text>{state.governor.name ? parsedProposals.length : "unknown"}</Text>
-        </HStack>
-      </HStack> */}
-      <ProposalTable
-        header={"Active Proposals"}
-        proposals={activeProposals}
-        percentageComplete={state.system.currentDeployBlock}
-        governorAddress={state?.governor?.address}
-      />
-      <ProposalTable
-        header={"Proposals"}
-        proposals={notActive}
-        percentageComplete={state.system.currentDeployBlock}
-        governorAddress={state?.governor?.address}
-      />
+      {parsedProposals.length && (
+        <ProposalTable
+          header={"Active Proposals"}
+          proposals={activeProposals}
+          percentageComplete={state.system.currentDeployBlock}
+          governorAddress={state?.governor?.address}
+        />
+      )}
+      {parsedProposals.length && (
+        <ProposalTable
+          header={"Proposals"}
+          proposals={notActive}
+          percentageComplete={state.system.currentDeployBlock}
+          governorAddress={state?.governor?.address}
+        />
+      )}
     </VStack>
   );
 };

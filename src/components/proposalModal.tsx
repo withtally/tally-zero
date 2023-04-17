@@ -14,8 +14,7 @@ import {
   VStack,
   HStack,
 } from "@chakra-ui/react";
-import { ethers } from "ethers";
-import { usePrepareContractWrite, useContractWrite, useProvider } from "wagmi";
+import { usePrepareContractWrite, useContractWrite } from "wagmi";
 import ReactMarkdown from "react-markdown";
 import OZ_Governor_ABI from "../utils/abis/OzGovernor_ABI.json";
 import { ContractAddress } from "./search";
@@ -32,6 +31,7 @@ export const ProposalModal: React.FC<Props> = ({
   proposal,
   contractAddress,
 }) => {
+  console.log("🚀 ~ file: proposalModal.tsx:34 ~ proposal:", proposal);
   const [voteValue, setVoteValue] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isTransactionMined, setIsTransactionMined] = useState(false);
@@ -69,7 +69,7 @@ export const ProposalModal: React.FC<Props> = ({
         <ModalContent minWidth="90%">
           <ModalHeader>Proposal</ModalHeader>
           <ModalBody>
-            <VStack alignItems={"flex-start"}>
+            <VStack alignItems={"flex-start"} spacing={12}>
               <HStack>
                 <ProposalBadge state={proposal.state} />
                 {stateEnum !== "Active" && <Text>Voting is Closed.</Text>}
@@ -99,6 +99,23 @@ export const ProposalModal: React.FC<Props> = ({
                   </HStack>
                 </RadioGroup>
               )}
+  
+              <Text>Executable Data:</Text>
+              <Text textAlign={"left"}>
+                  <pre>
+                    {JSON.stringify(
+                      {
+                        proposer: proposal.proposer,
+                        targets: proposal.targets,
+                        values: proposal.values,
+                        signatures: proposal.signatures,
+                        calldatas: proposal.calldatas,
+                      },
+                      null,
+                      2
+                    )}
+                  </pre>
+              </Text>
             </VStack>
           </ModalBody>
           <ModalFooter>

@@ -50,9 +50,6 @@ export const ConnectForm: React.FC<ConnectFormProps> = ({ setState }) => {
       contractAddress: values.contractAddress as `0x${string}`,
       networkId: values.networkId,
     });
-    navigate(
-      `?contractAddress=${values.contractAddress}&networkId=${values.networkId}`
-    );
   };
 
   const color = useColorModeValue("white", "gray.800");

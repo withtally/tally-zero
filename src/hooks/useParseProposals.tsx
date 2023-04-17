@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Contract, ethers } from "ethers";
 import OzGovernor_ABI from "../utils/abis/OzGovernor_ABI.json";
-import { getProposalState } from "../utils/functions/getProposalState";
 import { ContractAddress } from "../components/search";
 
 enum ProposalState {

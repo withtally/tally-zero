@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Web3Button } from "@web3modal/react";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
-import { HStack, Image, Text, Box } from "@chakra-ui/react";
+import { HStack, Image, Text } from "@chakra-ui/react";
 import { Web3NetworkSwitch } from "@web3modal/react";
 export const Header = () => {
   return (
@@ -13,7 +13,7 @@ export const Header = () => {
         src="./tallylogo.png"
         alt="Dan Abramov"
       />
-      <Text fontSize={"3xl"} fontWeight="black" fontStyle="italic">ZERO</Text>
+      <Text fontSize={"3xl"} fontWeight="black" >ZERO</Text>
       </HStack>
       <HStack>
         {/* <Listener /> */}
