@@ -5,6 +5,7 @@ import {
   StatNumber,
   StatHelpText,
   StatGroup,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 interface SearchProps {
@@ -30,17 +31,19 @@ export const SearchStatus: React.FC<SearchProps> = ({
   percentageComplete,
   currentBlock,
 }) => {
+  const color = useColorModeValue("white", "gray.800")
   return (
     <StatGroup
       border="1px"
       borderColor="gray.200"
       borderRadius="lg"
       p={5}
-      bg="white"
+      height="135px"
+      bg={color}
     >
       <Stat>
         <StatLabel>{header}</StatLabel>
-        <StatNumber color={percentageComplete === 100 ? "green.500" : "black"}>
+        <StatNumber fontSize={"4xl"} pt={4} pb={4}>
           {formatPercent(percentageComplete)}%
         </StatNumber>
         <StatHelpText>

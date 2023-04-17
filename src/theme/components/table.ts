@@ -4,17 +4,17 @@ const parts = ["table", "thead", "tbody", "tr", "th", "td", "caption"]
 
 const table: ComponentMultiStyleConfig = {
   parts,
-  baseStyle: {
+  baseStyle: ({ colorMode }) => ({
     th: {
       fontFamily: "body",
       fontSize: "xs",
       fontWeight: "normal",
       lineHeight: "1.125rem",
-      color: "gray.600",
+      color: colorMode === "dark" ? "gray.600" : "white",
       minWidth: 40,
       textTransform: "none",
     },
-  },
+  }),
 }
 
 export default table

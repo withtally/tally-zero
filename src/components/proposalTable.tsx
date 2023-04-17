@@ -10,6 +10,7 @@ import {
   TableCaption,
   TableContainer,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { ParsedProposal } from "../hooks/useParseProposals";
 import { truncateWithEllipsis } from "../utils/functions/truncateText";
@@ -30,6 +31,8 @@ export const ProposalTable = ({
   governorAddress,
   header,
 }: ProposalTableProps) => {
+
+  const color = useColorModeValue("white", "gray.800")
   return (
     <TableContainer
       textAlign={"justify"}
@@ -37,7 +40,7 @@ export const ProposalTable = ({
       borderColor="gray.200"
       borderRadius="lg"
       p={5}
-      bg="white"
+      bg={color}
       minWidth={"100%"}
     >
       <Text>{header}</Text>

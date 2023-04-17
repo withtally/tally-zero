@@ -1,12 +1,20 @@
 import * as React from "react";
 import { Web3Button } from "@web3modal/react";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack, Image, Text, Box } from "@chakra-ui/react";
 import { Web3NetworkSwitch } from "@web3modal/react";
 export const Header = () => {
   return (
     <HStack w="full" justifyContent={"space-between"}>
-      <Text>Tally Lite</Text>
+      <HStack>
+      <Image
+        borderRadius="md"
+        boxSize="35px"
+        src="./tallylogo.png"
+        alt="Dan Abramov"
+      />
+      <Text fontSize={"3xl"} fontWeight="black" fontStyle="italic">ZERO</Text>
+      </HStack>
       <HStack>
         {/* <Listener /> */}
         <Web3NetworkSwitch />

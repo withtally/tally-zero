@@ -15,7 +15,6 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     lineHeight: "1.3125rem",
   },
   label: {
-    color: "gray.500",
     fontStyle: "normal",
     fontWeight: 400,
     textStyle: "label",

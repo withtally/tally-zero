@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormErrorMessage,
   HStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -54,15 +55,17 @@ export const ConnectForm: React.FC<ConnectFormProps> = ({ setState }) => {
     );
   };
 
+  const color = useColorModeValue("white", "gray.800");
   return (
     <HStack
       border="1px"
       borderColor="gray.200"
       borderRadius="lg"
       p={5}
-      bg="white"
       alignItems={"flex-start"}
       width="full"
+      height={"135px"}
+      bg={color}
     >
       <Formik
         initialValues={{
@@ -73,7 +76,11 @@ export const ConnectForm: React.FC<ConnectFormProps> = ({ setState }) => {
         onSubmit={onSubmit}
       >
         {({ errors, touched, isValid, handleChange, handleBlur, values }) => (
-          <HStack minW={"100%"} justifyContent="space-between">
+          <HStack
+            minW={"100%"}
+            justifyContent="space-between"
+            alignItems={"flex-end"}
+          >
             <Form>
               <Box>
                 <FormControl
@@ -122,16 +129,18 @@ export const ConnectForm: React.FC<ConnectFormProps> = ({ setState }) => {
                 </FormControl>
               </Form>
             </Box>
-            <Form>
-              <Button
-                mt={4}
-                colorScheme="green"
-                type="submit"
-                isDisabled={!isValid}
-              >
-                Connect to contract
-              </Button>
-            </Form>
+            <Box>
+              <Form>
+                <Button
+                  mt={4}
+                  colorScheme="green"
+                  type="submit"
+                  isDisabled={!isValid}
+                >
+                  Connect to contract
+                </Button>
+              </Form>
+            </Box>
           </HStack>
         )}
       </Formik>

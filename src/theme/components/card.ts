@@ -4,9 +4,9 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(cardAnatomy.keys)
 
-const baseStyle = definePartsStyle({
+const baseStyle = definePartsStyle(({ colorMode }) => ({
   container: {
-    backgroundColor: "white",
+    backgroundColor: colorMode === "dark" ? "gray.50" : "gray.800",
     marginTop: "10px",
     marginBottom: "8px",
     borderColor: "gray.200"
@@ -18,7 +18,7 @@ const baseStyle = definePartsStyle({
   footer: {
     paddingTop: '2px',
   },
-})
+}))
 
 const cardTheme = defineMultiStyleConfig({ baseStyle })
 
