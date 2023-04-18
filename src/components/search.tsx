@@ -55,7 +55,7 @@ interface State {
   proposals: ProposalState;
 }
 
-const initialState: State = {
+export const initialState: State = {
   system: {
     currentDeployBlock: 0,
   },
@@ -82,6 +82,7 @@ export const Search: React.FC = () => {
 
   useEffect(() => {
     if (formContractParams.contractAddress && formContractParams.networkId) {
+      setState(initialState )
       setState((prevState) => ({
         ...prevState,
         governor: {
