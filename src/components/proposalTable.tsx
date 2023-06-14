@@ -52,8 +52,8 @@ export const ProposalTable = ({
           </Tr>
         </Thead>
         <Tbody>
-          {proposals.map((proposal, index) => (
-            <Tr key={index}>
+          {proposals.map((proposal) => (
+            <Tr key={proposal.id}>
               <Td>{truncateWithEllipsis(proposal.id.toString(), 10)}</Td>
               <Td>{proposal.startBlock.toString()}</Td>
               <Td>{proposal.endBlock.toString()}</Td>

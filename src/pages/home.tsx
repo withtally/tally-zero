@@ -65,7 +65,7 @@ export const Home: React.FC = () => {
           </VStack>
           <SimpleGrid columns={3} spacing={6} minW="100%">
             {TextData.map((text) => (
-              <TextCard label={text.label} text={text.text} />
+              <TextCard key={text.label} label={text.label} text={text.text} />
             ))}
           </SimpleGrid>
           <Search />
