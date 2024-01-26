@@ -26,7 +26,7 @@ export default async function IndexPage() {
             complex front ends, such as Tally and Boardroom, are down.
           </p>
           <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="/search" className={cn(buttonVariants({ size: "lg" }))}>
               Get Started
             </Link>
             <Link
