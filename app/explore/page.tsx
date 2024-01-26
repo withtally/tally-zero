@@ -1,5 +1,9 @@
 import ContractCard from "@components/contract/ContractCard";
 
+export const metadata = {
+  title: "Explore",
+};
+
 export default async function IndexPage({
   searchParams,
 }: {
@@ -16,7 +20,7 @@ export default async function IndexPage({
           address={address as string}
           networkId={networkId as string}
         />
-        
+
         {address && networkId && (
           <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-bold">Results</h2>
