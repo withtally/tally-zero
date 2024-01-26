@@ -18,25 +18,30 @@ import {
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
 
-const formSchema = z.object({
-  // #TODO Ask for address conditions as well as networkid
-  address: z.string(),
-  networkId: z.string(),
-});
+import { formSchema } from "@config/schema";
 
-export default function ContractForm() {
+export default function ContractForm({
+  address,
+  networkId,
+}: {
+  address: string;
+  networkId: string;
+}) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      address: "",
-      networkId: "",
+      address: address || "",
+      networkId: networkId || "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    window.history.pushState(
+      {},
+      "",
+      `?address=${values.address}&networkId=${values.networkId}`
+    );
+    window.location.reload();
   }
 
   return (

@@ -8,7 +8,9 @@ import {
 import ContractForm from "@components/contract/ContractForm";
 
 
-export default function ContractCard() {
+export default function ContractCard(
+  { address, networkId }: { address: string; networkId: string },
+) {
   return (
     <Card>
       <CardHeader>
@@ -16,7 +18,10 @@ export default function ContractCard() {
         <CardDescription>IDK lols, just a description</CardDescription>
       </CardHeader>
       <CardContent>
-        <ContractForm />
+        <ContractForm 
+          address={address}
+          networkId={networkId}
+        />
       </CardContent>
     </Card>
   );
