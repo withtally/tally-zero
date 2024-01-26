@@ -3,14 +3,13 @@ import "@styles/globals.css";
 import { siteConfig } from "@config/site";
 import { GeistSans } from "geist/font/sans";
 
-import Link from "next/link";
 
 import { cn } from "@lib/utils";
 import { marketingConfig } from "@config/marketing";
 
 import { SiteFooter } from "@components/navigation/SiteFooter";
 import { MainNav } from "@/components/navigation/MainNav";
-import { buttonVariants } from "@/components/ui/Button";
+import { ButtonNav } from "@/components/navigation/ButtonNav";
 
 import { Analytics } from "@components/Analytics";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
@@ -76,22 +75,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <header className="container z-40 bg-background">
             <div className="flex h-20 items-center justify-between py-6">
               <MainNav items={marketingConfig.mainNav} />
-              <nav>
-                <Link
-                  href="/explore"
-                  className={cn(
-                    buttonVariants({ variant: "secondary", size: "sm" }),
-                    "px-4"
-                  )}
-                >
-                  {/**
-                   * #TODO: Make this into a component that changes depending on the page
-                   * Once "Start exploring"
-                   * Once "Github star"
-                   */}
-                  Start exploring
-                </Link>
-              </nav>
+              <ButtonNav />
             </div>
           </header>
 
