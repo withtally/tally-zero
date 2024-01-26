@@ -1,7 +1,7 @@
 import { SiteConfig } from "@types";
 
 export const siteConfig: SiteConfig = {
-  name: "Tally Zero | Onchain Decentralized Organizations",
+  name: "Tally Zero",
   description: "Tally is a frontend for onchain decentralized organizations.",
   url: "https://docs.tally.xyz/",
   ogImage: "https://docs.tally.xyz/og.jpg",
