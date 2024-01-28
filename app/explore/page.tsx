@@ -1,9 +1,5 @@
 import ContractCard from "@components/contract/ContractCard";
 
-export const metadata = {
-  title: "Explore",
-};
-
 export default async function IndexPage({
   searchParams,
 }: {

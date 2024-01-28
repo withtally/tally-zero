@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@lib/utils";
-import { siteConfig } from "@config/site";
 
+import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
 import { buttonVariants } from "@components/ui/Button";
 import { Icons } from "@components/Icons";
 
@@ -16,16 +16,12 @@ export function ButtonNav() {
   return (
     <nav>
       {isExplore ? (
-        <Link
-          href={siteConfig.links.github}
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
-            "px-4"
-          )}
-        >
-          <Icons.gitHub className="w-4 h-4 mr-2" />
-          Github
-        </Link>
+        <div className="flex items-center gap-4 px-4 py-2">
+          <Web3NetworkSwitch
+            className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}
+          />
+          <Web3Button />
+        </div>
       ) : (
         <Link
           href="/explore"

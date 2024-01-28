@@ -3,7 +3,6 @@ import "@styles/globals.css";
 import { siteConfig } from "@config/site";
 import { GeistSans } from "geist/font/sans";
 
-
 import { cn } from "@lib/utils";
 import { marketingConfig } from "@config/marketing";
 

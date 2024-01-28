@@ -57,7 +57,7 @@ export default function ContractForm({
             <FormItem className="flex-1">
               <FormLabel>Ethereum address</FormLabel>
               <FormControl>
-                <Input placeholder="0x00000..." {...field} />
+                <Input placeholder="0x00000..." autoComplete="off" {...field} />
               </FormControl>
               <FormDescription>
                 The address of the contract you want to explore.
@@ -74,7 +74,11 @@ export default function ContractForm({
             <FormItem className="flex-1">
               <FormLabel>Network ID</FormLabel>
               <FormControl>
-                <Input placeholder="1" {...field} />
+                <Input
+                  placeholder="Eg 1, 3, 4, 5, 42, 1337, ..."
+                  autoComplete="off"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 The network ID of the contract you want to explore.
