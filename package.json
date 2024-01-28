@@ -23,6 +23,7 @@
     "lucide-react": "^0.316.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
+    "pino-pretty": "^10.3.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
