@@ -1,0 +1,95 @@
+"use client";
+
+import { ethers } from "ethers";
+import { useProvider } from "wagmi";
+import { useEffect, useState } from "react";
+
+import { useDeploymentBlock } from "@hooks/use-deployment-block";
+import { useSearchProposals } from "@hooks/use-search-proposals";
+import { useParseProposals } from "@hooks/use-parse-proposals";
+
+import { State, ContractParams } from "@/types/search";
+import { initialState } from "@config/intial-state";
+import GovernorABI from "@data/OzGovernor_ABI.json";
+
+import DataTable from "@/components/table/DataTable";
+
+export default function Search({ contractAddress, networkId }: ContractParams) {
+  const provider = useProvider();
+  const [state, setState] = useState<State>(initialState);
+
+  // Search for the Deployment block of Governor
+  const {
+    blockNumber,
+    success,
+    error,
+    currentSearchBlock,
+    percentageComplete,
+  } = useDeploymentBlock(provider, contractAddress);
+
+  // When governor is found, create a contract instance and set it to state
+  useEffect(() => {
+    if (!state.governor.contract && success && blockNumber) {
+      const governorContract = new ethers.Contract(
+        contractAddress as string,
+        GovernorABI,
+        provider
+      );
+
+      setState((prevState) => ({
+        ...prevState,
+        system: {
+          ...prevState.system,
+          currentDeployBlock: currentSearchBlock
+            ? currentSearchBlock
+            : undefined,
+        },
+        governor: {
+          ...prevState.governor,
+          contract: governorContract,
+          deploymentBlock: blockNumber,
+          name: undefined,
+        },
+      }));
+    }
+  }, [
+    success,
+    blockNumber,
+    currentSearchBlock,
+    contractAddress,
+    provider,
+    state,
+  ]);
+
+  // When governor contract is found, find Proposals
+  const { proposals } = useSearchProposals(
+    provider,
+    contractAddress,
+    state.governor.deploymentBlock,
+    true
+  );
+
+  // When Proposals, parse them into a more readable format
+  const parsedProposals = useParseProposals(
+    provider,
+    contractAddress,
+    proposals,
+    true
+  );
+
+  const activeProposals = parsedProposals.filter(
+    (proposal) => proposal.state === 1
+  );
+
+  const notActive = parsedProposals.filter((proposal) => proposal.state !== 1);
+
+  return (
+    <>
+      {/**
+       * #TODO: Add a progress bar to show the progress of the search
+       */}
+
+      <DataTable proposals={activeProposals} notActive={notActive} />
+    </>
+  );
+}

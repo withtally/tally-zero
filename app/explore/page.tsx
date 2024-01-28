@@ -1,4 +1,7 @@
 import ContractCard from "@components/contract/ContractCard";
+import Search from "@/components/table/Search";
+
+import { ContractAddress } from "@/types/search";
 
 export default async function IndexPage({
   searchParams,
@@ -17,17 +20,10 @@ export default async function IndexPage({
           networkId={networkId as string}
         />
 
-        {address && networkId && (
-          <div className="flex flex-col gap-4">
-            <h2 className="text-2xl font-bold">Results</h2>
-            <p>
-              <span className="font-bold">Address:</span> {address}
-            </p>
-            <p>
-              <span className="font-bold">Network ID:</span> {networkId}
-            </p>
-          </div>
-        )}
+        <Search
+          contractAddress={address as ContractAddress}
+          networkId={networkId as string}
+        />
       </div>
     </section>
   );
