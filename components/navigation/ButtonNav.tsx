@@ -18,7 +18,7 @@ export function ButtonNav() {
       {isExplore ? (
         <div className="flex items-center gap-4 px-4 py-2">
           <Web3NetworkSwitch
-            className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}
+            className={cn(buttonVariants({ variant: "default", size: "sm" }))}
           />
           <Web3Button />
         </div>
@@ -26,7 +26,7 @@ export function ButtonNav() {
         <Link
           href="/explore"
           className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
+            buttonVariants({ variant: "default", size: "sm" }),
             "px-4"
           )}
         >

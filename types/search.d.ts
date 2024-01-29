@@ -6,6 +6,7 @@ export type Contract = {
 export type ContractAddress = `0x${string}`;
 
 export interface ContractParams {
+  fakeProposals: any[];
   contractAddress?: ContractAddress;
   networkId?: string;
 }

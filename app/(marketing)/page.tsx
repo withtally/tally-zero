@@ -3,7 +3,7 @@ import Link from "next/link";
 import { siteConfig } from "@config/site";
 import { cn } from "@lib/utils";
 
-import { buttonVariants } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 export default async function IndexPage() {
   return (
@@ -12,7 +12,7 @@ export default async function IndexPage() {
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href={siteConfig.links.twitter}
-            className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium"
+            className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium dark:bg-purple-50 bg-[#7e249c] text-white dark:text-black"
             target="_blank"
           >
             Follow along on Twitter
@@ -25,23 +25,26 @@ export default async function IndexPage() {
             complex front ends, such as Tally and Boardroom, are down.
           </p>
           <div className="space-x-4">
-            <Link href="/explore" className={cn(buttonVariants({ size: "lg" }))}>
-              Get Started
+            <Link href="/explore">
+              <Button className="dark:bg-purple-50 bg-[#7e249c] text-white">
+                Get Started
+              </Button>
             </Link>
             <Link
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
-              GitHub
+              <Button className="text-black" variant={"outline"}>
+                GitHub
+              </Button>
             </Link>
           </div>
         </div>
       </section>
       <section
         id="features"
-        className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
+        className="container space-y-6 py-8 md:py-12 lg:py-24"
       >
         <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-bold  text-3xl leading-[1.1] sm:text-3xl md:text-6xl">

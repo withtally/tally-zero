@@ -32,13 +32,3 @@ export type ParsedProposal = {
   state: ProposalState | undefined;
 };
 
-export enum ProposalState {
-  Pending,
-  Active,
-  Canceled,
-  Defeated,
-  Succeeded,
-  Queued,
-  Expired,
-  Executed,
-}

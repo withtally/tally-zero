@@ -12,9 +12,14 @@ import { State, ContractParams } from "@/types/search";
 import { initialState } from "@config/intial-state";
 import GovernorABI from "@data/OzGovernor_ABI.json";
 
-import DataTable from "@/components/table/DataTable";
+import { DataTable } from "@/components/table/DataTable";
+import { columns } from "@/components/table/Columns";
 
-export default function Search({ contractAddress, networkId }: ContractParams) {
+export default function Search({
+  fakeProposals,
+  contractAddress,
+  networkId,
+}: ContractParams) {
   const provider = useProvider();
   const [state, setState] = useState<State>(initialState);
 
@@ -77,19 +82,12 @@ export default function Search({ contractAddress, networkId }: ContractParams) {
     true
   );
 
-  const activeProposals = parsedProposals.filter(
-    (proposal) => proposal.state === 1
-  );
-
-  const notActive = parsedProposals.filter((proposal) => proposal.state !== 1);
-
   return (
     <>
       {/**
        * #TODO: Add a progress bar to show the progress of the search
        */}
-
-      <DataTable proposals={activeProposals} notActive={notActive} />
+      <DataTable columns={columns} data={fakeProposals as any[]} />
     </>
   );
 }

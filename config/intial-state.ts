@@ -17,3 +17,14 @@ export const initialState: State = {
   },
   proposals: [],
 };
+
+export enum ProposalState {
+  Active,
+  Pending,
+  Queued,
+  Succeeded,
+  Executed,
+  Defeated,
+  Canceled,
+  Expired,
+}

@@ -66,12 +66,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen font-sans antialiased bg-purple-50 dark:bg-zinc-950",
           GeistSans.className
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="container z-40 bg-background">
+          <header className="container z-40 bg-purple-50 dark:bg-zinc-950">
             <div className="flex h-20 items-center justify-between py-6">
               <MainNav items={marketingConfig.mainNav} />
               <ButtonNav />
