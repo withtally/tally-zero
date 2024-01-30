@@ -1,7 +1,12 @@
 import * as z from "zod";
 
+const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
+
 export const formSchema = z.object({
-  // #TODO Ask for address conditions as well as networkid
-  address: z.string(),
-  networkId: z.string(),
+  address: z
+    .string()
+    .regex(ethAddressRegex, { message: "Invalid Ethereum address" }),
+  networkId: z.string().refine((data) => !isNaN(Number(data)), {
+    message: "Network ID must be numeric",
+  }),
 });

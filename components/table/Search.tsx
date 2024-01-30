@@ -83,11 +83,13 @@ export default function Search({
     true
   );
 
+  // #TODO: In the production version, we should go with the 'parsedProposals' instead of 'fakeProposals'
+
   const [percentageFake, setPercentageFake] = useState(0);
   useEffect(() => {
     if (contractAddress && networkId && percentageFake < 100) {
       const timer = setTimeout(() => {
-        setPercentageFake((prevState) => prevState + 5);
+        setPercentageFake((prevState) => prevState + 2.5);
       }, 30);
       return () => clearTimeout(timer);
     }
