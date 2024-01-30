@@ -1,12 +1,11 @@
 import {
-  ArrowDownIcon,
-  ArrowRightIcon,
-  ArrowUpIcon,
   CheckCircledIcon,
-  CircleIcon,
   CrossCircledIcon,
-  QuestionMarkCircledIcon,
+  UpdateIcon,
+  CommitIcon,
   StopwatchIcon,
+  ExclamationTriangleIcon,
+  ClockIcon,
 } from "@radix-ui/react-icons";
 
 export const labels = [
@@ -28,59 +27,49 @@ export const states = [
   {
     value: "active",
     label: "Active",
-    icon: QuestionMarkCircledIcon,
+    bgColor: "bg-green-600 hover:bg-green-600/80",
+    icon: CheckCircledIcon,
   },
   {
     value: "pending",
     label: "Pending",
-    icon: StopwatchIcon,
+    bgColor: "bg-yellow-500 hover:bg-yellow-500/80",
+    icon: UpdateIcon,
   },
   {
     value: "queued",
     label: "Queued",
-    icon: StopwatchIcon,
+    bgColor: "bg-amber-500 hover:bg-amber-500/80",
+    icon: CommitIcon,
   },
   {
     value: "succeeded",
     label: "Succeeded",
+    bgColor: "bg-emerald-600 hover:bg-emerald-600/80",
     icon: CheckCircledIcon,
   },
   {
     value: "executed",
     label: "Executed",
-    icon: CrossCircledIcon,
+    bgColor: "bg-indigo-500 hover:bg-indigo-500/80",
+    icon: ExclamationTriangleIcon,
   },
   {
     value: "defeated",
     label: "Defeated",
-    icon: CrossCircledIcon,
+    bgColor: "bg-orange-500 hover:bg-orange-500/80",
+    icon: StopwatchIcon,
   },
   {
     value: "canceled",
     label: "Canceled",
+    bgColor: "bg-red-500 hover:bg-red-500/80",
     icon: CrossCircledIcon,
   },
   {
     value: "expired",
     label: "Expired",
-    icon: CrossCircledIcon,
-  },
-];
-
-export const priorities = [
-  {
-    label: "Low",
-    value: "low",
-    icon: ArrowDownIcon,
-  },
-  {
-    label: "Medium",
-    value: "medium",
-    icon: ArrowRightIcon,
-  },
-  {
-    label: "High",
-    value: "high",
-    icon: ArrowUpIcon,
+    bgColor: "bg-rose-800 hover:bg-rose-800/80",
+    icon: ClockIcon,
   },
 ];

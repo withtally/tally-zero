@@ -2,13 +2,13 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { proposalSchema } from "@data/table/schema";
-
 import { DataTableColumnHeader } from "@components/table/ColumnHeader";
 import { DataTableRowActions } from "@components/table/RowActions";
 import { Badge } from "@components/ui/Badge";
 
+import { cn } from "@lib/utils";
 import { states } from "@data/table/data";
+import { proposalSchema } from "@data/table/schema";
 
 export const columns: ColumnDef<typeof proposalSchema>[] = [
   {
@@ -36,7 +36,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     },
   },
   {
-    accessorKey: "startblock",
+    accessorKey: "startBlock",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Start Block" />
     ),
@@ -44,14 +44,14 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("startblock")}
+            {row.getValue("startBlock")}
           </span>
         </div>
       );
     },
   },
   {
-    accessorKey: "endblock",
+    accessorKey: "endBlock",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="End Block" />
     ),
@@ -59,7 +59,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("endblock")}
+            {row.getValue("endBlock")}
           </span>
         </div>
       );
@@ -77,11 +77,15 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       if (!stateValue) return null;
 
       return (
-        <div className="flex items-center">
-          <Badge className="">
-            <stateValue.icon /> {stateValue.label}
-          </Badge>
-        </div>
+        <Badge
+          className={cn(
+            "text-xs font-semibold inline-flex items-center",
+            stateValue.bgColor
+          )}
+        >
+          <stateValue.icon className="mr-1" style={{ strokeWidth: "2" }} />
+          {stateValue.label}
+        </Badge>
       );
     },
     filterFn: (row, id, value) => {
