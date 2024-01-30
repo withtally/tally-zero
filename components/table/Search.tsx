@@ -14,6 +14,7 @@ import GovernorABI from "@data/OzGovernor_ABI.json";
 
 import { DataTable } from "@/components/table/DataTable";
 import { columns } from "@/components/table/Columns";
+import { Progress } from "@/components/ui/Progress";
 
 export default function Search({
   fakeProposals,
@@ -82,12 +83,20 @@ export default function Search({
     true
   );
 
+  const [percentageFake, setPercentageFake] = useState(0);
+  useEffect(() => {
+    if (contractAddress && networkId && percentageFake < 100) {
+      const timer = setTimeout(() => {
+        setPercentageFake((prevState) => prevState + 5);
+      }, 30);
+      return () => clearTimeout(timer);
+    }
+  }, [percentageFake, contractAddress, networkId]);
+
   return (
     <section id="proposals-table">
-      {/**
-       * #TODO: Add a progress bar to show the progress of the search
-       */}
-      {contractAddress && networkId && (
+      <Progress className="mb-8" value={percentageFake} />
+      {contractAddress && networkId && percentageFake === 100 && (
         <DataTable columns={columns} data={fakeProposals as any[]} />
       )}
     </section>

@@ -32,4 +32,4 @@ fs.writeFileSync(
   JSON.stringify(fakeProposals, null, 2)
 );
 
-console.log("Fake proposals generated.");
+console.log(":white_check_mark: Fake proposals generated.");
