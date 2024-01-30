@@ -83,11 +83,13 @@ export default function Search({
   );
 
   return (
-    <>
+    <section id="proposals-table">
       {/**
        * #TODO: Add a progress bar to show the progress of the search
        */}
-      <DataTable columns={columns} data={fakeProposals as any[]} />
-    </>
+      {contractAddress && networkId && (
+        <DataTable columns={columns} data={fakeProposals as any[]} />
+      )}
+    </section>
   );
 }

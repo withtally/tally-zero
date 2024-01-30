@@ -39,8 +39,16 @@ export default function ContractForm({
     window.history.pushState(
       {},
       "",
-      `?address=${values.address}&networkId=${values.networkId}`
+      `${window.location.pathname}?address=${values.address}&networkId=${values.networkId}`
     );
+
+    const section = document.getElementById("proposals-table");
+    if (section) {
+      section.scrollIntoView({
+        behavior: "auto",
+        inline: "center",
+      });
+    }
     window.location.reload();
   }
 
