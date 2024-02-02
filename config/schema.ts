@@ -10,3 +10,11 @@ export const formSchema = z.object({
     message: "Network ID must be numeric",
   }),
 });
+
+export const voteSchema = z.object({
+  vote: z
+    .string()
+    .refine((data) => ["for", "against", "abstrain"].includes(data), {
+      message: "Please select a valid vote option",
+    }),
+});
