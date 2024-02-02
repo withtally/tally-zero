@@ -1,8 +1,11 @@
 "use client";
 
 import { z } from "zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { usePrepareContractWrite, useContractWrite } from "wagmi";
 
 import {
   Form,
@@ -16,18 +19,49 @@ import {
 import { Button } from "@components/ui/Button";
 import { DialogClose, DialogFooter } from "@components/ui/Dialog";
 import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 import { voteSchema } from "@config/schema";
+import { ParsedProposal } from "@/types/proposal";
 
-export default function VoteForm() {
+import OZ_Governor_ABI from "@data/OzGovernor_ABI.json";
+
+export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof voteSchema>>({
     resolver: zodResolver(voteSchema),
   });
 
-  function onSubmit(values: z.infer<typeof voteSchema>) {
-    // #TODO: Metamask voting logic
-    console.log(values);
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    abi: OZ_Governor_ABI,
+    address: new URLSearchParams(window.location.search).get(
+      "address"
+    ) as `0x${string}`,
+    functionName: "castVote",
+    args: [proposal.id, form.getValues("vote")],
+  });
+
+  const { data, isLoading, isSuccess, write } = useContractWrite(config);
+
+  async function onSubmit(values: z.infer<typeof voteSchema>) {
+    setLoading(true);
+
+    try {
+      console.log(values);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      write?.();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -45,7 +79,7 @@ export default function VoteForm() {
                 >
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="for" />
+                      <RadioGroupItem value="1" />
                     </FormControl>
                     <FormLabel className="font-normal">
                       I&apos;m in favor of this proposal
@@ -53,7 +87,7 @@ export default function VoteForm() {
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="against" />
+                      <RadioGroupItem value="0" />
                     </FormControl>
                     <FormLabel className="font-normal">
                       Against the proposal
@@ -61,7 +95,7 @@ export default function VoteForm() {
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="abstrain" />
+                      <RadioGroupItem value="2" />
                     </FormControl>
                     <FormLabel className="font-normal">
                       I&apos;m abstaining
@@ -80,7 +114,19 @@ export default function VoteForm() {
           <DialogClose asChild>
             <Button variant="ghost">Cancel</Button>
           </DialogClose>
-          <Button type="submit">Vote</Button>
+
+          {loading ? (
+            <Button variant="secondary" disabled>
+              <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
+              Voting
+            </Button>
+          ) : isSuccess ? (
+            <Button variant="secondary" disabled>
+              Voted
+            </Button>
+          ) : (
+            <Button type="submit">Vote</Button>
+          )}
         </DialogFooter>
       </form>
     </Form>

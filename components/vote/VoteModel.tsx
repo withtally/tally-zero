@@ -47,7 +47,7 @@ export default function VoteModel({
             </div>
           </DialogDescription>
         </DialogHeader>
-        <VoteForm />
+        <VoteForm proposal={proposal}/>
       </DialogContent>
     </>
   );

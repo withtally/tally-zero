@@ -14,7 +14,7 @@ export const formSchema = z.object({
 export const voteSchema = z.object({
   vote: z
     .string()
-    .refine((data) => ["for", "against", "abstrain"].includes(data), {
+    .refine((data) => ["0", "1", "2"].includes(data), {
       message: "Please select a valid vote option",
     }),
 });
