@@ -10,6 +10,8 @@ import VoteForm from "@components/vote/VoteForm";
 import { cn } from "@lib/utils";
 import { proposalSchema } from "@data/table/schema";
 
+import ReactMarkdown from "react-markdown";
+
 export default function VoteModel({
   proposal,
   stateValue,
@@ -19,7 +21,7 @@ export default function VoteModel({
 }) {
   return (
     <>
-      <DialogContent>
+      <DialogContent className="sm:max-w-[700px]">
         <DialogHeader>
           <DialogTitle>
             <div className="flex items-center justify-between py-4">
@@ -40,7 +42,9 @@ export default function VoteModel({
           </DialogTitle>
           <DialogDescription className="max-h-[400px] overflow-y-auto">
             <h3 className="text-sm font-semibold">Description</h3>
-            <p className="text-sm px-[2px]">{proposal.description}</p>
+            <div className="text-sm px-[2px]">
+              <ReactMarkdown>{proposal.description}</ReactMarkdown>
+            </div>
           </DialogDescription>
         </DialogHeader>
         <VoteForm />
