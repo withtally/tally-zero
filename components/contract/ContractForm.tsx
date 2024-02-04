@@ -1,10 +1,12 @@
 "use client";
 
 import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Icons } from "@components/Icons";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@components/ui/Button";
 import {
@@ -27,6 +29,7 @@ export default function ContractForm({
   address: string;
   networkId: string;
 }) {
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,6 +37,22 @@ export default function ContractForm({
       networkId: networkId || "",
     },
   });
+
+  useEffect(() => {
+    const getAddress = new URLSearchParams(window.location.search).get(
+      "address"
+    );
+    const getNetworkId = new URLSearchParams(window.location.search).get(
+      "networkId"
+    );
+    if (getAddress && getNetworkId) {
+      setLoading(true);
+    }
+    
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     window.history.pushState(
@@ -49,6 +68,7 @@ export default function ContractForm({
         inline: "center",
       });
     }
+
     window.location.reload();
   }
 
@@ -96,9 +116,16 @@ export default function ContractForm({
           )}
         />
 
-        <Button type="submit" className="flex-1 gap-2">
-          <Icons.search /> Connect to contract
-        </Button>
+        {loading ? (
+          <Button variant={"secondary"} disabled className="flex-1 gap-2">
+            <ReloadIcon className="animate-spin w-5 h-5" />
+            <span className="ml-2">Connecting to contract...</span>
+          </Button>
+        ) : (
+          <Button type="submit" className="flex-1 gap-2">
+            <Icons.search /> Connect to contract
+          </Button>
+        )}
       </form>
     </Form>
   );
