@@ -12,7 +12,7 @@ export default async function IndexPage() {
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href={siteConfig.links.twitter}
-            className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium dark:bg-purple-50 bg-[#7e249c] text-white dark:text-black"
+            className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium"
             target="_blank"
           >
             Follow along on Twitter
@@ -26,9 +26,7 @@ export default async function IndexPage() {
           </p>
           <div className="space-x-4">
             <Link href="/explore">
-              <Button className="dark:bg-purple-50 bg-[#7e249c] text-white">
-                Get Started
-              </Button>
+              <Button>Get Started</Button>
             </Link>
             <Link
               href={siteConfig.links.github}

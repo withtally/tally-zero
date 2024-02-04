@@ -70,9 +70,9 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />
-      <div className="rounded-md border bg-white">
+      <div className="rounded-2xl border bg-white dark:bg-zinc-950 dark:border-zinc-800">
         <Table>
-          <TableHeader className="bg-white dark:text-white dark:bg-zinc-950 dark:border-zinc-800">
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -90,7 +90,7 @@ export function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody className="bg-white dark:text-white dark:bg-zinc-950 dark:border-zinc-800">
+          <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow

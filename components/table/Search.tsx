@@ -93,11 +93,18 @@ export default function Search({
       }, 30);
       return () => clearTimeout(timer);
     }
+
   }, [percentageFake, contractAddress, networkId]);
 
   return (
     <section id="proposals-table">
-      <Progress className="mb-8" value={percentageFake} />
+      {contractAddress &&
+        networkId &&
+        percentageFake > 0 &&
+        percentageFake < 100 && (
+          <Progress className="mb-8" value={percentageFake} />
+        )}
+
       {contractAddress && networkId && percentageFake === 100 && (
         <DataTable columns={columns} data={fakeProposals as any[]} />
       )}

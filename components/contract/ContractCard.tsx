@@ -23,7 +23,7 @@ export default function ContractCard({
   networkId: string;
 }) {
   return (
-    <Card>
+    <Card className="rounded-xl">
       <CardHeader>
         <CardTitle>
           <div className="flex items-center justify-between">
