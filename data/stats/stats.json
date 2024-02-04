@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Total Proposals",
+    "value": "20",
+    "unit": "proposals",
+    "description": "All proposals from the network"
+  },
+  {
+    "title": "My Votes",
+    "value": "1450",
+    "unit": "votes",
+    "description": "All votes from the network"
+  },
+  {
+    "title": "My Proposition Power",
+    "value": "25",
+    "unit": "proposition power",
+    "description": "The power of your proposals"
+  }
+]

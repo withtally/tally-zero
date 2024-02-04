@@ -27,7 +27,7 @@ export default function ContractCard({
       <CardHeader>
         <CardTitle>
           <div className="flex items-center justify-between">
-            <span>What is this?</span>
+            <span>Search for a contract</span>
             <Popover>
               <PopoverTrigger>
                 <InfoCircledIcon

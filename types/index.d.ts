@@ -20,3 +20,11 @@ export type SiteConfig = {
 export type MarketingConfig = {
   mainNav: MainNavItem[];
 };
+
+export type Stat = {
+  title: string;
+  icon?: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
+  value: string;
+  unit: string;
+  description: string;
+};

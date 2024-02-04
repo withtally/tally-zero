@@ -8,7 +8,7 @@ import { Badge } from "@components/ui/Badge";
 
 import { cn } from "@lib/utils";
 import { states } from "@data/table/data";
-import { proposalSchema } from "@data/table/schema";
+import { proposalSchema } from "@config/schema";
 
 export const columns: ColumnDef<typeof proposalSchema>[] = [
   {

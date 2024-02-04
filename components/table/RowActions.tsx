@@ -13,8 +13,8 @@ import { Button } from "@components/ui/Button";
 import { Dialog, DialogTrigger } from "@components/ui/Dialog";
 import VoteModel from "@components/vote/VoteModel";
 
-import { proposalSchema } from "@data/table/schema";
 import { states } from "@data/table/data";
+import { proposalSchema } from "@config/schema";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
