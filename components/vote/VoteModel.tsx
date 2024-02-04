@@ -8,7 +8,7 @@ import { Badge } from "@components/ui/Badge";
 import VoteForm from "@components/vote/VoteForm";
 
 import { cn } from "@lib/utils";
-import { proposalSchema } from "@data/table/schema";
+import { proposalSchema } from "@config/schema";
 
 import ReactMarkdown from "react-markdown";
 
