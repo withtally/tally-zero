@@ -11,7 +11,7 @@ import {
 } from "@components/ui/DropdownMenu";
 import { Button } from "@components/ui/Button";
 import { Dialog, DialogTrigger } from "@components/ui/Dialog";
-import VoteModel from "@components/vote/VoteModel";
+import VoteModel from "@/components/container/VoteModel";
 
 import { states } from "@data/table/data";
 import { proposalSchema } from "@config/schema";

@@ -11,7 +11,7 @@ import {
   PopoverTrigger,
 } from "@components/ui/Popover";
 import { Separator } from "@components/ui/Separator";
-import ContractForm from "@components/contract/ContractForm";
+import ContractForm from "@/components/form/ContractForm";
 
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 

@@ -5,7 +5,7 @@ import {
   DialogTitle,
 } from "@components/ui/Dialog";
 import { Badge } from "@components/ui/Badge";
-import VoteForm from "@components/vote/VoteForm";
+import VoteForm from "@/components/form/VoteForm";
 
 import { cn } from "@lib/utils";
 import { proposalSchema } from "@config/schema";

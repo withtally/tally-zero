@@ -2,9 +2,9 @@ import path from "path";
 import { promises as fs } from "fs";
 import { z } from "zod";
 
-import StatCard from "@components/StatCard";
-import Search from "@/components/table/Search";
-import ContractCard from "@components/contract/ContractCard";
+import StatCard from "@/components/container/StatCard";
+import Search from "@/components/container/Search";
+import ContractCard from "@/components/container/ContractCard";
 
 import { Icons } from "@components/Icons";
 
