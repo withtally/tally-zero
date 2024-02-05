@@ -11,6 +11,8 @@ import { cn } from "@lib/utils";
 import { states } from "@data/table/data";
 import { proposalSchema } from "@config/schema";
 
+import { DotIcon } from "lucide-react";
+
 export const columns: ColumnDef<typeof proposalSchema>[] = [
   {
     accessorKey: "id",
@@ -93,11 +95,11 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       return (
         <Badge
           className={cn(
-            "text-xs font-semibold inline-flex items-center",
+            "text-xs font-bold inline-flex items-center pr-5 -py-1 hover:bg-current/10 transition-colors duration-200 ease-in-out",
             stateValue.bgColor
           )}
         >
-          <stateValue.icon className="mr-1" style={{ strokeWidth: "2" }} />
+          <DotIcon className="mr-1" style={{ strokeWidth: "3" }} />
           {stateValue.label}
         </Badge>
       );
