@@ -2,9 +2,10 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { DataTableColumnHeader } from "@components/table/ColumnHeader";
-import { DataTableRowActions } from "@components/table/RowActions";
 import { Badge } from "@components/ui/Badge";
+import { DescriptionCell } from "@components/ui/DescriptionCell";
+import { DataTableRowActions } from "@components/table/RowActions";
+import { DataTableColumnHeader } from "@components/table/ColumnHeader";
 
 import { cn } from "@lib/utils";
 import { states } from "@data/table/data";
@@ -31,6 +32,19 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("proposer")}
           </span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "description",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Proposal" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <DescriptionCell mdxContent={row.getValue("description")} />
         </div>
       );
     },

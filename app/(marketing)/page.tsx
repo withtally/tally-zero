@@ -33,9 +33,7 @@ export default async function IndexPage() {
               target="_blank"
               rel="noreferrer"
             >
-              <Button className="text-black" variant={"outline"}>
-                GitHub
-              </Button>
+              <Button variant={"outline"}>GitHub</Button>
             </Link>
           </div>
         </div>
