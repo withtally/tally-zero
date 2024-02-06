@@ -13,7 +13,7 @@ import { initialState } from "@config/intial-state";
 import GovernorABI from "@data/OzGovernor_ABI.json";
 
 import { DataTable } from "@/components/table/DataTable";
-import { columns } from "@/components/table/Columns";
+import { columns } from "@/components/table/ColumnsProposals";
 import { Progress } from "@/components/ui/Progress";
 
 export default function Search({

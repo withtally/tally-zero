@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
 
 import { cn } from "@lib/utils";
 
-import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
-import { buttonVariants } from "@components/ui/Button";
 import { Icons } from "@components/Icons";
+import { buttonVariants } from "@components/ui/Button";
+import { Drawer, DrawerTrigger } from "@components/ui/Drawer";
+import OrderbookDrawer from "@components/container/OrderbookDrawer";
 
 export function ButtonNav() {
   const pathname = usePathname();
@@ -21,6 +23,13 @@ export function ButtonNav() {
             className={cn(buttonVariants({ variant: "default", size: "sm" }))}
           />
           <Web3Button />
+
+          <Drawer>
+            <DrawerTrigger className="flex items-center gap-2 px-4 py-3 text-white rounded-md bg-blue-500">
+              <Icons.orderbook className="w-4 h-4" />
+            </DrawerTrigger>
+            <OrderbookDrawer />
+          </Drawer>
         </div>
       ) : (
         <Link

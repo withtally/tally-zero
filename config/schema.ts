@@ -40,3 +40,16 @@ export const statsSchema = z.array(
     description: z.string(),
   })
 );
+
+export const daoSchema = z.object({
+  name: z.string(),
+  imageUrl: z.string(),
+  proposalsSum: z.number(),
+  holdersSum: z.number(),
+  votersSum: z.number(),
+  state: z.string(),
+  provider: z.object({
+    name: z.string(),
+    imageUrl: z.string(),
+  }),
+});

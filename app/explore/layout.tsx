@@ -1,4 +1,4 @@
-import { Web3ModalProvider } from "@/components/Web3ModalProvider";
+import { Web3ModalProvider } from "@context/Web3ModalProvider";
 
 export const metadata = {
   title: "Explore",

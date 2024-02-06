@@ -24,7 +24,8 @@ import {
   X,
   LucideIcon,
   Search,
-} from "lucide-react"
+  BookOpenText,
+} from "lucide-react";
 
 export type Icon = LucideIcon
 
@@ -70,4 +71,5 @@ export const Icons = {
   ),
   twitter: X,
   check: Check,
+  orderbook: BookOpenText,
 }
