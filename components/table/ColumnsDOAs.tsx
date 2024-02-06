@@ -1,16 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { ColumnDef } from "@tanstack/react-table";
 
 import { Badge } from "@components/ui/Badge";
-import { DescriptionCell } from "@components/ui/DescriptionCell";
 import { DataTableColumnHeader } from "@components/table/ColumnHeader";
 
 import { cn } from "@lib/utils";
 import { states } from "@data/table/data";
 import { daoSchema } from "@config/schema";
-
-import { DotIcon } from "lucide-react";
 
 export const columns: ColumnDef<typeof daoSchema>[] = [
   {
@@ -19,11 +17,37 @@ export const columns: ColumnDef<typeof daoSchema>[] = [
       <DataTableColumnHeader column={column} title="Name" />
     ),
     cell: ({ row }) => {
+      const stateValue = states.find(
+        // @ts-ignore
+        (state) => state.value === row.original.state
+      );
+
+      if (!stateValue) return null;
+
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+          <Image
+            //@ts-ignore
+            src={row.original.imageUrl}
+            alt={row.getValue("name")}
+            width={32}
+            height={32}
+            className="rounded-full h-8 w-8 sm:h-10 sm:w-10"
+          />
+          <span className="py-2 px-2 text-left text-base font-bold">
             {row.getValue("name")}
           </span>
+
+          {stateValue.label === "Active" && (
+            <Badge
+              className={cn(
+                "hidden md:inline-flex items-center px-4 text-xs font-bold hover:bg-current/10 transition-colors duration-200 ease-in-out",
+                stateValue.bgColor
+              )}
+            >
+              {stateValue.label}
+            </Badge>
+          )}
         </div>
       );
     },
@@ -35,37 +59,61 @@ export const columns: ColumnDef<typeof daoSchema>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2 px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-          <DescriptionCell mdxContent={row.getValue("proposalsSum")} />
-        </div>
+        <span className="max-w-[500px] truncate font-medium">
+          {row.getValue("proposalsSum")}
+        </span>
       );
     },
   },
   {
     accessorKey: "holdersSum",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Start Block" />
+      <DataTableColumnHeader column={column} title="Holders" />
     ),
     cell: ({ row }) => {
+      const holdersSum = row.getValue("holdersSum");
+
+      const formatNumber = (num: number) => {
+        if (num >= 1000000) {
+          return (num / 1000000).toFixed(1) + "M";
+        } else if (num >= 1000) {
+          return (num / 1000).toFixed(1) + "K";
+        } else {
+          return num;
+        }
+      };
+
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("holdersSum")}
+            {formatNumber(holdersSum as number)}
           </span>
         </div>
       );
     },
   },
+
   {
     accessorKey: "votersSum",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="End Block" />
+      <DataTableColumnHeader column={column} title="Voters" />
     ),
     cell: ({ row }) => {
+      const voterSum = row.getValue("votersSum");
+
+      const formatNumber = (num: number) => {
+        if (num >= 1000000) {
+          return (num / 1000000).toFixed(1) + "M";
+        } else if (num >= 1000) {
+          return (num / 1000).toFixed(1) + "K";
+        } else {
+          return num;
+        }
+      };
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("votersSum")}
+            {formatNumber(voterSum as number)}
           </span>
         </div>
       );
@@ -77,20 +125,22 @@ export const columns: ColumnDef<typeof daoSchema>[] = [
       <DataTableColumnHeader column={column} title="Provider" />
     ),
     cell: ({ row }) => {
-      const stateValue = states.find(
-        (state) => state.value === row.getValue("provider")
-      );
-      if (!stateValue) return null;
+      const provider = row.getValue("provider");
 
       return (
-        <Badge
-          className={cn(
-            "text-xs font-bold inline-flex items-center pr-5 -py-1 hover:bg-current/10 transition-colors duration-200 ease-in-out",
-            stateValue.bgColor
-          )}
-        >
-          <DotIcon className="mr-1" style={{ strokeWidth: "3" }} />
-          {stateValue.label}
+        <Badge>
+          <Image
+            //@ts-ignore
+            src={provider.imageUrl}
+            alt={row.getValue("name")}
+            width={250}
+            height={250}
+            className="rounded-full h-4 w-auto bg-current/20"
+          />
+          <span className="px-1 text-sm font-bold">
+            {/* @ts-ignore */}
+            {provider.name}
+          </span>
         </Badge>
       );
     },

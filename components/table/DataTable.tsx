@@ -31,11 +31,13 @@ import { DataTableToolbar } from "@components/table/Toolbar";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  isPaginated: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  isPaginated = true,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -120,7 +122,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+
+      {isPaginated && <DataTablePagination table={table} />}
     </div>
   );
 }

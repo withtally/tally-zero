@@ -93,7 +93,6 @@ export default function Search({
       }, 30);
       return () => clearTimeout(timer);
     }
-
   }, [percentageFake, contractAddress, networkId]);
 
   return (
@@ -106,7 +105,11 @@ export default function Search({
         )}
 
       {contractAddress && networkId && percentageFake === 100 && (
-        <DataTable columns={columns} data={fakeProposals as any[]} />
+        <DataTable
+          isPaginated={true}
+          columns={columns}
+          data={fakeProposals as any[]}
+        />
       )}
     </section>
   );

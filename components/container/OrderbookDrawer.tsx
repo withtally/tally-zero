@@ -1,26 +1,46 @@
+import path from "path";
+import { promises as fs } from "fs";
+import { z } from "zod";
+
 import {
-  DrawerClose,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerContent,
 } from "@/components/ui/Drawer";
-import { Button } from "@/components/ui/Button";
+import { DataTable } from "@/components/table/DataTable";
+import { columns } from "@/components/table/ColumnsDOAs";
 
-export default function OrderbookDrawer() {
+import { daoSchema } from "@/config/schema";
+
+async function getDAOs() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "data/dao/daos.json")
+  );
+
+  const daos = JSON.parse(data.toString());
+
+  return z.array(daoSchema).parse(daos);
+}
+
+export default async function OrderbookDrawer() {
+  const fakeDAOs = await getDAOs();
+
   return (
     <DrawerContent>
       <DrawerHeader>
-        <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-        <DrawerDescription>This action cannot be undone.</DrawerDescription>
+        <DrawerTitle>Explore DAOs</DrawerTitle>
+        <DrawerDescription>
+          Explore the top DAOs on the platform and their current status.
+        </DrawerDescription>
       </DrawerHeader>
-      <DrawerFooter>
-        <Button>Submit</Button>
-        <DrawerClose>
-          <Button variant="outline">Cancel</Button>
-        </DrawerClose>
-      </DrawerFooter>
+      <div className="px-4 py-2 overflow-auto max-h-[700px]">
+        <DataTable
+          isPaginated={false}
+          columns={columns}
+          data={fakeDAOs as any[]}
+        />
+      </div>
     </DrawerContent>
   );
 }

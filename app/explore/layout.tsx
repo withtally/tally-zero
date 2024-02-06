@@ -10,8 +10,6 @@ interface ExploreLayoutProps {
 
 export default function ExploreLayout({ children }: ExploreLayoutProps) {
   return (
-    <main>
       <Web3ModalProvider>{children}</Web3ModalProvider>
-    </main>
   );
 }

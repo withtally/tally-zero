@@ -5,7 +5,7 @@
     "proposalsSum": 150,
     "holdersSum": 426846,
     "votersSum": 2145143,
-    "state": "pending",
+    "state": "active",
     "provider": {
       "name": "Provider-8u1fu",
       "imageUrl": "https://fakeimg.pl/250x250/?text=qfmfpk"
@@ -17,7 +17,7 @@
     "proposalsSum": 152,
     "holdersSum": 776874,
     "votersSum": 4192164,
-    "state": "queued",
+    "state": "active",
     "provider": {
       "name": "Provider-n7pib",
       "imageUrl": "https://fakeimg.pl/250x250/?text=0infl"
@@ -53,7 +53,7 @@
     "proposalsSum": 118,
     "holdersSum": 369218,
     "votersSum": 3920166,
-    "state": "active",
+    "state": "canceled",
     "provider": {
       "name": "Provider-lcxw0p",
       "imageUrl": "https://fakeimg.pl/250x250/?text=74cnvw"

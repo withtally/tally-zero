@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
 
 import { cn } from "@lib/utils";
+import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
 
 import { Icons } from "@components/Icons";
 import { buttonVariants } from "@components/ui/Button";
 import { Drawer, DrawerTrigger } from "@components/ui/Drawer";
-import OrderbookDrawer from "@components/container/OrderbookDrawer";
 
-export function ButtonNav() {
+export function ButtonNav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isExplore = pathname === "/explore";
 
@@ -28,7 +27,9 @@ export function ButtonNav() {
             <DrawerTrigger className="flex items-center gap-2 px-4 py-3 text-white rounded-md bg-blue-500">
               <Icons.orderbook className="w-4 h-4" />
             </DrawerTrigger>
-            <OrderbookDrawer />
+
+            {children}
+            
           </Drawer>
         </div>
       ) : (

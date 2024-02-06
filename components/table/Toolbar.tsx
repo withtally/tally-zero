@@ -1,5 +1,7 @@
 "use client";
 
+import React, { useState } from "react";
+
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { SearchIcon } from "lucide-react";
 import { Table } from "@tanstack/react-table";
@@ -19,20 +21,24 @@ export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+  const [searchValue, setSearchValue] = useState("");
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchValue(value);
+    table.getColumn("description")?.setFilterValue(value);
+    table.getColumn("name")?.setFilterValue(value);
+  };
+  
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <div className="relative">
           <SearchIcon className="absolute top-1/2 left-3 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
-            placeholder="Search for proposals..."
-            value={
-              (table.getColumn("description")?.getFilterValue() as string) ?? ""
-            }
-            onChange={(event) =>
-              table.getColumn("description")?.setFilterValue(event.target.value)
-            }
+            placeholder="Search ..."
+            value={searchValue}
+            onChange={handleSearchChange}
             className="pl-12 h-12 w-[150px] lg:w-[450px]"
           />
         </div>

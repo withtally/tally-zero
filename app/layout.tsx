@@ -9,6 +9,7 @@ import { marketingConfig } from "@config/marketing";
 import { SiteFooter } from "@components/navigation/SiteFooter";
 import { MainNav } from "@/components/navigation/MainNav";
 import { ButtonNav } from "@/components/navigation/ButtonNav";
+import OrderbookDrawer from "@/components/container/OrderbookDrawer";
 
 import { Analytics } from "@components/Analytics";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
@@ -59,7 +60,14 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
+import { headers } from "next/headers";
+
 export default function RootLayout({ children }: RootLayoutProps) {
+  const heads = headers();
+
+  const pathname = heads.get("next-url");
+  console.log(pathname);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -74,7 +82,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <header className="container z-40">
             <div className="flex h-20 items-center justify-between py-6">
               <MainNav items={marketingConfig.mainNav} />
-              <ButtonNav />
+
+              <ButtonNav>
+                <OrderbookDrawer />
+              </ButtonNav>
             </div>
           </header>
 
