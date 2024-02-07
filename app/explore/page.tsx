@@ -1,5 +1,3 @@
-import path from "path";
-import { promises as fs } from "fs";
 import { z } from "zod";
 
 import StatCard from "@/components/container/StatCard";
@@ -8,30 +6,19 @@ import ContractCard from "@/components/container/ContractCard";
 
 import { Icons } from "@components/Icons";
 
-import { proposalSchema, statsSchema } from "@config/schema";
 import { ContractAddress } from "@/types/search";
+import { proposalSchema, statsSchema } from "@config/schema";
+import { proposals, stats } from "@config/data";
 
 export const metadata = {
   title: "Explore",
 };
 
 async function getProposals() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "public/proposal/proposals.json")
-  );
-
-  const proposals = JSON.parse(data.toString());
-
   return z.array(proposalSchema).parse(proposals);
 }
 
 async function getStats() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "public/stats/stats.json")
-  );
-
-  const stats = JSON.parse(data.toString());
-
   return statsSchema.parse(stats);
 }
 

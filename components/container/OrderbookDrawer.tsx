@@ -1,5 +1,3 @@
-import path from "path";
-import { promises as fs } from "fs";
 import { z } from "zod";
 
 import {
@@ -12,14 +10,9 @@ import { DataTable } from "@/components/table/DataTable";
 import { columns } from "@/components/table/ColumnsDOAs";
 
 import { daoSchema } from "@/config/schema";
+import { daos } from "@/config/data";
 
 async function getDAOs() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "public/dao/daos.json")
-  );
-
-  const daos = JSON.parse(data.toString());
-
   return z.array(daoSchema).parse(daos);
 }
 
