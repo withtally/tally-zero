@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 
 import { cn } from "@lib/utils";
 import { marketingConfig } from "@config/marketing";
+import { Web3ModalProvider } from "@context/Web3ModalProvider";
 
 import { SiteFooter } from "@components/navigation/SiteFooter";
 import { MainNav } from "@/components/navigation/MainNav";
@@ -60,7 +61,6 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -72,23 +72,25 @@ export default function RootLayout({ children }: RootLayoutProps) {
           GeistSans.className
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="container z-40">
-            <div className="flex h-20 items-center justify-between py-6">
-              <MainNav items={marketingConfig.mainNav} />
+        <Web3ModalProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <header className="container z-40">
+              <div className="flex h-20 items-center justify-between py-6">
+                <MainNav items={marketingConfig.mainNav} />
 
-              <ButtonNav>
-                <OrderbookDrawer />
-              </ButtonNav>
-            </div>
-          </header>
+                <ButtonNav>
+                  <OrderbookDrawer />
+                </ButtonNav>
+              </div>
+            </header>
 
-          {children}
-          <SiteFooter />
+            {children}
+            <SiteFooter />
 
-          <Analytics />
-          <TailwindIndicator />
-        </ThemeProvider>
+            <Analytics />
+            <TailwindIndicator />
+          </ThemeProvider>
+        </Web3ModalProvider>
       </body>
     </html>
   );

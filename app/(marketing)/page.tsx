@@ -1,8 +1,5 @@
 import Link from "next/link";
-
 import { siteConfig } from "@config/site";
-import { cn } from "@lib/utils";
-
 import { Button } from "@/components/ui/Button";
 
 export default async function IndexPage() {

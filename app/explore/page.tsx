@@ -11,6 +11,10 @@ import { Icons } from "@components/Icons";
 import { proposalSchema, statsSchema } from "@config/schema";
 import { ContractAddress } from "@/types/search";
 
+export const metadata = {
+  title: "Explore",
+};
+
 async function getProposals() {
   const data = await fs.readFile(
     path.join(process.cwd(), "data/table/proposals.json")
