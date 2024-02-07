@@ -72,8 +72,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           GeistSans.className
         )}
       >
-        <Web3ModalProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Web3ModalProvider>
             <header className="container z-40">
               <div className="flex h-20 items-center justify-between py-6">
                 <MainNav items={marketingConfig.mainNav} />
@@ -89,8 +89,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
             <Analytics />
             <TailwindIndicator />
-          </ThemeProvider>
-        </Web3ModalProvider>
+          </Web3ModalProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
