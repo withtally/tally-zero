@@ -60,14 +60,8 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-import { headers } from "next/headers";
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const heads = headers();
-
-  const pathname = heads.get("next-url");
-  console.log(pathname);
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
