@@ -5,7 +5,7 @@ import { GeistSans } from "geist/font/sans";
 
 import { cn } from "@lib/utils";
 import { marketingConfig } from "@config/marketing";
-import { Web3ModalProvider } from "@context/Web3ModalProvider";
+import { Web3ModalProvider } from "@components/Web3ModalProvider";
 
 import { SiteFooter } from "@components/navigation/SiteFooter";
 import { MainNav } from "@/components/navigation/MainNav";
@@ -26,14 +26,10 @@ export const metadata = {
   authors: [
     {
       name: "crazyrabbitLTC",
-      url: "https://www.findmalek.com",
+      url: "#",
     },
   ],
   creator: "crazyrabbitLTC",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   openGraph: {
     type: "website",
     locale: "en_US",
