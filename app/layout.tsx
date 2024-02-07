@@ -74,7 +74,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
       <body
         className={cn(
-          "min-h-screen font-sans antialiased bg-gradient-to-b from-transparent via-purple-200 to-purple-50 dark:bg-gradient-to-tl dark:from-transparent dark:via-purple-950 dark:to-transparent",
+          "min-h-screen font-sans antialiased bg-[#f1eefc] dark:bg-[#0f0c1b] transition-colors duration-200 ease-in-out",
           GeistSans.className
         )}
       >
