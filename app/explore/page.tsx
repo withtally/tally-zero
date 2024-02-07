@@ -17,7 +17,7 @@ export const metadata = {
 
 async function getProposals() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "data/table/proposals.json")
+    path.join(process.cwd(), "public/proposal/proposals.json")
   );
 
   const proposals = JSON.parse(data.toString());
@@ -27,7 +27,7 @@ async function getProposals() {
 
 async function getStats() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "data/stats/stats.json")
+    path.join(process.cwd(), "public/stats/stats.json")
   );
 
   const stats = JSON.parse(data.toString());

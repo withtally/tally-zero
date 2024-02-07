@@ -15,7 +15,7 @@ import { daoSchema } from "@/config/schema";
 
 async function getDAOs() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "data/dao/daos.json")
+    path.join(process.cwd(), "public/dao/daos.json")
   );
 
   const daos = JSON.parse(data.toString());
