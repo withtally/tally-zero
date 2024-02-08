@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import StatCard from "@/components/container/StatCard";
+import StatCards from "@/components/container/StatCard";
 import Search from "@/components/container/Search";
 import ContractCard from "@/components/container/ContractCard";
 
@@ -36,19 +36,9 @@ export default async function IndexPage({
   return (
     <div className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-20">
       <div className="container flex flex-col gap-4 ">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:grid md:grid-cols-3">
-          {stats.map((stat, index) => (
-            <StatCard
-              key={index}
-              title={stat.title}
-              value={stat.value}
-              unit={stat.unit}
-              description={stat.description}
-            >
-              <Icons.arrowRight className="h-4 w-4 text-muted-foreground" />
-            </StatCard>
-          ))}
-        </div>
+        <StatCards address={address as string}>
+          <Icons.arrowRight className="h-4 w-4 text-muted-foreground" />
+        </StatCards>
 
         <ContractCard
           address={address as string}

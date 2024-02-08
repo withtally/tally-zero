@@ -24,7 +24,11 @@ export type MarketingConfig = {
 export type Stat = {
   title: string;
   icon?: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
-  value: string;
+  value: number;
   unit: string;
+  isLoading: boolean;
   description: string;
+
+  contractAddress?: any;
+  totalVoting?: number;
 };

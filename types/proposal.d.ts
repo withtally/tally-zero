@@ -32,3 +32,8 @@ export type ParsedProposal = {
   state: ProposalState | undefined;
 };
 
+export type UseTotalProposalsReturn = {
+  totalProposals: number | null;
+  isLoadingTotal: boolean;
+  error: Error | null;
+};
