@@ -3,12 +3,12 @@ import * as z from "zod";
 const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
 
 export const formSchema = z.object({
-  address: z
+  address: z.string().regex(ethAddressRegex, "Invalid Ethereum address"),
+  networkId: z
     .string()
-    .regex(ethAddressRegex, { message: "Invalid Ethereum address" }),
-  networkId: z.string().refine((data) => !isNaN(Number(data)), {
-    message: "Network ID must be numeric",
-  }),
+    .refine((data) => !isNaN(Number(data)) && data.trim().length > 0, {
+      message: "Network ID must be numeric and is required",
+    }),
 });
 
 export const voteSchema = z.object({
@@ -44,12 +44,5 @@ export const statsSchema = z.array(
 export const daoSchema = z.object({
   name: z.string(),
   imageUrl: z.string(),
-  proposalsSum: z.number(),
-  holdersSum: z.number(),
-  votersSum: z.number(),
-  state: z.string(),
-  provider: z.object({
-    name: z.string(),
-    imageUrl: z.string(),
-  }),
+  ethAddress: z.string().regex(ethAddressRegex),
 });

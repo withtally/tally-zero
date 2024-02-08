@@ -9,7 +9,7 @@ import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
 
 import { Icons } from "@components/Icons";
 import { buttonVariants } from "@components/ui/Button";
-import { Drawer, DrawerTrigger } from "@components/ui/Drawer";
+import { Sheet, SheetTrigger } from "@components/ui/Sheet";
 
 const Skeleton = ({ className }: { className?: string }) => (
   <div aria-live="polite" aria-busy="true" className={className}>
@@ -57,13 +57,13 @@ export function ButtonNav({ children }: { children: React.ReactNode }) {
             </>
           )}
 
-          <Drawer>
-            <DrawerTrigger className="flex items-center gap-2 px-4 py-3 text-white rounded-md bg-blue-500">
+          <Sheet>
+            <SheetTrigger className="flex items-center gap-2 px-4 py-3 text-white rounded-md bg-blue-500">
               <Icons.orderbook className="w-4 h-4" />
-            </DrawerTrigger>
+            </SheetTrigger>
 
             {children}
-          </Drawer>
+          </Sheet>
         </div>
       ) : (
         <Link

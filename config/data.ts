@@ -1,366 +1,3 @@
-export const daos = [
-  {
-    name: "DAO-nsibt8",
-    imageUrl: "https://fakeimg.pl/250x250/?text=w7ukel",
-    proposalsSum: 150,
-    holdersSum: 426846,
-    votersSum: 2145143,
-    state: "active",
-    provider: {
-      name: "Provider-8u1fu",
-      imageUrl: "https://fakeimg.pl/250x250/?text=qfmfpk",
-    },
-  },
-  {
-    name: "DAO-iitpyq",
-    imageUrl: "https://fakeimg.pl/250x250/?text=15g34c",
-    proposalsSum: 152,
-    holdersSum: 776874,
-    votersSum: 4192164,
-    state: "active",
-    provider: {
-      name: "Provider-n7pib",
-      imageUrl: "https://fakeimg.pl/250x250/?text=0infl",
-    },
-  },
-  {
-    name: "DAO-7rgr36",
-    imageUrl: "https://fakeimg.pl/250x250/?text=mdfxj2",
-    proposalsSum: 292,
-    holdersSum: 687200,
-    votersSum: 669195,
-    state: "canceled",
-    provider: {
-      name: "Provider-tsqmrr",
-      imageUrl: "https://fakeimg.pl/250x250/?text=lf07",
-    },
-  },
-  {
-    name: "DAO-je5jmi",
-    imageUrl: "https://fakeimg.pl/250x250/?text=qxz9ip",
-    proposalsSum: 6,
-    holdersSum: 587324,
-    votersSum: 1080413,
-    state: "canceled",
-    provider: {
-      name: "Provider-1jxfu",
-      imageUrl: "https://fakeimg.pl/250x250/?text=kbbnis",
-    },
-  },
-  {
-    name: "DAO-7b7djb",
-    imageUrl: "https://fakeimg.pl/250x250/?text=nynt85",
-    proposalsSum: 118,
-    holdersSum: 369218,
-    votersSum: 3920166,
-    state: "canceled",
-    provider: {
-      name: "Provider-lcxw0p",
-      imageUrl: "https://fakeimg.pl/250x250/?text=74cnvw",
-    },
-  },
-  {
-    name: "DAO-smalt7",
-    imageUrl: "https://fakeimg.pl/250x250/?text=ju87u8",
-    proposalsSum: 110,
-    holdersSum: 336955,
-    votersSum: 2102573,
-    state: "executed",
-    provider: {
-      name: "Provider-xe7c1q",
-      imageUrl: "https://fakeimg.pl/250x250/?text=3zpq9p",
-    },
-  },
-  {
-    name: "DAO-4i2bm",
-    imageUrl: "https://fakeimg.pl/250x250/?text=9qv3ul",
-    proposalsSum: 104,
-    holdersSum: 244209,
-    votersSum: 960235,
-    state: "executed",
-    provider: {
-      name: "Provider-7ztxqr",
-      imageUrl: "https://fakeimg.pl/250x250/?text=kdjad",
-    },
-  },
-  {
-    name: "DAO-eo2ba8",
-    imageUrl: "https://fakeimg.pl/250x250/?text=blgr8m",
-    proposalsSum: 195,
-    holdersSum: 67369,
-    votersSum: 71628,
-    state: "succeeded",
-    provider: {
-      name: "Provider-xywpud",
-      imageUrl: "https://fakeimg.pl/250x250/?text=2x5lma",
-    },
-  },
-  {
-    name: "DAO-sstoc3",
-    imageUrl: "https://fakeimg.pl/250x250/?text=thw1ah",
-    proposalsSum: 151,
-    holdersSum: 548746,
-    votersSum: 4762905,
-    state: "succeeded",
-    provider: {
-      name: "Provider-lo3wog",
-      imageUrl: "https://fakeimg.pl/250x250/?text=f6qnqg",
-    },
-  },
-  {
-    name: "DAO-ku2gq6",
-    imageUrl: "https://fakeimg.pl/250x250/?text=p33jfm",
-    proposalsSum: 204,
-    holdersSum: 780917,
-    votersSum: 657451,
-    state: "executed",
-    provider: {
-      name: "Provider-dgdh5d",
-      imageUrl: "https://fakeimg.pl/250x250/?text=o3uwr",
-    },
-  },
-  {
-    name: "DAO-2xi1lb",
-    imageUrl: "https://fakeimg.pl/250x250/?text=cma9t",
-    proposalsSum: 182,
-    holdersSum: 276354,
-    votersSum: 477894,
-    state: "canceled",
-    provider: {
-      name: "Provider-umssoe",
-      imageUrl: "https://fakeimg.pl/250x250/?text=lkdyt",
-    },
-  },
-  {
-    name: "DAO-5yl3lk",
-    imageUrl: "https://fakeimg.pl/250x250/?text=cdpm7g",
-    proposalsSum: 77,
-    holdersSum: 689836,
-    votersSum: 1227602,
-    state: "canceled",
-    provider: {
-      name: "Provider-85s9ku",
-      imageUrl: "https://fakeimg.pl/250x250/?text=0eryf7",
-    },
-  },
-  {
-    name: "DAO-ml4oih",
-    imageUrl: "https://fakeimg.pl/250x250/?text=cksbro",
-    proposalsSum: 232,
-    holdersSum: 143215,
-    votersSum: 2927426,
-    state: "defeated",
-    provider: {
-      name: "Provider-b5jazc",
-      imageUrl: "https://fakeimg.pl/250x250/?text=uud0tj",
-    },
-  },
-  {
-    name: "DAO-tdbsi7",
-    imageUrl: "https://fakeimg.pl/250x250/?text=mzl0c4",
-    proposalsSum: 58,
-    holdersSum: 143746,
-    votersSum: 4825174,
-    state: "canceled",
-    provider: {
-      name: "Provider-1wrfe",
-      imageUrl: "https://fakeimg.pl/250x250/?text=justta",
-    },
-  },
-  {
-    name: "DAO-gr1j28",
-    imageUrl: "https://fakeimg.pl/250x250/?text=yp630i",
-    proposalsSum: 110,
-    holdersSum: 620887,
-    votersSum: 4508116,
-    state: "defeated",
-    provider: {
-      name: "Provider-iiktbe",
-      imageUrl: "https://fakeimg.pl/250x250/?text=gn1rwk",
-    },
-  },
-  {
-    name: "DAO-od0nas",
-    imageUrl: "https://fakeimg.pl/250x250/?text=du6gt2",
-    proposalsSum: 174,
-    holdersSum: 277929,
-    votersSum: 1043945,
-    state: "expired",
-    provider: {
-      name: "Provider-l7h84",
-      imageUrl: "https://fakeimg.pl/250x250/?text=nkpilq",
-    },
-  },
-  {
-    name: "DAO-idp9vp",
-    imageUrl: "https://fakeimg.pl/250x250/?text=x8gsoa",
-    proposalsSum: 86,
-    holdersSum: 871091,
-    votersSum: 4893788,
-    state: "defeated",
-    provider: {
-      name: "Provider-g84epf",
-      imageUrl: "https://fakeimg.pl/250x250/?text=n82qt",
-    },
-  },
-  {
-    name: "DAO-n3zpf4",
-    imageUrl: "https://fakeimg.pl/250x250/?text=59qo",
-    proposalsSum: 290,
-    holdersSum: 520798,
-    votersSum: 3719218,
-    state: "active",
-    provider: {
-      name: "Provider-sceldd",
-      imageUrl: "https://fakeimg.pl/250x250/?text=k5y3n",
-    },
-  },
-  {
-    name: "DAO-ogjmre",
-    imageUrl: "https://fakeimg.pl/250x250/?text=8ace1c",
-    proposalsSum: 252,
-    holdersSum: 165332,
-    votersSum: 4675546,
-    state: "executed",
-    provider: {
-      name: "Provider-ny8ce",
-      imageUrl: "https://fakeimg.pl/250x250/?text=1645bf",
-    },
-  },
-  {
-    name: "DAO-y8lqgq",
-    imageUrl: "https://fakeimg.pl/250x250/?text=zromc",
-    proposalsSum: 202,
-    holdersSum: 522383,
-    votersSum: 4077572,
-    state: "queued",
-    provider: {
-      name: "Provider-u9u18p",
-      imageUrl: "https://fakeimg.pl/250x250/?text=5kfem8",
-    },
-  },
-  {
-    name: "DAO-k9ngkm",
-    imageUrl: "https://fakeimg.pl/250x250/?text=20lh2",
-    proposalsSum: 50,
-    holdersSum: 254946,
-    votersSum: 2594458,
-    state: "expired",
-    provider: {
-      name: "Provider-lwslf",
-      imageUrl: "https://fakeimg.pl/250x250/?text=z6rb3o",
-    },
-  },
-  {
-    name: "DAO-h32jxc",
-    imageUrl: "https://fakeimg.pl/250x250/?text=nrhego",
-    proposalsSum: 205,
-    holdersSum: 408896,
-    votersSum: 132309,
-    state: "succeeded",
-    provider: {
-      name: "Provider-5xpm4",
-      imageUrl: "https://fakeimg.pl/250x250/?text=tv6fpe",
-    },
-  },
-  {
-    name: "DAO-91u91q",
-    imageUrl: "https://fakeimg.pl/250x250/?text=b79nsd",
-    proposalsSum: 190,
-    holdersSum: 507546,
-    votersSum: 610113,
-    state: "expired",
-    provider: {
-      name: "Provider-uvcx1pn",
-      imageUrl: "https://fakeimg.pl/250x250/?text=dijt9b",
-    },
-  },
-  {
-    name: "DAO-m74w6",
-    imageUrl: "https://fakeimg.pl/250x250/?text=l9t41f",
-    proposalsSum: 76,
-    holdersSum: 478745,
-    votersSum: 834245,
-    state: "executed",
-    provider: {
-      name: "Provider-jl7t17",
-      imageUrl: "https://fakeimg.pl/250x250/?text=2wxm87",
-    },
-  },
-  {
-    name: "DAO-uhhvu",
-    imageUrl: "https://fakeimg.pl/250x250/?text=zfzmbh",
-    proposalsSum: 19,
-    holdersSum: 418389,
-    votersSum: 4969185,
-    state: "defeated",
-    provider: {
-      name: "Provider-cana0a",
-      imageUrl: "https://fakeimg.pl/250x250/?text=58wlp",
-    },
-  },
-  {
-    name: "DAO-xp4cn8",
-    imageUrl: "https://fakeimg.pl/250x250/?text=nrbpmd",
-    proposalsSum: 204,
-    holdersSum: 671385,
-    votersSum: 1787647,
-    state: "executed",
-    provider: {
-      name: "Provider-ah3bip",
-      imageUrl: "https://fakeimg.pl/250x250/?text=bbsus",
-    },
-  },
-  {
-    name: "DAO-wvpe0l",
-    imageUrl: "https://fakeimg.pl/250x250/?text=2sxwa",
-    proposalsSum: 199,
-    holdersSum: 618388,
-    votersSum: 4202223,
-    state: "active",
-    provider: {
-      name: "Provider-yw6e6",
-      imageUrl: "https://fakeimg.pl/250x250/?text=2orms8",
-    },
-  },
-  {
-    name: "DAO-ysd2i",
-    imageUrl: "https://fakeimg.pl/250x250/?text=rfu22",
-    proposalsSum: 164,
-    holdersSum: 615232,
-    votersSum: 722265,
-    state: "pending",
-    provider: {
-      name: "Provider-qr1l8h",
-      imageUrl: "https://fakeimg.pl/250x250/?text=j9982m",
-    },
-  },
-  {
-    name: "DAO-r5qczq",
-    imageUrl: "https://fakeimg.pl/250x250/?text=vloyn",
-    proposalsSum: 48,
-    holdersSum: 956942,
-    votersSum: 4701326,
-    state: "succeeded",
-    provider: {
-      name: "Provider-ozo4pf",
-      imageUrl: "https://fakeimg.pl/250x250/?text=sl1sbt",
-    },
-  },
-  {
-    name: "DAO-g8zrj",
-    imageUrl: "https://fakeimg.pl/250x250/?text=3n2iwu",
-    proposalsSum: 146,
-    holdersSum: 697536,
-    votersSum: 1163771,
-    state: "canceled",
-    provider: {
-      name: "Provider-h3iffp",
-      imageUrl: "https://fakeimg.pl/250x250/?text=vp2xk6",
-    },
-  },
-];
-
 export const proposals = [
   {
     id: 621,
@@ -1591,5 +1228,68 @@ export const stats = [
     value: "25",
     unit: "proposition power",
     description: "The power of your proposals",
+  },
+];
+
+export const daos = [
+  {
+    name: "Arbitrum",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fb817e120-3169-47b5-a6c7-0bc42b7e0877_original.jpeg&w=256&q=75",
+    ethAddress: "0xf07DeD9dC292157749B6Fd268E37DF6EA38395B9",
+  },
+  {
+    name: "Optimism",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F4f89fa07-7d2a-4884-a9db-5484890f2b2f_original.png&w=256&q=75",
+    ethAddress: "0xcDF27F107725988f2261Ce2256bDfCdE8B382B10",
+  },
+  {
+    name: "Compound",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fbc952927-da93-4cab-b0ce-b5e2f5976b9a_400x400.jpg&w=256&q=75",
+    ethAddress: "0xc0Da02939E1441F497fd74F78cE7Decb17B66529",
+  },
+  {
+    name: "Hop",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fe791fd56-5374-476f-acc0-190587ffa3e7_original.png&w=256&q=75",
+    ethAddress: "0xed8Bdb5895B8B7f9Fdb3C087628FD8410E853D48",
+  },
+  {
+    name: "Lil Nouns",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F6b7f8135-d235-41c8-827b-ee8eecc5a2b2_original.png&w=256&q=75",
+    ethAddress: "0x5d2C31ce16924C2a71D317e5BbFd5ce387854039",
+  },
+  {
+    name: "Nouns Dao",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F1decbb17-b472-4eb9-9141-92c3f86770de_400x400.jpg&w=256&q=75",
+    ethAddress: "0x6f3E6272A167e8AcCb32072d08E0957F9c79223d",
+  },
+  {
+    name: "Thurman",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fe8cc190d-3c82-4601-aeab-a72556ef3c02_original.png&w=256&q=75",
+    ethAddress: "0x6518998C230Ceb7A7AD530c7088f0747604C06f5",
+  },
+  {
+    name: "Content Guild",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F35effe07-180d-4b55-9998-4ad983e9d8ba_original.png&w=256&q=75",
+    ethAddress: "0x26217Ec5044AEB8D6495BC68eE91951cd7Bb02a0",
+  },
+  {
+    name: "Aave",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fde0e6dc7-1c07-4ae4-9f42-e46367984fd2_original.png&w=256&q=75",
+    ethAddress: "0xEC568fffba86c094cf06b22134B23074DFE2252c",
+  },
+  {
+    name: "Uniswap",
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fd9e8442f-5cb7-4357-9567-3cdd7ae5930e_400x400.jpg&w=256&q=75",
+    ethAddress: "0x408ED6354d4973f66138C91495F2f2FCbd8724C3",
   },
 ];

@@ -1,39 +1,39 @@
 import { z } from "zod";
 
 import {
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerContent,
-} from "@/components/ui/Drawer";
-import { DataTable } from "@/components/table/DataTable";
-import { columns } from "@/components/table/ColumnsDOAs";
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@components/ui/Sheet";
 
-import { daoSchema } from "@/config/schema";
-import { daos } from "@/config/data";
+import DaoCard from "@components/container/DaoCard";
+
+import { daoSchema } from "@config/schema";
+import { daos } from "@config/data";
 
 async function getDAOs() {
   return z.array(daoSchema).parse(daos);
 }
 
-export default async function OrderbookDrawer() {
+export default async function OrderbookSheet() {
   const fakeDAOs = await getDAOs();
 
   return (
-    <DrawerContent>
-      <DrawerHeader>
-        <DrawerTitle>Explore DAOs</DrawerTitle>
-        <DrawerDescription>
+    <SheetContent className="w-full sm:max-w-[550px]">
+      <SheetHeader>
+        <SheetTitle>Explore DAOs</SheetTitle>
+        <SheetDescription>
           Explore the top DAOs on the platform and their current status.
-        </DrawerDescription>
-      </DrawerHeader>
-      <div className="px-4 py-2 overflow-auto max-h-[700px]">
-        <DataTable
-          isPaginated={false}
-          columns={columns}
-          data={fakeDAOs as any[]}
-        />
+        </SheetDescription>
+      </SheetHeader>
+      <div
+        className="py-8 text-left overflow-auto h-[calc(100vh-4rem)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+      >
+        {fakeDAOs.map((dao, index) => (
+          <DaoCard key={index} {...dao} />
+        ))}
       </div>
-    </DrawerContent>
+    </SheetContent>
   );
 }
