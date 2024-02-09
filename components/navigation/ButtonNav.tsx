@@ -9,7 +9,6 @@ import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
 
 import { Icons } from "@components/Icons";
 import { buttonVariants } from "@components/ui/Button";
-import { Sheet, SheetTrigger } from "@components/ui/Sheet";
 
 const Skeleton = ({ className }: { className?: string }) => (
   <div aria-live="polite" aria-busy="true" className={className}>
@@ -28,7 +27,7 @@ const LoadingSkeleton = () => (
   </>
 );
 
-export function ButtonNav({ children }: { children: React.ReactNode }) {
+export function ButtonNav() {
   const pathname = usePathname();
   const isExplore = pathname === "/explore";
   const [loading, setLoading] = useState(true);
@@ -56,14 +55,6 @@ export function ButtonNav({ children }: { children: React.ReactNode }) {
               <Web3Button />
             </>
           )}
-
-          <Sheet>
-            <SheetTrigger className="flex items-center gap-2 px-4 py-3 text-white rounded-md bg-blue-500">
-              <Icons.orderbook className="w-4 h-4" />
-            </SheetTrigger>
-
-            {children}
-          </Sheet>
         </div>
       ) : (
         <Link

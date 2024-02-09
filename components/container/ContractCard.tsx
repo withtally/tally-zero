@@ -12,6 +12,7 @@ import {
 } from "@components/ui/Popover";
 import { Separator } from "@components/ui/Separator";
 import ContractForm from "@/components/form/ContractForm";
+import OrderbookSheet from "@components/container/OrderbookDrawer";
 
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 
@@ -66,7 +67,21 @@ export default function ContractCard({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ContractForm address={address} networkId={networkId} />
+        <ContractForm
+          address={address}
+          networkId={networkId}
+          sheet1={
+            <div>
+              <OrderbookSheet />
+            </div>
+          }
+          sheet2={
+            <div>
+              {/* #TODO: Update this with the chain sheet */}
+              <OrderbookSheet />
+            </div>
+          }
+        />
       </CardContent>
     </Card>
   );

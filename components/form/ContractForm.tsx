@@ -1,14 +1,14 @@
 "use client";
 
 import * as z from "zod";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, cloneElement } from "react";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Icons } from "@components/Icons";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
-import { Button } from "@components/ui/Button";
 import {
   Form,
   FormControl,
@@ -19,15 +19,21 @@ import {
   FormMessage,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
+import { Button } from "@components/ui/Button";
+import { Sheet, SheetTrigger } from "@components/ui/Sheet";
 
 import { formSchema } from "@config/schema";
 
 export default function ContractForm({
   address,
   networkId,
+  sheet1,
+  sheet2,
 }: {
   address: string;
   networkId: string;
+  sheet1: React.ReactNode;
+  sheet2: React.ReactNode;
 }) {
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -48,7 +54,7 @@ export default function ContractForm({
     if (getAddress && getNetworkId) {
       setLoading(true);
     }
-    
+
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -85,7 +91,21 @@ export default function ContractForm({
             <FormItem className="flex-1">
               <FormLabel>Ethereum address</FormLabel>
               <FormControl>
-                <Input placeholder="0x00000..." autoComplete="off" {...field} />
+                <div className="relative flex items-center">
+                  <Input
+                    placeholder="0x00000..."
+                    autoComplete="off"
+                    {...field}
+                    className="pl-12 pr-10 py-2 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                  <Sheet>
+                    <SheetTrigger className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out">
+                      <Icons.orderbook className="w-4 h-4" />
+                    </SheetTrigger>
+                    {/** @ts-ignore */}
+                    {React.cloneElement(sheet1)}
+                  </Sheet>
+                </div>
               </FormControl>
               <FormDescription>
                 The address of the contract you want to explore.
@@ -102,11 +122,21 @@ export default function ContractForm({
             <FormItem className="flex-1">
               <FormLabel>Network ID</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Eg 1, 3, 4, 5, 42, 1337, ..."
-                  autoComplete="off"
-                  {...field}
-                />
+                <div className="relative flex items-center">
+                  <Input
+                    placeholder="Eg 1, 3, 4, 5, 42, 1337, ..."
+                    autoComplete="off"
+                    {...field}
+                    className="pl-12 pr-10 py-2 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                  <Sheet>
+                    <SheetTrigger className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out">
+                      <Icons.orderbook className="w-4 h-4" />
+                    </SheetTrigger>
+                    {/** @ts-ignore */}
+                    {React.cloneElement(sheet2)}
+                  </Sheet>
+                </div>
               </FormControl>
               <FormDescription>
                 The network ID of the contract you want to explore.

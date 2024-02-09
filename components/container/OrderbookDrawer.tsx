@@ -20,16 +20,14 @@ export default async function OrderbookSheet() {
   const fakeDAOs = await getDAOs();
 
   return (
-    <SheetContent className="w-full sm:max-w-[550px]">
+    <SheetContent side="left" className="w-full sm:max-w-[550px]">
       <SheetHeader>
         <SheetTitle>Explore DAOs</SheetTitle>
         <SheetDescription>
           Explore the top DAOs on the platform and their current status.
         </SheetDescription>
       </SheetHeader>
-      <div
-        className="py-8 text-left overflow-auto h-[calc(100vh-4rem)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
-      >
+      <div className="py-8 text-left overflow-auto h-[calc(100vh-4rem)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
         {fakeDAOs.map((dao, index) => (
           <DaoCard key={index} {...dao} />
         ))}

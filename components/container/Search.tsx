@@ -22,10 +22,6 @@ export default function Search({
   networkId,
 }: ContractParams) {
   const provider = useProvider();
-
-  // Get the user address
-  console.log("provider", provider);
-
   const [state, setState] = useState<State>(initialState);
 
   // Search for the Deployment block of Governor
