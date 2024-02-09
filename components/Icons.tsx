@@ -25,9 +25,10 @@ import {
   LucideIcon,
   Search,
   BookOpenText,
+  Link,
 } from "lucide-react";
 
-export type Icon = LucideIcon
+export type Icon = LucideIcon;
 
 export const Icons = {
   logo: Command,
@@ -72,4 +73,5 @@ export const Icons = {
   twitter: X,
   check: Check,
   orderbook: BookOpenText,
-}
+  link: Link,
+};

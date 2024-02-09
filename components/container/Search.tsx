@@ -17,7 +17,6 @@ import { columns } from "@/components/table/ColumnsProposals";
 import { Progress } from "@/components/ui/Progress";
 
 export default function Search({
-  fakeProposals,
   contractAddress,
   networkId,
 }: ContractParams) {

@@ -16,6 +16,13 @@ export default function DaoCard({
   ethAddress,
 }: z.infer<typeof daoSchema>) {
   const [isCopied, setIsCopied] = useState(false);
+  let getNetworkId = new URLSearchParams(window.location.search).get(
+    "networkId"
+  );
+
+  if (getNetworkId === null) {
+    getNetworkId = "";
+  }
 
   const handleCopyClick = () => {
     navigator.clipboard
@@ -41,11 +48,13 @@ export default function DaoCard({
         </a>
         <div className="flex flex-col justify-center py-2">
           <div className="flex justify-between items-center w-full">
-            <a href={`/explore?address=${ethAddress}`}>
+            <a
+              href={`/explore?address=${ethAddress}&networkId=${getNetworkId}`}
+            >
               <span className="text-lg font-semibold">{name}</span>
             </a>
             <a
-              href={`/explore?address=${ethAddress}`}
+              href={`/explore?address=${ethAddress}&networkId=${getNetworkId}`}
               className="text-sm text-purple-500 hover:text-purple-600 transition-colors duration-200 ease-in-out flex items-center"
             >
               Connect

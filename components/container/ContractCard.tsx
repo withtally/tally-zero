@@ -12,6 +12,7 @@ import {
 } from "@components/ui/Popover";
 import { Separator } from "@components/ui/Separator";
 import ContractForm from "@/components/form/ContractForm";
+import ChainCombobox from "@components/container/ChainCombobox";
 import OrderbookSheet from "@components/container/OrderbookDrawer";
 
 import { InfoCircledIcon } from "@radix-ui/react-icons";
@@ -19,9 +20,11 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 export default function ContractCard({
   address,
   networkId,
+  chains,
 }: {
   address: string;
   networkId: string;
+  chains: any;
 }) {
   return (
     <Card className="rounded-xl">
@@ -70,15 +73,17 @@ export default function ContractCard({
         <ContractForm
           address={address}
           networkId={networkId}
-          sheet1={
+          sheet={
             <div>
-              <OrderbookSheet />
+              <OrderbookSheet  />
             </div>
           }
-          sheet2={
+          combobox={
             <div>
-              {/* #TODO: Update this with the chain sheet */}
-              <OrderbookSheet />
+              <ChainCombobox
+                chains={chains}
+                address={address}
+              />
             </div>
           }
         />

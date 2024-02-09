@@ -21,21 +21,24 @@ import {
 import { Input } from "@/components/ui/Input";
 import { Button } from "@components/ui/Button";
 import { Sheet, SheetTrigger } from "@components/ui/Sheet";
+import { Popover, PopoverTrigger } from "@components/ui/Popover";
 
 import { formSchema } from "@config/schema";
 
 export default function ContractForm({
   address,
   networkId,
-  sheet1,
-  sheet2,
+  sheet,
+  combobox,
 }: {
   address: string;
   networkId: string;
-  sheet1: React.ReactNode;
-  sheet2: React.ReactNode;
+  sheet: React.ReactNode;
+  combobox: React.ReactNode;
 }) {
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -103,7 +106,7 @@ export default function ContractForm({
                       <Icons.orderbook className="w-4 h-4" />
                     </SheetTrigger>
                     {/** @ts-ignore */}
-                    {React.cloneElement(sheet1)}
+                    {React.cloneElement(sheet)}
                   </Sheet>
                 </div>
               </FormControl>
@@ -129,13 +132,19 @@ export default function ContractForm({
                     {...field}
                     className="pl-12 pr-10 py-2 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   />
-                  <Sheet>
-                    <SheetTrigger className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out">
-                      <Icons.orderbook className="w-4 h-4" />
-                    </SheetTrigger>
+                  <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger
+                      asChild
+                      className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out"
+                    >
+                      <Icons.link className="w-10 h-auto" />
+                    </PopoverTrigger>
                     {/** @ts-ignore */}
-                    {React.cloneElement(sheet2)}
-                  </Sheet>
+                    {React.cloneElement(combobox, {
+                      address: form.getValues("address"),
+                      networkId: form.getValues("networkId"),
+                    })}
+                  </Popover>
                 </div>
               </FormControl>
               <FormDescription>

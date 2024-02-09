@@ -17,7 +17,7 @@ async function getDAOs() {
 }
 
 export default async function OrderbookSheet() {
-  const fakeDAOs = await getDAOs();
+  const daoList = await getDAOs();
 
   return (
     <SheetContent side="left" className="w-full sm:max-w-[550px]">
@@ -28,7 +28,7 @@ export default async function OrderbookSheet() {
         </SheetDescription>
       </SheetHeader>
       <div className="py-8 text-left overflow-auto h-[calc(100vh-4rem)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-        {fakeDAOs.map((dao, index) => (
+        {daoList.map((dao, index) => (
           <DaoCard key={index} {...dao} />
         ))}
       </div>
