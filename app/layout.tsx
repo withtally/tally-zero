@@ -7,13 +7,13 @@ import { cn } from "@lib/utils";
 import { marketingConfig } from "@config/marketing";
 import { Web3ModalProvider } from "@components/Web3ModalProvider";
 
-import { SiteFooter } from "@components/navigation/SiteFooter";
 import { MainNav } from "@/components/navigation/MainNav";
 import { ButtonNav } from "@/components/navigation/ButtonNav";
+import { SiteFooter } from "@components/navigation/SiteFooter";
 
 import { Analytics } from "@components/Analytics";
-import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { TailwindIndicator } from "@/components/TailwindIndicator";
 
 export const metadata = {
   title: {

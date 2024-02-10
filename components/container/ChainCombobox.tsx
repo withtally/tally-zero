@@ -1,7 +1,5 @@
-"use client";
-
-import Link from "next/link";
 import * as React from "react";
+import Image from "next/image";
 
 import {
   Command,
@@ -12,17 +10,30 @@ import {
 } from "@components/ui/Command";
 import { Icons } from "@components/Icons";
 import { PopoverContent } from "@components/ui/Popover";
+import { ChainCard } from "@components/container/Chain";
 
 import { Chain } from "@/types/chain";
 
-export default function ChainCombobox({
+/* async function getImageUrl(icon: string) {
+  const url = `https://raw.githubusercontent.com/ethereum-lists/chains/master/_data/icons/${icon}.json`;
+  console.log(url);
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch icon: ${res.statusText}`);
+  }
+
+  const data = await res.json();
+  return data[0].url;
+} */
+
+export default async function ChainCombobox({
   chains,
   address,
 }: {
   chains: Chain[];
   address: string;
 }) {
-  const [open, setOpen] = React.useState(false);
   if (address === undefined) {
     address = "";
   }
@@ -33,7 +44,7 @@ export default function ChainCombobox({
         <CommandInput placeholder="Search chain..." />
         <CommandEmpty>No framework found.</CommandEmpty>
         <CommandGroup className="max-h-[200px] overflow-y-auto">
-          {chains.map((chain) => (
+          {chains.map(async (chain) => (
             <a
               key={chain.chainId}
               href={`/explore?address=${address}&networkId=${chain.chainId}`}
@@ -41,11 +52,15 @@ export default function ChainCombobox({
               <CommandItem
                 value={chain.name}
                 className="flex items-center cursor-pointer text-sm transition-colors duration-200 ease-in-out"
-                onSelect={(currentValue) => {
-                  setOpen(false);
-                }}
               >
-                <Icons.logo className="w-4 h-4 mr-3" />
+                {/*                 {chain.icon && (
+                  <img
+                    src={await getImageUrl(chain.icon as string)}
+                    alt={chain.name}
+                    className="rounded-md"
+                  />
+                )} */}
+                <Icons.link className="w-4 h-4 pr-1" />
                 {chain.name}
                 <Icons.chevronRight className="w-4 h-4 ml-auto text-purple-500" />
               </CommandItem>

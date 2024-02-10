@@ -75,15 +75,12 @@ export default function ContractCard({
           networkId={networkId}
           sheet={
             <div>
-              <OrderbookSheet  />
+              <OrderbookSheet />
             </div>
           }
           combobox={
             <div>
-              <ChainCombobox
-                chains={chains}
-                address={address}
-              />
+              <ChainCombobox chains={chains} address={address} />
             </div>
           }
         />
