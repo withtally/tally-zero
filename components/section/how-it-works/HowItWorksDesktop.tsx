@@ -29,7 +29,7 @@ export default function HowItWorksDesktop(steps: StepType[]) {
               />
             ))}
           </Tab.List>
-          <Tab.Panels className="relative rounded-lg mt-20 overflow-hidden rounded-4xl bg-violet-100 px-14 py-16 xl:px-16">
+          <Tab.Panels className="relative rounded-lg mt-20 overflow-hidden rounded-4xl bg-violet-100 dark:bg-violet-950/20 px-14 py-16 xl:px-16">
             <div className="-mx-5 flex">
               {Object.values(steps).map((step, stepIndex) => (
                 <Tab.Panel

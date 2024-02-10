@@ -24,9 +24,15 @@ import {
   User,
   X,
   LucideIcon,
+  ComponentIcon,
   Search,
   BookOpenText,
   Link,
+  WalletIcon,
+  WifiIcon,
+  ListStartIcon,
+  BlendIcon,
+  PackageOpenIcon,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -143,4 +149,10 @@ export const Icons = {
   contacts: ContactsIcon,
   inventory: InventoryIcon,
   reporting: ReportingIcon,
+  component: ComponentIcon,
+  wallet: WalletIcon,
+  wifi: WifiIcon,
+  liststart: ListStartIcon,
+  blend: BlendIcon,
+  packageopen: PackageOpenIcon,
 };
