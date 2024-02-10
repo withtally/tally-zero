@@ -10,7 +10,6 @@ import { Web3ModalProvider } from "@components/Web3ModalProvider";
 import { SiteFooter } from "@components/navigation/SiteFooter";
 import { MainNav } from "@/components/navigation/MainNav";
 import { ButtonNav } from "@/components/navigation/ButtonNav";
-import OrderbookDrawer from "@/components/container/OrderbookDrawer";
 
 import { Analytics } from "@components/Analytics";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
@@ -73,10 +72,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <header className="container z-40">
               <div className="flex h-20 items-center justify-between py-6">
                 <MainNav items={marketingConfig.mainNav} />
-
-                <ButtonNav>
-                  <OrderbookDrawer />
-                </ButtonNav>
+                <ButtonNav />
               </div>
             </header>
 
