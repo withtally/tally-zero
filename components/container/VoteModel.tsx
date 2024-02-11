@@ -16,14 +16,14 @@ import { Badge } from "@components/ui/Badge";
 import VoteForm from "@components/form/VoteForm";
 
 import { cn } from "@lib/utils";
-import { proposalSchema } from "@config/schema";
+import { ParsedProposal } from "@/types/proposal";
 
 export default function VoteModel({
   proposal,
   stateValue,
   isDesktop,
 }: {
-  proposal: ReturnType<typeof proposalSchema.parse>;
+  proposal: ParsedProposal;
   stateValue: any;
   isDesktop: boolean;
 }) {

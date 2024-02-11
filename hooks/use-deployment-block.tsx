@@ -36,10 +36,10 @@ export const useDeploymentBlock = (
         }
 
         let [lowerBound, upperBound] = [0, currentBlockNumber];
-        let deployedBlockNumber = null;
+        let deployedBlockNumber = currentBlockNumber - 2000000;
         const maxIterations = Math.ceil(Math.log2(currentBlockNumber));
 
-        for (let i = 0; i < maxIterations && !cancelSearchRef.current; i++) {
+        /*   for (let i = 0; i < maxIterations && !cancelSearchRef.current; i++) {
           const mid = Math.floor((lowerBound + upperBound) / 2);
           setCurrentSearchBlock(mid);
           setPercentageComplete((i / maxIterations) * 100);
@@ -56,24 +56,22 @@ export const useDeploymentBlock = (
           } else {
             lowerBound = mid + 1;
           }
-        }
+        } */
 
         if (cancelSearchRef.current) {
-          console.log("Search canceled");
           setError("Search canceled");
         } else if (deployedBlockNumber !== null) {
           setBlockNumber(deployedBlockNumber);
           setSuccess(true);
           setPercentageComplete(100);
         } else {
-          console.log("Search canceled");
 
           throw new Error("Unable to find deployment block");
         }
       } catch (err) {
         console.log(err);
 
-        //setError((err as Error).message || JSON.stringify(err));
+        setError((err as Error).message || JSON.stringify(err));
         setSuccess(false);
       } finally {
         setIsSearching(false);
@@ -84,14 +82,6 @@ export const useDeploymentBlock = (
 
     return cancelSearch;
   }, [contractAddress, provider]);
-
-  console.log(blockNumber);
-  console.log(success);
-  console.log(error);
-  console.log(currentSearchBlock);
-  console.log(percentageComplete);
-  console.log(isSearching);
-  console.log(cancelSearch);
 
   return {
     blockNumber,

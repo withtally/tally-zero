@@ -11,7 +11,6 @@ export function useParseProposals(
   enabled: boolean
 ): ParsedProposal[] {
   const [parsedProposals, setParsedProposals] = useState<ParsedProposal[]>([]);
-
   useEffect(() => {
     if (!enabled || !contractAddress) return;
     const parseProposals = async () => {
@@ -23,19 +22,19 @@ export function useParseProposals(
 
       proposals.map(async (proposal) => {
         governorContract.state(proposal.id).then((proposalState: number) => {
-          setParsedProposals((prev) => [
-            ...prev,
-            {
-              ...proposal,
-              values:
-                proposal.values.length > 0
-                  ? proposal.values.map((value) => value.toString())
-                  : [],
-              startBlock: proposal.startBlock.toString(),
-              endBlock: proposal.endBlock.toString(),
-              state: proposalState,
-            },
-          ]);
+         setParsedProposals((prev) => [
+           ...prev,
+           {
+             ...proposal,
+             values:
+               proposal.values.length > 0
+                 ? proposal.values.map((value) => value.toString())
+                 : [],
+             startBlock: proposal.startBlock.toString(),
+             endBlock: proposal.endBlock.toString(),
+             state: proposalState,
+           },
+         ]);
         });
       });
     };

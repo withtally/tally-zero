@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDeploymentBlock } from "@hooks/use-deployment-block";
 import { useSearchProposals } from "@hooks/use-search-proposals";
 import { useParseProposals } from "@hooks/use-parse-proposals";
+import { useFormattedProposals } from "@/hooks/use-formatted-proposals";
 
 import { State, ContractParams } from "@/types/search";
 import { initialState } from "@config/intial-state";
@@ -39,8 +40,6 @@ export default function Search({ contractAddress, networkId }: ContractParams) {
         GovernorABI,
         provider
       );
-
-      console.log(currentSearchBlock);
 
       setState((prevState) => ({
         ...prevState,
@@ -82,33 +81,23 @@ export default function Search({ contractAddress, networkId }: ContractParams) {
     proposals,
     true
   );
-
-  // #TODO: In the production version, we should go with the 'parsedProposals' instead of 'fakeProposals'
-
-  const [percentageFake, setPercentageFake] = useState(0);
-  useEffect(() => {
-    if (contractAddress && networkId && percentageFake < 100) {
-      const timer = setTimeout(() => {
-        setPercentageFake((prevState) => prevState + 2.5);
-      }, 30);
-      return () => clearTimeout(timer);
-    }
-  }, [percentageFake, contractAddress, networkId]);
+  console.log(parsedProposals);
+  const formattedProposals = useFormattedProposals(parsedProposals);
 
   return (
     <section id="proposals-table">
       {contractAddress &&
         networkId &&
-        percentageFake > 0 &&
-        percentageFake < 100 && (
-          <Progress className="mb-8" value={percentageFake} />
+        percentageComplete > 0 &&
+        percentageComplete < 100 && (
+          <Progress className="mb-8" value={percentageComplete} />
         )}
 
-      {contractAddress && networkId && percentageFake === 100 && (
+      {contractAddress && networkId && percentageComplete === 100 && (
         <DataTable
           isPaginated={true}
           columns={columns}
-          data={parsedProposals as any[]}
+          data={formattedProposals as any[]}
         />
       )}
     </section>

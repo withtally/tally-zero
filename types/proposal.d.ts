@@ -10,6 +10,7 @@ export type Proposal = {
   startBlock: ethers.BigNumber;
   endBlock: ethers.BigNumber;
   description: string;
+  state: number;
 };
 
 export type UseSearchProposals = (

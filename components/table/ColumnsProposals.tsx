@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { Badge } from "@components/ui/Badge";
 import { DescriptionCell } from "@components/ui/DescriptionCell";
+import { ProposerCell } from "@components/container/ProposerCell";
 import { DataTableRowActions } from "@components/table/RowActions";
 import { DataTableColumnHeader } from "@components/table/ColumnHeader";
 
@@ -11,7 +12,7 @@ import { cn } from "@lib/utils";
 import { states } from "@data/table/data";
 import { proposalSchema } from "@config/schema";
 
-import { DotIcon } from "lucide-react";
+import { DotIcon, CopyIcon, CheckIcon } from "lucide-react";
 
 export const columns: ColumnDef<typeof proposalSchema>[] = [
   {
@@ -28,15 +29,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Proposer" />
     ),
-    cell: ({ row }) => {
-      return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("proposer")}
-          </span>
-        </div>
-      );
-    },
+    cell: ({ row }) => <ProposerCell proposer={row.getValue("proposer")} />,
   },
   {
     accessorKey: "description",
@@ -45,7 +38,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 w-[480px]">
           <DescriptionCell mdxContent={row.getValue("description")} />
         </div>
       );
