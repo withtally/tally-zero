@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { providers } from "ethers";
-
-import { ContractAddress } from "@/types/search";
 import { UseDeploymentBlockResult } from "@/types/deployment";
+import { ContractAddress } from "@/types/search";
 
 export const useDeploymentBlock = (
-  provider: providers.Provider,
+  provider: any,
   contractAddress: ContractAddress | undefined
 ): UseDeploymentBlockResult => {
   const [blockNumber, setBlockNumber] = useState<number | undefined>();
@@ -31,10 +29,7 @@ export const useDeploymentBlock = (
 
       try {
         const currentBlockNumber = await provider.getBlockNumber();
-        const currentCode = await provider.getCode(
-          contractAddress,
-          currentBlockNumber
-        );
+        const currentCode = await provider.getCode(contractAddress);
 
         if (currentCode === "0x") {
           throw new Error("Contract not currently deployed");
@@ -55,6 +50,7 @@ export const useDeploymentBlock = (
           if (isDeployed) {
             deployedBlockNumber = mid;
             const prevCode = await provider.getCode(contractAddress, mid - 1);
+
             if (mid === 0 || prevCode === "0x") break;
             upperBound = mid - 1;
           } else {
@@ -63,16 +59,21 @@ export const useDeploymentBlock = (
         }
 
         if (cancelSearchRef.current) {
+          console.log("Search canceled");
           setError("Search canceled");
         } else if (deployedBlockNumber !== null) {
           setBlockNumber(deployedBlockNumber);
           setSuccess(true);
           setPercentageComplete(100);
         } else {
+          console.log("Search canceled");
+
           throw new Error("Unable to find deployment block");
         }
       } catch (err) {
-        setError((err as Error).message || JSON.stringify(err));
+        console.log(err);
+
+        //setError((err as Error).message || JSON.stringify(err));
         setSuccess(false);
       } finally {
         setIsSearching(false);
@@ -83,6 +84,14 @@ export const useDeploymentBlock = (
 
     return cancelSearch;
   }, [contractAddress, provider]);
+
+  console.log(blockNumber);
+  console.log(success);
+  console.log(error);
+  console.log(currentSearchBlock);
+  console.log(percentageComplete);
+  console.log(isSearching);
+  console.log(cancelSearch);
 
   return {
     blockNumber,

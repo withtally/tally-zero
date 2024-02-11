@@ -4,11 +4,10 @@ const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
 
 export const formSchema = z.object({
   address: z.string().regex(ethAddressRegex, "Invalid Ethereum address"),
-  networkId: z
-    .string()
-    .refine((data) => !isNaN(Number(data)) && data.trim().length > 0, {
-      message: "Network ID must be numeric and is required",
-    }),
+  networkId: z.string().refine(
+    (data) => data !== "",
+    { message: "Please select a network" }
+  ),
 });
 
 export const voteSchema = z.object({

@@ -54,6 +54,7 @@ export default function ContractForm({
     const getNetworkId = new URLSearchParams(window.location.search).get(
       "networkId"
     );
+
     if (getAddress && getNetworkId) {
       setLoading(true);
     }

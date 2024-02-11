@@ -1,5 +1,5 @@
+import { Contract } from "ethers";
 import { useEffect, useState } from "react";
-import { ethers, Contract } from "ethers";
 import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 import { Proposal, UseSearchProposals } from "@/types/proposal";
 
@@ -14,18 +14,22 @@ export const useSearchProposals: UseSearchProposals = (
 
   useEffect(() => {
     if (!enabled || !provider || !contractAddress || !startingBlock) return;
+    console.log(enabled, provider, contractAddress, startingBlock);
 
     const contract = new Contract(contractAddress, OZGovernor_ABI, provider);
+    console.log(contract);
 
     const fetchProposals = async () => {
       setLoading(true);
       const currentBlock = await provider.getBlockNumber();
       const proposalCreatedFilter = contract.filters.ProposalCreated();
+      console.log("proposalCreatedFilter", proposalCreatedFilter);
       const events = await contract.queryFilter(
         proposalCreatedFilter,
         startingBlock,
         currentBlock
       );
+      console.log("events", events);
 
       const newProposals = events.map((event) => {
         const {
@@ -51,6 +55,7 @@ export const useSearchProposals: UseSearchProposals = (
           description,
         };
       });
+      console.log("newProposals", newProposals);
 
       setProposals(newProposals);
       setLoading(false);

@@ -16,12 +16,9 @@ import { DataTable } from "@/components/table/DataTable";
 import { columns } from "@/components/table/ColumnsProposals";
 import { Progress } from "@/components/ui/Progress";
 
-export default function Search({
-  contractAddress,
-  networkId,
-}: ContractParams) {
-  const provider = useProvider();
+export default function Search({ contractAddress, networkId }: ContractParams) {
   const [state, setState] = useState<State>(initialState);
+  const provider = useProvider({ chainId: parseInt(networkId as string) });
 
   // Search for the Deployment block of Governor
   const {
@@ -30,6 +27,8 @@ export default function Search({
     error,
     currentSearchBlock,
     percentageComplete,
+    isSearching,
+    cancelSearch,
   } = useDeploymentBlock(provider, contractAddress);
 
   // When governor is found, create a contract instance and set it to state
@@ -40,6 +39,8 @@ export default function Search({
         GovernorABI,
         provider
       );
+
+      console.log(currentSearchBlock);
 
       setState((prevState) => ({
         ...prevState,

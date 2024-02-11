@@ -10,22 +10,8 @@ import {
 } from "@components/ui/Command";
 import { Icons } from "@components/Icons";
 import { PopoverContent } from "@components/ui/Popover";
-import { ChainCard } from "@components/container/Chain";
 
 import { Chain } from "@/types/chain";
-
-/* async function getImageUrl(icon: string) {
-  const url = `https://raw.githubusercontent.com/ethereum-lists/chains/master/_data/icons/${icon}.json`;
-  console.log(url);
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch icon: ${res.statusText}`);
-  }
-
-  const data = await res.json();
-  return data[0].url;
-} */
 
 export default async function ChainCombobox({
   chains,
@@ -47,19 +33,12 @@ export default async function ChainCombobox({
           {chains.map(async (chain) => (
             <a
               key={chain.chainId}
-              href={`/explore?address=${address}&networkId=${chain.chainId}`}
+              href={`/explore?address=${address}&networkId=${chain.chainId as number}`}
             >
               <CommandItem
                 value={chain.name}
                 className="flex items-center cursor-pointer text-sm transition-colors duration-200 ease-in-out"
               >
-                {/*                 {chain.icon && (
-                  <img
-                    src={await getImageUrl(chain.icon as string)}
-                    alt={chain.name}
-                    className="rounded-md"
-                  />
-                )} */}
                 <Icons.link className="w-4 h-4 pr-1" />
                 {chain.name}
                 <Icons.chevronRight className="w-4 h-4 ml-auto text-purple-500" />
