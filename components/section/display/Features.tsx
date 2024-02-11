@@ -19,7 +19,7 @@ export default function Features() {
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
             <Icons.component className="h-12 w-12 fill-current" />
             <div className="space-y-2">
-              <h3 className="font-bold">Decentralized Voting</h3>
+              <h3 className="font-bold ">Decentralized Voting</h3>
               <p className="text-sm text-muted-foreground">
                 Secure, transparent voting on blockchain proposals.
               </p>

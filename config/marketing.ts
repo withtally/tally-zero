@@ -4,11 +4,7 @@ export const marketingConfig: MarketingConfig = {
   mainNav: [
     {
       title: "Documentation",
-      href: "https://docs.tally.xyz",
-    },
-    {
-      title: "Features",
-      href: "/#features",
+      href: "https://docs.tally.xyz/knowledge-base/tally-zero",
     },
   ],
 };

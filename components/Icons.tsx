@@ -1,4 +1,5 @@
 import { useId } from "react";
+import Image from "next/image";
 import {
   AlertTriangle,
   ArrowRight,
@@ -10,7 +11,6 @@ import {
   File,
   FileText,
   HelpCircle,
-  Image,
   Laptop,
   Loader2,
   LucideProps,
@@ -102,8 +102,21 @@ function ReportingIcon() {
   );
 }
 
+function LogoIcon(className: string) {
+  return (
+    <Image
+      src="/favicon/favicon.ico"
+      alt="Tally Zero"
+      className={className}
+      width={30}
+      height={30}
+      layout="fixed"
+    />
+  );
+}
+
 export const Icons = {
-  logo: Command,
+  logo: LogoIcon,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
