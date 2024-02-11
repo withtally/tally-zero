@@ -102,7 +102,7 @@ function ReportingIcon() {
   );
 }
 
-function LogoIcon(className: string) {
+function LogoIcon({ className }: { className?: string } = { className: "" }) {
   return (
     <Image
       src="/favicon/favicon.ico"
