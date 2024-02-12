@@ -4527,6 +4527,11 @@ address@^1.0.1, address@^1.1.2:
   resolved "https://registry.yarnpkg.com/address/-/address-1.2.2.tgz#2b5248dac5485a6390532c6a517fda2e3faac89e"
   integrity sha512-4B/qKCfeE/ODUaAUpSwfzazo5x29WD4r3vXiWsB7I2mSDAihwEqKO+g8GELZUQSSAo5e1XTYh3ZVfLyxBc12nA==
 
+addreth@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/addreth/-/addreth-1.2.0.tgz#04e9e9eeebe11b84d68e6893e265759488bec9b2"
+  integrity sha512-LwO7aIqE+yEK6o6sCqyjRiJoRL4JZEAb3AuC5pAK6GvCXlpR+YziE2vaHshs/62MhNqB/q39/VDbXTgKF/pP6A==
+
 adjust-sourcemap-loader@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/adjust-sourcemap-loader/-/adjust-sourcemap-loader-4.0.0.tgz#fc4a0fd080f7d10471f30a7320f25560ade28c99"

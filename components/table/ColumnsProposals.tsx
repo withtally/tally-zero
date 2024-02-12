@@ -12,7 +12,7 @@ import { cn } from "@lib/utils";
 import { states } from "@data/table/data";
 import { proposalSchema } from "@config/schema";
 
-import { DotIcon, CopyIcon, CheckIcon } from "lucide-react";
+import { DotIcon } from "lucide-react";
 
 export const columns: ColumnDef<typeof proposalSchema>[] = [
   {
