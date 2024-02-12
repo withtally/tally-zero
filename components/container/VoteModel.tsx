@@ -48,7 +48,7 @@ export default function VoteModel({
               </Badge>
             </div>
           </DialogTitle>
-          <DialogDescription className="max-h-[400px] overflow-y-auto text-left bg-slate-50 rounded-lg">
+          <DialogDescription className="max-h-[400px] max-w-[650px] overflow-x-auto overflow-y-auto text-left bg-slate-50 dark:bg-slate-900 rounded-lg">
             <h3 className="text-sm font-semibold">Description</h3>
             <div className="text-sm px-[2px] break-words">
               <ReactMarkdown className="w-screen sm:w-full ">

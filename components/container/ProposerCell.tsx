@@ -8,7 +8,8 @@ export function ProposerCell({ proposer }: { proposer: string }) {
     <AddrethConfig>
       <Addreth
         ens={false}
-        address={`0x${proposer}`}
+        // @ts-ignore: It's already 0x-prefixed
+        address={`${proposer}`}
         theme={theme === "dark" ? "dark" : "light"}
       />
     </AddrethConfig>

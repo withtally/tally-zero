@@ -20,9 +20,11 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Proposal ID" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
-    enableSorting: false,
+    cell: ({ row }) => (
+      <div className="w-[80px] truncate">{row.getValue("id")}</div>
+    ),
     enableHiding: false,
+    sortDescFirst: false,
   },
   {
     accessorKey: "proposer",

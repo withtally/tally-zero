@@ -12,17 +12,11 @@ import { CopyIcon, CheckIcon, ArrowRight } from "lucide-react";
 
 export default function DaoCard({
   name,
+  networkId,
   imageUrl,
   ethAddress,
 }: z.infer<typeof daoSchema>) {
   const [isCopied, setIsCopied] = useState(false);
-  let getNetworkId = new URLSearchParams(window.location.search).get(
-    "networkId"
-  );
-
-  if (getNetworkId === null) {
-    getNetworkId = "";
-  }
 
   const handleCopyClick = () => {
     navigator.clipboard
@@ -37,7 +31,7 @@ export default function DaoCard({
   return (
     <Card className="rounded-xl my-2">
       <CardContent className="flex items-start space-x-4 py-2">
-        <a href={`/explore?address=${ethAddress}`}>
+        <a href={`/explore?address=${ethAddress}&networkId=${networkId}`}>
           <Image
             src={imageUrl}
             alt={name}
@@ -49,12 +43,23 @@ export default function DaoCard({
         <div className="flex flex-col justify-center py-2">
           <div className="flex justify-between items-center w-full">
             <a
-              href={`/explore?address=${ethAddress}&networkId=${getNetworkId}`}
+              className="flex items-center space-x-2 cursor-pointer"
+              href={`/explore?address=${ethAddress}&networkId=${networkId}`}
             >
               <span className="text-lg font-semibold">{name}</span>
+              <Card className="rounded-sm">
+                <CardDescription
+                  onClick={handleCopyClick}
+                  className="flex items-center px-1 py-0 space-x-2 text-purple-500 hover:text-purple-800 transition-colors duration-200 ease-in-out cursor-pointer"
+                >
+                  <span className="text-xs  font-mono truncate">
+                    Chain ID: {networkId}
+                  </span>
+                </CardDescription>
+              </Card>
             </a>
             <a
-              href={`/explore?address=${ethAddress}&networkId=${getNetworkId}`}
+              href={`/explore?address=${ethAddress}&networkId=${networkId}`}
               className="text-sm text-purple-500 hover:text-purple-600 transition-colors duration-200 ease-in-out flex items-center"
             >
               Connect

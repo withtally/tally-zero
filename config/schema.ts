@@ -42,6 +42,7 @@ export const statsSchema = z.array(
 
 export const daoSchema = z.object({
   name: z.string(),
+  networkId: z.number(),
   imageUrl: z.string(),
   ethAddress: z.string().regex(ethAddressRegex),
 });

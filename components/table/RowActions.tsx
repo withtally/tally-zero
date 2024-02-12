@@ -11,10 +11,7 @@ import {
 } from "@components/ui/DropdownMenu";
 import { Button } from "@components/ui/Button";
 import { Dialog, DialogTrigger } from "@components/ui/Dialog";
-import {
-  Drawer,
-  DrawerTrigger,
-} from "@components/ui/Drawer";
+import { Drawer, DrawerTrigger } from "@components/ui/Drawer";
 import VoteModel from "@/components/container/VoteModel";
 
 import { states } from "@data/table/data";
@@ -64,10 +61,10 @@ export function DataTableRowActions<TData>({
             </DialogTrigger>
             <DropdownMenuItem
               onClick={() => {
-                navigator.clipboard.writeText(proposal.proposer);
+                navigator.clipboard.writeText(proposal.id.toString());
               }}
             >
-              Copy Proposer Address
+              Copy Proposal ID
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -111,7 +108,11 @@ export function DataTableRowActions<TData>({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <VoteModel proposal={proposal} stateValue={stateValue} isDesktop={isDesktop} />
+      <VoteModel
+        proposal={proposal}
+        stateValue={stateValue}
+        isDesktop={isDesktop}
+      />
     </Drawer>
   );
 }
