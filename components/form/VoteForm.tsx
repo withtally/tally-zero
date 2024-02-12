@@ -16,15 +16,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@components/ui/Form";
-import {
-  Card,
-  CardContent,
-} from "@components/ui/Card";
+import { Card, CardContent } from "@components/ui/Card";
 import { Button } from "@components/ui/Button";
 import { DialogClose, DialogFooter } from "@components/ui/Dialog";
 import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
+import { toast } from "sonner";
 import { voteSchema } from "@config/schema";
 import { ParsedProposal } from "@/types/proposal";
 
@@ -55,9 +53,14 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
     setLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       write?.();
+
+      if (isSuccess) {
+        toast("Your vote has been submitted.");
+      }
+      
     } catch (error) {
       console.log(error);
     } finally {

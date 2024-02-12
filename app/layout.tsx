@@ -7,13 +7,14 @@ import { cn } from "@lib/utils";
 import { marketingConfig } from "@config/marketing";
 import { Web3ModalProvider } from "@components/Web3ModalProvider";
 
-import { MainNav } from "@/components/navigation/MainNav";
-import { ButtonNav } from "@/components/navigation/ButtonNav";
+import { Toaster } from "@/components/ui/Sonner";
+import { MainNav } from "@components/navigation/MainNav";
+import { ButtonNav } from "@components/navigation/ButtonNav";
 import { SiteFooter } from "@components/navigation/SiteFooter";
 
 import { Analytics } from "@components/Analytics";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { TailwindIndicator } from "@/components/TailwindIndicator";
+import { ThemeProvider } from "@components/ThemeProvider";
+import { TailwindIndicator } from "@components/TailwindIndicator";
 
 export const metadata = {
   title: {
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             {children}
             <SiteFooter />
 
+            <Toaster />
             <Analytics />
             <TailwindIndicator />
           </Web3ModalProvider>
