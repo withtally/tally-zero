@@ -27,9 +27,7 @@ export default async function IndexPage({
   return (
     <div className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-20">
       <div className="container flex flex-col gap-4 ">
-        <StatCards address={address as string}>
-          <Icons.arrowRight className="h-4 w-4 text-muted-foreground" />
-        </StatCards>
+        <StatCards />
 
         <ContractCard
           address={address as string}
