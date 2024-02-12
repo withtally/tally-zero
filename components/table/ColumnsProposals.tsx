@@ -24,7 +24,6 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       <div className="w-[80px] truncate">{row.getValue("id")}</div>
     ),
     enableHiding: false,
-    sortDescFirst: false,
   },
   {
     accessorKey: "proposer",
@@ -40,7 +39,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2 w-[480px]">
+        <div className="flex space-x-2 w-[450px]">
           <DescriptionCell mdxContent={row.getValue("description")} />
         </div>
       );

@@ -81,7 +81,6 @@ export default function Search({ contractAddress, networkId }: ContractParams) {
     proposals,
     true
   );
-  console.log(parsedProposals);
   const formattedProposals = useFormattedProposals(parsedProposals);
 
   return (

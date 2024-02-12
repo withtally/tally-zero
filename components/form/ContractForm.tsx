@@ -1,7 +1,8 @@
 "use client";
 
 import * as z from "zod";
-import React, { useEffect, useState, cloneElement } from "react";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,8 +23,10 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@components/ui/Button";
 import { Sheet, SheetTrigger } from "@components/ui/Sheet";
 import { Popover, PopoverTrigger } from "@components/ui/Popover";
+import { NetworkIcon } from "@components/container/NetworkIcon";
 
 import { formSchema } from "@config/schema";
+import { daos } from "@config/data";
 
 export default function ContractForm({
   address,
@@ -38,6 +41,7 @@ export default function ContractForm({
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const dao = daos.find((dao) => dao.ethAddress === address);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -97,18 +101,37 @@ export default function ContractForm({
               <FormControl>
                 <div className="relative flex items-center">
                   <Input
+                    className="pl-12"
                     placeholder="0x00000..."
                     autoComplete="off"
                     {...field}
-                    className="pl-12 pr-10 py-2 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   />
                   <Sheet>
                     <SheetTrigger className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out">
-                      <Icons.orderbook className="w-4 h-4" />
+                      <div className="flex items-center space-x-3 cursor-pointer">
+                        <Icons.orderbook className="w-5 h-auto" />
+                      </div>
                     </SheetTrigger>
                     {/** @ts-ignore */}
                     {React.cloneElement(sheet)}
                   </Sheet>
+                  {dao && (
+                    <>
+                      <div className="absolute right-0 flex items-center space-x-2 justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-r-md transition-colors duration-200 ease-in-out">
+                        <Image
+                          src={dao.imageUrl}
+                          alt={dao.name}
+                          width={50}
+                          height={50}
+                          className="rounded-md w-6 h-auto"
+                          layout="fixed"
+                        />
+                        <span className="text-sm font-semibold">
+                          {dao.name}
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </FormControl>
               <FormDescription>
@@ -131,7 +154,7 @@ export default function ContractForm({
                     placeholder="Eg 1, 3, 4, 5, 42, 1337, ..."
                     autoComplete="off"
                     {...field}
-                    className="pl-12 pr-10 py-2 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    className="pl-12"
                   />
                   <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger
