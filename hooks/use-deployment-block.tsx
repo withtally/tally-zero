@@ -5,7 +5,8 @@ import { ContractAddress } from "@/types/search";
 
 export const useDeploymentBlock = (
   provider: providers.Provider,
-  contractAddress: ContractAddress | undefined
+  contractAddress: ContractAddress | undefined,
+  deploymentBlock: number
 ): UseDeploymentBlockResult => {
   const [blockNumber, setBlockNumber] = useState<number | undefined>();
   const [success, setSuccess] = useState(false);
@@ -29,8 +30,9 @@ export const useDeploymentBlock = (
       setIsSearching(true);
 
       try {
-        const currentBlockNumber = await provider.getBlockNumber();
         const currentCode = await provider.getCode(contractAddress);
+        const currentBlockNumber =
+          deploymentBlock || (await provider.getBlockNumber());
 
         if (currentCode === "0x") {
           throw new Error("Contract not currently deployed");
@@ -48,7 +50,7 @@ export const useDeploymentBlock = (
           const code = await provider.getCode(contractAddress, mid);
           const isDeployed = code !== "0x";
 
-           if (isDeployed) {
+          if (isDeployed) {
             deployedBlockNumber = mid;
             const prevCode = await provider.getCode(contractAddress, mid - 1);
 
@@ -56,7 +58,7 @@ export const useDeploymentBlock = (
             upperBound = mid - 1;
           } else {
             lowerBound = mid + 1;
-          } 
+          }
         }
 
         if (cancelSearchRef.current) {
@@ -65,8 +67,7 @@ export const useDeploymentBlock = (
           setBlockNumber(deployedBlockNumber);
           setSuccess(true);
           setPercentageComplete(100);
-        } 
-
+        }
       } catch (err) {
         setError((err as Error).message || JSON.stringify(err));
         setSuccess(false);
@@ -78,7 +79,7 @@ export const useDeploymentBlock = (
     findDeploymentBlock();
 
     return cancelSearch;
-  }, [contractAddress, provider]);
+  }, [contractAddress, provider, deploymentBlock]);
 
   return {
     blockNumber,

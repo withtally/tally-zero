@@ -6,8 +6,9 @@ export type Contract = {
 export type ContractAddress = `0x${string}`;
 
 export interface ContractParams {
-  contractAddress?: ContractAddress;
-  networkId?: string;
+  contractAddress: ContractAddress;
+  networkId: string;
+  deploymentBlock: number;
 }
 
 export interface SearchProps {

@@ -1,8 +1,6 @@
-import StatCards from "@/components/container/StatCard";
 import Search from "@/components/container/Search";
+import StatCards from "@/components/container/StatCard";
 import ContractCard from "@/components/container/ContractCard";
-
-import { Icons } from "@components/Icons";
 
 import { ContractAddress } from "@/types/search";
 
@@ -40,6 +38,7 @@ export default async function IndexPage({
         <Search
           contractAddress={address as ContractAddress}
           networkId={networkId as string}
+          deploymentBlock={parseInt(deploymentBlock as string)}
         />
       </div>
     </div>

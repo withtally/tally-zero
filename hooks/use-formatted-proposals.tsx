@@ -4,6 +4,8 @@ import { ProposalState } from "@config/intial-state";
 
 export function useFormattedProposals(proposals: Proposal[]): ParsedProposal[] {
   proposals.sort((a, b) => a.id - b.id);
+  proposals.sort((a, b) => a.state - b.state);
+  
   return useMemo(() => {
     return proposals.map((proposal) => ({
       id: parseInt(proposal.id.toString()),
