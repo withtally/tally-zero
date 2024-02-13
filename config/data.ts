@@ -68,5 +68,6 @@ export const daos = [
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fd9e8442f-5cb7-4357-9567-3cdd7ae5930e_400x400.jpg&w=256&q=75",
     ethAddress: "0x408ED6354d4973f66138C91495F2f2FCbd8724C3",
+    limiter: 50000,
   },
 ];

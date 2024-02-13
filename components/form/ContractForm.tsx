@@ -31,11 +31,13 @@ import { daos } from "@config/data";
 export default function ContractForm({
   address,
   networkId,
+  deploymentBlock,
   sheet,
   combobox,
 }: {
   address: string;
   networkId: string;
+  deploymentBlock: string;
   sheet: React.ReactNode;
   combobox: React.ReactNode;
 }) {
@@ -48,6 +50,7 @@ export default function ContractForm({
     defaultValues: {
       address: address || "",
       networkId: networkId || "",
+      deploymentBlock: deploymentBlock || "",
     },
   });
 
@@ -57,6 +60,10 @@ export default function ContractForm({
     );
     const getNetworkId = new URLSearchParams(window.location.search).get(
       "networkId"
+    );
+
+    const deploymentBlock = new URLSearchParams(window.location.search).get(
+      "deploymentBlock"
     );
 
     if (getAddress && getNetworkId) {
@@ -69,11 +76,19 @@ export default function ContractForm({
   }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    window.history.pushState(
-      {},
-      "",
-      `${window.location.pathname}?address=${values.address}&networkId=${values.networkId}`
-    );
+    if (values.deploymentBlock === "") {
+      window.history.pushState(
+        {},
+        "",
+        `${window.location.pathname}?address=${values.address}&networkId=${values.networkId}`
+      );
+    } else {
+      window.history.pushState(
+        {},
+        "",
+        `${window.location.pathname}?address=${values.address}&networkId=${values.networkId}&deploymentBlock=${values.deploymentBlock}`
+      );
+    }
 
     const section = document.getElementById("proposals-table");
     if (section) {
@@ -117,7 +132,7 @@ export default function ContractForm({
                   </Sheet>
                   {dao && (
                     <>
-                      <div className="absolute right-0 flex items-center space-x-2 justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-r-md transition-colors duration-200 ease-in-out">
+                      <div className="absolute right-0 flex items-center space-x-2 justify-center h-full px-3 text-black bg-gray-200 hover:text-violet-500 hover:bg-gray-200 rounded-r-md transition-colors duration-200 ease-in-out">
                         <Image
                           src={dao.imageUrl}
                           alt={dao.name}
@@ -126,7 +141,7 @@ export default function ContractForm({
                           className="rounded-md w-6 h-auto"
                           layout="fixed"
                         />
-                        <span className="text-sm font-semibold">
+                        <span className="text-sm font-semibold hidden sm:block">
                           {dao.name}
                         </span>
                       </div>
@@ -142,42 +157,65 @@ export default function ContractForm({
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="networkId"
-          render={({ field }) => (
-            <FormItem className="flex-1">
-              <FormLabel>Network ID</FormLabel>
-              <FormControl>
-                <div className="relative flex items-center">
+        <div className="lg:grid lg:grid-cols-8 gap-4">
+          <FormField
+            control={form.control}
+            name="networkId"
+            render={({ field }) => (
+              <FormItem className="col-span-5">
+                <FormLabel>Network ID</FormLabel>
+                <FormControl>
+                  <div className="relative flex items-center">
+                    <Input
+                      placeholder="Eg 1, 3, 4, 5, 42, 1337, ..."
+                      autoComplete="off"
+                      {...field}
+                      className="pl-12"
+                    />
+                    <Popover open={open} onOpenChange={setOpen}>
+                      <PopoverTrigger
+                        asChild
+                        className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out"
+                      >
+                        <Icons.link className="w-10 h-auto" />
+                      </PopoverTrigger>
+                      {/** @ts-ignore */}
+                      {React.cloneElement(combobox, {
+                        address: form.getValues("address"),
+                        networkId: form.getValues("networkId"),
+                      })}
+                    </Popover>
+                  </div>
+                </FormControl>
+                <FormDescription>
+                  The network ID of the contract you want to explore.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="deploymentBlock"
+            render={({ field }) => (
+              <FormItem className="col-span-3 py-4 lg:py-0">
+                <FormLabel>Deployment block</FormLabel>
+                <FormControl>
                   <Input
-                    placeholder="Eg 1, 3, 4, 5, 42, 1337, ..."
+                    placeholder="Eg 12345678"
                     autoComplete="off"
                     {...field}
-                    className="pl-12"
                   />
-                  <Popover open={open} onOpenChange={setOpen}>
-                    <PopoverTrigger
-                      asChild
-                      className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out"
-                    >
-                      <Icons.link className="w-10 h-auto" />
-                    </PopoverTrigger>
-                    {/** @ts-ignore */}
-                    {React.cloneElement(combobox, {
-                      address: form.getValues("address"),
-                      networkId: form.getValues("networkId"),
-                    })}
-                  </Popover>
-                </div>
-              </FormControl>
-              <FormDescription>
-                The network ID of the contract you want to explore.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                </FormControl>
+                <FormDescription>
+                  Hint: This is optional, but can speed up the search.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         {loading ? (
           <Button variant={"secondary"} disabled className="flex-1 gap-2">

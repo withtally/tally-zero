@@ -22,6 +22,7 @@ export default async function IndexPage({
 }) {
   const address = searchParams.address;
   const networkId = searchParams.networkId;
+  const deploymentBlock = searchParams.deploymentBlock;
   const chains = await fetchChains();
 
   return (
@@ -32,6 +33,7 @@ export default async function IndexPage({
         <ContractCard
           address={address as string}
           networkId={networkId as string}
+          deploymentBlock={deploymentBlock as string}
           chains={chains}
         />
 

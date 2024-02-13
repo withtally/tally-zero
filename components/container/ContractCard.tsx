@@ -20,10 +20,12 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 export default function ContractCard({
   address,
   networkId,
+  deploymentBlock,
   chains,
 }: {
   address: string;
   networkId: string;
+  deploymentBlock: string;
   chains: any;
 }) {
   return (
@@ -73,6 +75,7 @@ export default function ContractCard({
         <ContractForm
           address={address}
           networkId={networkId}
+          deploymentBlock={deploymentBlock}
           sheet={
             <div>
               <OrderbookSheet />
