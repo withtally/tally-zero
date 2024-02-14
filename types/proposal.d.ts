@@ -18,7 +18,11 @@ export type UseSearchProposals = (
   contractAddress: ContractAddress | undefined,
   startingBlock: number | null,
   enabled: boolean
-) => { proposals: Proposal[]; loading: boolean };
+) => {
+  proposals: Proposal[];
+  loading: boolean;
+  percentage: number;
+};
 
 export type ParsedProposal = {
   id: number;

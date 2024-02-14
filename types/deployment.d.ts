@@ -3,7 +3,7 @@ export type UseDeploymentBlockResult = {
   success: boolean;
   error: string | undefined;
   currentSearchBlock: number | undefined;
-  percentageComplete: number;
+  deploymentPercentageComplete: number;
   cancelSearch: () => void;
   isSearching: boolean;
 };

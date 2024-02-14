@@ -31,50 +31,56 @@ export default function Search({
     success,
     error,
     currentSearchBlock,
-    percentageComplete,
+    deploymentPercentageComplete,
     isSearching,
     cancelSearch,
-  } = useDeploymentBlock(provider, contractAddress, deploymentBlock);
+  } = useDeploymentBlock(provider, contractAddress, deploymentBlock || 0);
 
   // When governor is found, create a contract instance and set it to state
-  useEffect(() => {
-    if (!state.governor.contract && success && blockNumber) {
-      const governorContract = new ethers.Contract(
-        contractAddress as string,
-        GovernorABI,
-        provider
-      );
+  try {
+    useEffect(() => {
+      if (!state.governor.contract && success && blockNumber) {
+        const governorContract = new ethers.Contract(
+          contractAddress as string,
+          GovernorABI,
+          provider
+        );
 
-      setState((prevState) => ({
-        ...prevState,
-        system: {
-          ...prevState.system,
-          currentDeployBlock: currentSearchBlock
-            ? currentSearchBlock
-            : undefined,
-        },
-        governor: {
-          ...prevState.governor,
-          contract: governorContract,
-          deploymentBlock: blockNumber,
-          name: undefined,
-        },
-      }));
-    }
-  }, [
-    success,
-    blockNumber,
-    currentSearchBlock,
-    contractAddress,
-    provider,
-    state,
-  ]);
+        setState((prevState) => ({
+          ...prevState,
+          system: {
+            ...prevState.system,
+            currentDeployBlock: currentSearchBlock
+              ? currentSearchBlock
+              : undefined,
+          },
+          governor: {
+            ...prevState.governor,
+            contract: governorContract,
+            deploymentBlock: blockNumber,
+            name: undefined,
+          },
+        }));
+      }
+    }, [
+      success,
+      blockNumber,
+      currentSearchBlock,
+      contractAddress,
+      provider,
+      state,
+    ]);
+  } catch (error) {
+    console.log(error);
+  }
 
   // When governor contract is found, find Proposals
-  const { proposals } = useSearchProposals(
+  const { proposals, loading, percentage } = useSearchProposals(
     provider,
     contractAddress,
-    state.governor.deploymentBlock,
+    Number.isNaN(deploymentBlock) && state.governor.deploymentBlock != null
+      ? state.governor.deploymentBlock
+      : deploymentBlock,
     true
   );
 
@@ -91,18 +97,29 @@ export default function Search({
     <section id="proposals-table">
       {contractAddress &&
         networkId &&
-        percentageComplete > 0 &&
-        percentageComplete < 100 && (
-          <Progress className="mb-8" value={percentageComplete} />
+        deploymentPercentageComplete > 0 &&
+        deploymentPercentageComplete < 30 && (
+          <Progress className="mb-8" value={deploymentPercentageComplete} />
         )}
 
-      {contractAddress && networkId && percentageComplete === 100 && (
-        <DataTable
-          isPaginated={true}
-          columns={columns}
-          data={formattedProposals as any[]}
-        />
-      )}
+      {contractAddress &&
+        networkId &&
+        percentage > 30 &&
+        percentage < 100 &&
+        deploymentPercentageComplete === 30 && (
+          <Progress className="mb-8" value={percentage} />
+        )}
+
+      {contractAddress &&
+        networkId &&
+        percentage > 98 &&
+        formattedProposals && (
+          <DataTable
+            isPaginated={true}
+            columns={columns}
+            data={formattedProposals as any[]}
+          />
+        )}
     </section>
   );
 }

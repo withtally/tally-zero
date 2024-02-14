@@ -11,32 +11,43 @@ export function useParseProposals(
   enabled: boolean
 ): ParsedProposal[] {
   const [parsedProposals, setParsedProposals] = useState<ParsedProposal[]>([]);
+
   useEffect(() => {
     if (!enabled || !contractAddress) return;
+
     const parseProposals = async () => {
       const governorContract = new ethers.Contract(
         contractAddress,
         OzGovernor_ABI,
         provider
-      ) as Contract;
+      );
 
-      proposals.map(async (proposal) => {
-        governorContract.state(proposal.id).then((proposalState: number) => {
-         setParsedProposals((prev) => [
-           ...prev,
-           {
-             ...proposal,
-             values:
-               proposal.values.length > 0
-                 ? proposal.values.map((value) => value.toString())
-                 : [],
-             startBlock: proposal.startBlock.toString(),
-             endBlock: proposal.endBlock.toString(),
-             state: proposalState,
-           },
-         ]);
-        });
+      const proposalPromises = proposals.map(async (proposal) => {
+        try {
+          const proposalState = await governorContract.state(proposal.id);
+          return {
+            ...proposal,
+            values:
+              proposal.values.length > 0
+                ? proposal.values.map((value) => value.toString())
+                : [],
+            startBlock: proposal.startBlock.toString(),
+            endBlock: proposal.endBlock.toString(),
+            state: proposalState,
+          };
+        } catch (error) {
+          console.log(
+            `Error fetching state for proposal ID ${proposal.id}:`,
+            error
+          );
+          return null;
+        }
       });
+
+      const resolvedProposals = (await Promise.all(proposalPromises)).filter(
+        Boolean
+      );
+      setParsedProposals(resolvedProposals.filter(Boolean) as ParsedProposal[]);
     };
 
     parseProposals();

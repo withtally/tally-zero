@@ -62,17 +62,13 @@ export default function ContractForm({
       "networkId"
     );
 
-    const deploymentBlock = new URLSearchParams(window.location.search).get(
-      "deploymentBlock"
-    );
-
     if (getAddress && getNetworkId) {
       setLoading(true);
     }
 
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 25000);
   }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
