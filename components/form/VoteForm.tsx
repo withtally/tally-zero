@@ -33,6 +33,9 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
   const form = useForm<z.infer<typeof voteSchema>>({
     resolver: zodResolver(voteSchema),
   });
+  console.log(
+    new URLSearchParams(window.location.search).get("address") as `0x${string}`
+  );
 
   const {
     config,
@@ -53,14 +56,10 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
     setLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      //await new Promise((resolve) => setTimeout(resolve, 1000));
 
+      console.log("Voted");
       write?.();
-
-      if (isSuccess) {
-        toast("Your vote has been submitted.");
-      }
-      
     } catch (error) {
       console.log(error);
     } finally {

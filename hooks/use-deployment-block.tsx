@@ -68,7 +68,7 @@ export const useDeploymentBlock = (
           }
         }
       } catch (err: any) {
-        console.log(err);
+        console.warn(err);
         setError((err as Error).message || JSON.stringify(err));
         setSuccess(false);
       } finally {

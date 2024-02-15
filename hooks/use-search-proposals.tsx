@@ -24,20 +24,10 @@ export const useSearchProposals: UseSearchProposals = (
     const fetchProposals = async () => {
       setLoading(true);
       try {
+        let proposals: Proposal[] = [];
         const currentBlock = await provider.getBlockNumber();
         const proposalCreatedFilter = contract.filters.ProposalCreated();
-
         const startBlock = Math.max(startingBlock - MAX_PREVIOUS_BLOCKS, 0);
-        console.log(
-          "Gap of the start block to current block : ",
-          currentBlock - startBlock
-        );
-        console.log(
-          "Blocks range (50000) : ",
-          (currentBlock - startBlock) / MAX_BLOCKS_RANGE
-        );
-
-        let proposals: Proposal[] = [];
 
         for (
           let fromBlock = startBlock;
@@ -48,16 +38,22 @@ export const useSearchProposals: UseSearchProposals = (
             fromBlock + MAX_BLOCKS_RANGE - 1,
             currentBlock
           );
+
           setPercentage(
             (toBlock / (currentBlock - MAX_BLOCKS_RANGE * 2)) * 100
           );
-          console.log("Logs: ", toBlock - fromBlock);
 
-          const events = await contract.queryFilter(
-            proposalCreatedFilter,
-            fromBlock,
-            toBlock
-          );
+          let events: any[] = [];
+          try {
+            events = await contract.queryFilter(
+              proposalCreatedFilter,
+              fromBlock,
+              toBlock
+            );
+          } catch (error) {
+            events = [];
+            console.warn("Error parsing proposals:", error);
+          }
 
           const newProposals = events.map((event) => {
             const {
@@ -92,40 +88,14 @@ export const useSearchProposals: UseSearchProposals = (
 
         setProposals(proposals);
       } catch (error) {
-        console.log("Error fetching proposals:", error);
+        console.warn("Error fetching proposals:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProposals()
-      .then((events) => {
-        console.log(`Fetched ${events} events.`);
-      })
-      .catch(console.log);
-    const listener = (blockNumber: number) => {
-      contract
-        .queryFilter(contract.filters.ProposalCreated(), blockNumber)
-        .then((events) => {
-          if (events.length === 0) return;
+    fetchProposals().catch(console.log);
 
-          const newProposals = events.map((event) => {
-            const args = event.args as unknown as Proposal;
-            return args;
-          });
-
-          setProposals((currentProposals) => [
-            ...currentProposals,
-            ...newProposals,
-          ]);
-        });
-    };
-
-    provider.on("block", listener);
-
-    return () => {
-      provider.off("block", listener);
-    };
   }, [provider, contractAddress, startingBlock, enabled]);
 
   return { proposals, loading, percentage };

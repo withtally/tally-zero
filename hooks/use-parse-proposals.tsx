@@ -36,7 +36,7 @@ export function useParseProposals(
             state: proposalState,
           };
         } catch (error) {
-          console.log(
+          console.error(
             `Error fetching state for proposal ID ${proposal.id}:`,
             error
           );
