@@ -33,7 +33,7 @@ export default function VoteModel({
         <DialogHeader>
           <DialogTitle>
             <div className="flex items-center justify-between pb-4">
-              <span>Proposal #{proposal.id} </span>
+              <span>Proposal</span>
               <Badge
                 className={cn(
                   "text-xs font-semibold inline-flex items-center",
@@ -68,7 +68,7 @@ export default function VoteModel({
         <DrawerHeader>
           <DrawerTitle>
             <div className="flex items-center justify-between py-4">
-              <span>Proposal #{proposal.id} </span>
+              <span>Proposal</span>
               <Badge
                 className={cn(
                   "text-xs font-semibold inline-flex items-center",

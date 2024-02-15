@@ -17,7 +17,7 @@ export const voteSchema = z.object({
 });
 
 export const proposalSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   proposer: z.string(),
   targets: z.array(z.string()),
   values: z.array(z.string()),

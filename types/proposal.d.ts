@@ -2,7 +2,7 @@ import { daoSchema } from "@config/schema";
 import { ContractAddress } from "@/types/search";
 
 export type Proposal = {
-  id: number;
+  id: string;
   proposer: string;
   targets: string[];
   values: ethers.BigNumber[];
@@ -26,7 +26,7 @@ export type UseSearchProposals = (
 };
 
 export type ParsedProposal = {
-  id: number;
+  id: string;
   proposer: string;
   targets: string[];
   values: string[];

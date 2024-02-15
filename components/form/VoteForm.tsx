@@ -33,9 +33,6 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
   const form = useForm<z.infer<typeof voteSchema>>({
     resolver: zodResolver(voteSchema),
   });
-  console.log(
-    new URLSearchParams(window.location.search).get("address") as `0x${string}`
-  );
 
   const {
     config,
@@ -56,9 +53,9 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
     setLoading(true);
 
     try {
-      //await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
-      console.log("Voted");
+      toast("Your vote has been submitted.");
       write?.();
     } catch (error) {
       console.log(error);
@@ -130,17 +127,23 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
               <Button variant="ghost">Cancel</Button>
             </DialogClose>
 
-            {loading ? (
-              <Button variant="secondary" disabled>
-                <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
-                Voting
-              </Button>
-            ) : isSuccess ? (
-              <Button variant="secondary" disabled>
-                Voted
-              </Button>
+            {proposal.state === "active" ? (
+              loading ? (
+                <Button variant="secondary" disabled>
+                  <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
+                  Voting
+                </Button>
+              ) : isSuccess ? (
+                <Button variant="secondary" disabled>
+                  Voted
+                </Button>
+              ) : (
+                <Button type="submit">Vote</Button>
+              )
             ) : (
-              <Button type="submit">Vote</Button>
+              <Button variant="destructive" disabled>
+                Cannot vote
+              </Button>
             )}
           </DialogFooter>
         </form>
