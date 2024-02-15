@@ -1,10 +1,10 @@
-import * as React from "react"
+import Link from "next/link";
 
-import { siteConfig } from "@config/site"
-import { cn } from "@lib/utils"
+import { cn } from "@lib/utils";
+import { siteConfig } from "@config/site";
 
-import { Icons } from "@components/Icons"
-import { ModeToggle } from "@/components/ModeToggel"
+import { Icons } from "@components/Icons";
+import { ModeToggle } from "@/components/ModeToggel";
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
@@ -14,41 +14,41 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           <Icons.logo />
           <p className="text-center text-sm leading-loose md:text-left">
             Built by{" "}
-            <a
-              href={siteConfig.links.twitter}
+            <Link
+              href={siteConfig.url}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              crazyrabbitLTC
-            </a>
+              Tally
+            </Link>
             . Hosted on{" "}
-            <a
+            <Link
               href="https://vercel.com"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               Vercel
-            </a>
+            </Link>
             . Refactored by{" "}
-            <a
+            <Link
               href="https://twitter.com/function03labs"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               Function03
-            </a>
+            </Link>
             . The source code is available on{" "}
-            <a
+            <Link
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               GitHub
-            </a>
+            </Link>
             .
           </p>
         </div>

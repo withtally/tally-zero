@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { UseDeploymentBlockResult } from "@/types/deployment";
 import { ContractAddress } from "@/types/search";
 
-const MAX_BLOCK_DIFF = 72;
+const MAX_BLOCK_DIFF = 128;
 
 export const useDeploymentBlock = (
   provider: providers.Provider,
@@ -12,12 +12,10 @@ export const useDeploymentBlock = (
 ): UseDeploymentBlockResult => {
   const [blockNumber, setBlockNumber] = useState<number | undefined>();
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | undefined>();
   const [currentSearchBlock, setCurrentSearchBlock] = useState<
     number | undefined
   >();
-  const [deploymentPercentageComplete, setPercentageComplete] = useState(0);
-  const [isSearching, setIsSearching] = useState(false);
+  const [deploymentProgress, setDeploymentProgress] = useState(0);
   const cancelSearchRef = useRef(false);
 
   const cancelSearch = () => {
@@ -29,7 +27,6 @@ export const useDeploymentBlock = (
       if (!contractAddress || !provider) return;
 
       cancelSearchRef.current = false;
-      setIsSearching(true);
 
       const currentCode = await provider.getCode(contractAddress);
       const currentBlockNumber =
@@ -52,7 +49,7 @@ export const useDeploymentBlock = (
         for (let i = 0; i < maxIterations && !cancelSearchRef.current; i++) {
           const mid = Math.floor((lowerBound + upperBound) / 2);
           setCurrentSearchBlock(mid);
-          setPercentageComplete((i / maxIterations) * 30);
+          setDeploymentProgress((i / maxIterations) * 100);
 
           const code = await provider.getCode(contractAddress, mid);
           const isDeployed = code !== "0x";
@@ -69,18 +66,15 @@ export const useDeploymentBlock = (
         }
       } catch (err: any) {
         console.warn(err);
-        setError((err as Error).message || JSON.stringify(err));
         setSuccess(false);
-      } finally {
-        setIsSearching(false);
       }
 
       if (cancelSearchRef.current) {
-        setError("Search canceled");
+        setSuccess(false);
       } else if (deployedBlockNumber !== null) {
         setBlockNumber(deployedBlockNumber);
         setSuccess(true);
-        setPercentageComplete(30);
+        setDeploymentProgress(100);
       }
     };
 
@@ -92,10 +86,7 @@ export const useDeploymentBlock = (
   return {
     blockNumber,
     success,
-    error,
     currentSearchBlock,
-    deploymentPercentageComplete,
-    isSearching,
-    cancelSearch,
+    deploymentProgress,
   };
 };

@@ -1,3 +1,4 @@
+import { daoSchema } from "@config/schema";
 import { ContractAddress } from "@/types/search";
 
 export type Proposal = {
@@ -15,13 +16,13 @@ export type Proposal = {
 
 export type UseSearchProposals = (
   provider: ethers.providers.Provider | undefined,
-  contractAddress: ContractAddress | undefined,
+  contract: ContractAddress | undefined,
+  blockRange: number,
   startingBlock: number | null,
   enabled: boolean
 ) => {
   proposals: Proposal[];
-  loading: boolean;
-  percentage: number;
+  searchProgress: number;
 };
 
 export type ParsedProposal = {

@@ -23,7 +23,6 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@components/ui/Button";
 import { Sheet, SheetTrigger } from "@components/ui/Sheet";
 import { Popover, PopoverTrigger } from "@components/ui/Popover";
-import { NetworkIcon } from "@components/container/NetworkIcon";
 
 import { formSchema } from "@config/schema";
 import { daos } from "@config/data";

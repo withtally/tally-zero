@@ -45,4 +45,5 @@ export const daoSchema = z.object({
   networkId: z.number(),
   imageUrl: z.string(),
   ethAddress: z.string().regex(ethAddressRegex),
+  maxBlockRange: z.number(),
 });

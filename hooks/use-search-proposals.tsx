@@ -3,17 +3,16 @@ import { useEffect, useState } from "react";
 import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 import { Proposal, UseSearchProposals } from "@/types/proposal";
 
-const MAX_BLOCKS_RANGE = 50000;
-const MAX_PREVIOUS_BLOCKS = 2000000;
+const MAX_CLUSTER_SIZE = 40;
 
 export const useSearchProposals: UseSearchProposals = (
   provider,
   contractAddress,
+  blockRange,
   startingBlock,
   enabled
 ) => {
-  const [percentage, setPercentage] = useState(30);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [searchProgress, setSearchProgress] = useState(0);
   const [proposals, setProposals] = useState<Proposal[]>([]);
 
   useEffect(() => {
@@ -22,25 +21,24 @@ export const useSearchProposals: UseSearchProposals = (
     const contract = new Contract(contractAddress, OZGovernor_ABI, provider);
 
     const fetchProposals = async () => {
-      setLoading(true);
       try {
         let proposals: Proposal[] = [];
         const currentBlock = await provider.getBlockNumber();
         const proposalCreatedFilter = contract.filters.ProposalCreated();
-        const startBlock = Math.max(startingBlock - MAX_PREVIOUS_BLOCKS, 0);
+        const startBlock = Math.max(
+          startingBlock - blockRange * MAX_CLUSTER_SIZE,
+          0
+        );
 
         for (
           let fromBlock = startBlock;
-          fromBlock <= currentBlock - MAX_BLOCKS_RANGE * 3;
-          fromBlock += MAX_BLOCKS_RANGE
+          fromBlock <= currentBlock - blockRange;
+          fromBlock += blockRange
         ) {
-          const toBlock = Math.min(
-            fromBlock + MAX_BLOCKS_RANGE - 1,
-            currentBlock
-          );
+          const toBlock = Math.min(fromBlock + blockRange - 1, currentBlock);
 
-          setPercentage(
-            (toBlock / (currentBlock - MAX_BLOCKS_RANGE * 2)) * 100
+          setSearchProgress(
+            ((fromBlock - startBlock) / (currentBlock - startBlock)) * 100
           );
 
           let events: any[] = [];
@@ -87,16 +85,14 @@ export const useSearchProposals: UseSearchProposals = (
         }
 
         setProposals(proposals);
+        setSearchProgress(100);
       } catch (error) {
         console.warn("Error fetching proposals:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchProposals().catch(console.log);
+  }, [provider, contractAddress, startingBlock, enabled, blockRange]);
 
-  }, [provider, contractAddress, startingBlock, enabled]);
-
-  return { proposals, loading, percentage };
+  return { proposals, searchProgress };
 };
