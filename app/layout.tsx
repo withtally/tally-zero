@@ -25,11 +25,11 @@ export const metadata = {
   keywords: ["Tally Zero", "TallyZero", "Tally"],
   authors: [
     {
-      name: "crazyrabbitLTC",
-      url: "#",
+      name: "Tally Zero",
+      url: `${siteConfig.url}`,
     },
   ],
-  creator: "crazyrabbitLTC",
+  creator: "Tally Zero",
   openGraph: {
     type: "website",
     locale: "en_US",

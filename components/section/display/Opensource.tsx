@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { siteConfig } from "@config/site";
 
+import { Icons } from "@components/Icons";
+import { buttonVariants } from "@components/ui/Button";
+
 export default function Opensource() {
   return (
     <section id="open-source" className="container py-8 md:py-12 lg:py-24">
@@ -22,6 +25,10 @@ export default function Opensource() {
           </Link>
           .
         </p>
+        <Link href="https://vercel.com/home" className={buttonVariants()}>
+          <Icons.triangle className="w-5 h-5 mr-3 fill-white" />
+          Deploy with Vercel
+        </Link>
       </div>
     </section>
   );

@@ -32,6 +32,7 @@ import {
   WifiIcon,
   ListStartIcon,
   BlendIcon,
+  Triangle,
   PackageOpenIcon,
 } from "lucide-react";
 
@@ -168,4 +169,5 @@ export const Icons = {
   liststart: ListStartIcon,
   blend: BlendIcon,
   packageopen: PackageOpenIcon,
+  triangle: Triangle,
 };
