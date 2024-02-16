@@ -17,59 +17,59 @@ export const daos = [
   },
   {
     name: "Compound",
-    networkId: 0,
+    networkId: 1,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fbc952927-da93-4cab-b0ce-b5e2f5976b9a_400x400.jpg&w=256&q=75",
     ethAddress: "0xc0Da02939E1441F497fd74F78cE7Decb17B66529",
-    maxBlockRange: 0,
+    maxBlockRange: 50000,
   },
   {
     name: "Hop",
-    networkId: 2021121117,
+    networkId: 1,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fe791fd56-5374-476f-acc0-190587ffa3e7_original.png&w=256&q=75",
     ethAddress: "0xed8Bdb5895B8B7f9Fdb3C087628FD8410E853D48",
-    maxBlockRange: 0,
+    maxBlockRange: 50000,
   },
   {
     name: "Lil Nouns",
-    networkId: 0,
+    networkId: 1,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F6b7f8135-d235-41c8-827b-ee8eecc5a2b2_original.png&w=256&q=75",
     ethAddress: "0x5d2C31ce16924C2a71D317e5BbFd5ce387854039",
-    maxBlockRange: 0,
+    maxBlockRange: 50000,
   },
   {
     name: "Nouns Dao",
-    networkId: 0,
+    networkId: 1,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F1decbb17-b472-4eb9-9141-92c3f86770de_400x400.jpg&w=256&q=75",
     ethAddress: "0x6f3E6272A167e8AcCb32072d08E0957F9c79223d",
-    maxBlockRange: 0,
+    maxBlockRange: 50000,
   },
   {
     name: "Thurman",
-    networkId: 0,
+    networkId: 1,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fe8cc190d-3c82-4601-aeab-a72556ef3c02_original.png&w=256&q=75",
     ethAddress: "0x6518998C230Ceb7A7AD530c7088f0747604C06f5",
-    maxBlockRange: 0,
+    maxBlockRange: 50000,
   },
   {
     name: "Content Guild",
-    networkId: 0,
+    networkId: 137,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F35effe07-180d-4b55-9998-4ad983e9d8ba_original.png&w=256&q=75",
     ethAddress: "0x26217Ec5044AEB8D6495BC68eE91951cd7Bb02a0",
-    maxBlockRange: 0,
+    maxBlockRange: 50000,
   },
   {
     name: "Aave",
-    networkId: 0,
+    networkId: 10,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fde0e6dc7-1c07-4ae4-9f42-e46367984fd2_original.png&w=256&q=75",
     ethAddress: "0xEC568fffba86c094cf06b22134B23074DFE2252c",
-    maxBlockRange: 0,
+    maxBlockRange: 100000,
   },
   {
     name: "Uniswap",

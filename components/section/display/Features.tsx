@@ -17,9 +17,9 @@ export default function Features() {
       <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
         <div className="relative overflow-hidden rounded-lg border bg-background p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-            <Icons.component className="h-12 w-12 fill-current" />
+            <Icons.component className="h-12 w-12" />
             <div className="space-y-2">
-              <h3 className="font-bold ">Decentralized Voting</h3>
+              <h3 className="font-bold">Decentralized Voting</h3>
               <p className="text-sm text-muted-foreground">
                 Secure, transparent voting on blockchain proposals.
               </p>
@@ -28,7 +28,7 @@ export default function Features() {
         </div>
         <div className="relative overflow-hidden rounded-lg border bg-background p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-            <Icons.wallet className="h-12 w-12 fill-current" />
+            <Icons.wallet className="h-12 w-12" />
 
             <div className="space-y-2">
               <h3 className="font-bold">Wallet Integration</h3>
@@ -40,7 +40,7 @@ export default function Features() {
         </div>
         <div className="relative overflow-hidden rounded-lg border bg-background p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-            <Icons.wifi className="h-12 w-12 fill-current" />
+            <Icons.wifi className="h-12 w-12" />
 
             <div className="space-y-2">
               <h3 className="font-bold">IPFS Deployment</h3>
@@ -52,7 +52,7 @@ export default function Features() {
         </div>
         <div className="relative overflow-hidden rounded-lg border bg-background p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-            <Icons.liststart className="h-12 w-12 fill-current" />
+            <Icons.liststart className="h-12 w-12" />
 
             <div className="space-y-2">
               <h3 className="font-bold">Proposal Browsing and Voting</h3>
@@ -64,7 +64,7 @@ export default function Features() {
         </div>
         <div className="relative overflow-hidden rounded-lg border bg-background p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-            <Icons.blend className="h-12 w-12 fill-current" />
+            <Icons.blend className="h-12 w-12" />
 
             <div className="space-y-2">
               <h3 className="font-bold">Cross-Chain Support</h3>
@@ -76,7 +76,7 @@ export default function Features() {
         </div>
         <div className="relative overflow-hidden rounded-lg border bg-background p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-            <Icons.packageopen className="h-12 w-12 fill-current" />
+            <Icons.packageopen className="h-12 w-12" />
 
             <div className="space-y-2">
               <h3 className="font-bold">Open Source</h3>

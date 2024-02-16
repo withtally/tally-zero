@@ -3,11 +3,8 @@ import { ProposalState } from "@config/intial-state";
 import { Proposal, ParsedProposal } from "@/types/proposal";
 
 export function useFormattedProposals(proposals: Proposal[]): ParsedProposal[] {
-  proposals.sort((a, b) => parseInt(a.id) - parseInt(b.id));
-  proposals.sort((a, b) => a.state - b.state);
-
   return useMemo(() => {
-    return proposals.map((proposal) => ({
+    const formattedProposals = proposals.map((proposal) => ({
       id: proposal.id,
       proposer: proposal.proposer,
       targets: proposal.targets,
@@ -19,5 +16,15 @@ export function useFormattedProposals(proposals: Proposal[]): ParsedProposal[] {
       description: proposal.description,
       state: (ProposalState[proposal.state] as string).toLowerCase(),
     }));
+
+    return formattedProposals.sort((a, b) => {
+      if (a.state === "active" && b.state !== "active") {
+        return -1;
+      } else if (a.state !== "active" && b.state === "active") {
+        return 1;
+      }
+
+      return parseInt(a.id) - parseInt(b.id);
+    });
   }, [proposals]);
 }
