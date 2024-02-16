@@ -24,21 +24,12 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             </Link>
             . Hosted on{" "}
             <Link
-              href="https://vercel.com"
+              href="https://docs-ipfs-tech.ipns.dweb.link/"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              Vercel
-            </Link>
-            . Refactored by{" "}
-            <Link
-              href="https://twitter.com/function03labs"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Function03
+              IPFS
             </Link>
             . The source code is available on{" "}
             <Link
