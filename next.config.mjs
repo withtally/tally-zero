@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: ".next",
   images: {
     domains: ["placehold.co", "www.tally.xyz", "raw.githubusercontent.com"],
   },
