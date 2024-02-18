@@ -9,17 +9,7 @@ import ContractForm from "@/components/form/ContractForm";
 import ChainCombobox from "@components/container/ChainCombobox";
 import OrderbookSheet from "@components/container/OrderbookDrawer";
 
-export default function ContractCard({
-  address,
-  networkId,
-  deploymentBlock,
-  chains,
-}: {
-  address: string;
-  networkId: string;
-  deploymentBlock: string;
-  chains: any;
-}) {
+export default function ContractCard({}: {}) {
   return (
     <Card className="rounded-xl">
       <CardHeader>
@@ -36,9 +26,6 @@ export default function ContractCard({
       </CardHeader>
       <CardContent>
         <ContractForm
-          address={address}
-          networkId={networkId}
-          deploymentBlock={deploymentBlock}
           sheet={
             <div>
               <OrderbookSheet />
@@ -46,7 +33,7 @@ export default function ContractCard({
           }
           combobox={
             <div>
-              <ChainCombobox chains={chains} address={address} />
+              <ChainCombobox />
             </div>
           }
         />

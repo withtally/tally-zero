@@ -20,11 +20,29 @@ import { Progress } from "@/components/ui/Progress";
 import { DataTable } from "@/components/table/DataTable";
 import { columns } from "@/components/table/ColumnsProposals";
 
-export default function Search({
-  contractAddress,
-  networkId,
-  deploymentBlock,
-}: ContractParams) {
+export default function Search() {
+  const [networkId, setNetworkId] = useState<string | null>(null);
+  const [deploymentBlock, setDeploymentBlock] = useState<number | null>(null);
+  const [contractAddress, setContractAddress] = useState<
+    ContractParams["contractAddress"] | undefined
+  >(undefined);
+
+  useEffect(() => {
+    const getAddress = new URLSearchParams(window.location.search).get(
+      "address"
+    ) as ContractParams["contractAddress"];
+    const getNetworkId = new URLSearchParams(window.location.search).get(
+      "networkId"
+    );
+    const getDeploymentBlock = new URLSearchParams(window.location.search).get(
+      "deploymentBlock"
+    ) as unknown as number;
+
+    setContractAddress(getAddress);
+    setNetworkId(getNetworkId);
+    setDeploymentBlock(getDeploymentBlock);
+  }, []);
+
   const [state, setState] = useState<State>(initialState);
   const [overallProgress, setOverallProgress] = useState(0);
   const provider = useProvider({ chainId: parseInt(networkId as string) });

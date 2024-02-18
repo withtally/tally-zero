@@ -1,4 +1,6 @@
-import * as React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 
 import {
   Command,
@@ -12,16 +14,24 @@ import { PopoverContent } from "@components/ui/Popover";
 
 import { Chain } from "@/types/chain";
 
-export default async function ChainCombobox({
-  chains,
-  address,
-}: {
-  chains: Chain[];
-  address: string;
-}) {
-  if (address === undefined) {
-    address = "";
-  }
+async function fetchChains() {
+  const res = await fetch("https://chainid.network/chains.json");
+  return res.json();
+}
+
+export default function ChainCombobox() {
+  const [chains, setChains] = useState<Chain[]>([]);
+  const [address, setAddress] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchChains().then((data) => {
+      setChains(data);
+    });
+    const getAddress = new URLSearchParams(window.location.search).get(
+      "address"
+    );
+    setAddress(getAddress);
+  }, []);
 
   return (
     <PopoverContent className="w-[250px] p-0">
@@ -32,7 +42,9 @@ export default async function ChainCombobox({
           {chains.map(async (chain) => (
             <a
               key={chain.chainId}
-              href={`/explore?address=${address}&networkId=${chain.chainId as number}`}
+              href={`/explore?address=${address}&networkId=${
+                chain.chainId as number
+              }`}
             >
               <CommandItem
                 value={chain.name}

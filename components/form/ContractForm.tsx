@@ -28,20 +28,35 @@ import { formSchema } from "@config/schema";
 import { daos } from "@config/data";
 
 export default function ContractForm({
-  address,
-  networkId,
-  deploymentBlock,
   sheet,
   combobox,
 }: {
-  address: string;
-  networkId: string;
-  deploymentBlock: string;
   sheet: React.ReactNode;
   combobox: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [address, setAddress] = useState<string | null>(null);
+  const [networkId, setNetworkId] = useState<string | null>(null);
+  const [deploymentBlock, setDeploymentBlock] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getAddress = new URLSearchParams(window.location.search).get(
+      "address"
+    );
+    const getNetworkId = new URLSearchParams(window.location.search).get(
+      "networkId"
+    );
+    const getDeploymentBlock = new URLSearchParams(window.location.search).get(
+      "deploymentBlock"
+    );
+
+    setAddress(getAddress);
+    setNetworkId(getNetworkId);
+    setDeploymentBlock(getDeploymentBlock);
+  }, []);
+
   const dao = daos.find((dao) => dao.ethAddress === address);
 
   const form = useForm<z.infer<typeof formSchema>>({

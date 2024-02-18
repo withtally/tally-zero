@@ -11,7 +11,7 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { chains } from "@config/chains";
 
 export function Web3ModalProvider({ children }: { children: React.ReactNode }) {
-  const projectId = process.env.NEXT_PUBLIC_WEB3STORAGE_PROJECT_ID;
+  const projectId = "87955a90d88a7e92591cc8d04ff1aa5a";
   if (projectId === undefined) {
     throw new Error("NEXT_PUBLIC_WEB3STORAGE_PROJECT_ID is undefined");
   }
