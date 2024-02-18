@@ -37,53 +37,44 @@ export default function ContractForm({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [address, setAddress] = useState<string | null>(null);
-  const [networkId, setNetworkId] = useState<string | null>(null);
-  const [deploymentBlock, setDeploymentBlock] = useState<string | null>(null);
+  const [formData, setFormData] = useState<z.infer<typeof formSchema> | null>(
+    null
+  );
 
   useEffect(() => {
-    const getAddress = new URLSearchParams(window.location.search).get(
-      "address"
-    );
-    const getNetworkId = new URLSearchParams(window.location.search).get(
-      "networkId"
-    );
-    const getDeploymentBlock = new URLSearchParams(window.location.search).get(
-      "deploymentBlock"
-    );
+    const address =
+      new URLSearchParams(window.location.search).get("address") || "";
+    const networkId =
+      new URLSearchParams(window.location.search).get("networkId") || "";
+    const deploymentBlock =
+      new URLSearchParams(window.location.search).get("deploymentBlock") || "";
 
-    setAddress(getAddress);
-    setNetworkId(getNetworkId);
-    setDeploymentBlock(getDeploymentBlock);
+    if (address && networkId) {
+      setFormData({
+        address,
+        networkId,
+        deploymentBlock: deploymentBlock || "",
+      });
+    }
   }, []);
 
-  const dao = daos.find((dao) => dao.ethAddress === address);
-
+  const dao = daos.find((dao) => dao.ethAddress === formData?.address);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      address: address || "",
-      networkId: networkId || "",
-      deploymentBlock: deploymentBlock || "",
+      address: "",
+      networkId: "",
+      deploymentBlock: "",
     },
   });
 
   useEffect(() => {
-    const getAddress = new URLSearchParams(window.location.search).get(
-      "address"
-    );
-    const getNetworkId = new URLSearchParams(window.location.search).get(
-      "networkId"
-    );
-
-    if (getAddress && getNetworkId) {
-      setLoading(true);
+    if (formData) {
+      form.setValue("address", formData.address);
+      form.setValue("networkId", formData.networkId);
+      form.setValue("deploymentBlock", formData.deploymentBlock);
     }
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 25000);
-  }, []);
+  }, [formData, form]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     if (values.deploymentBlock === "") {

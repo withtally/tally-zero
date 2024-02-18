@@ -1,7 +1,3 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-
 import {
   Command,
   CommandEmpty,
@@ -14,24 +10,20 @@ import { PopoverContent } from "@components/ui/Popover";
 
 import { Chain } from "@/types/chain";
 
-async function fetchChains() {
-  const res = await fetch("https://chainid.network/chains.json");
-  return res.json();
+async function getChains() {
+  const response = await fetch("https://chainid.network/chains.json");
+  const chains = await response.json();
+  return chains;
 }
 
-export default function ChainCombobox() {
-  const [chains, setChains] = useState<Chain[]>([]);
-  const [address, setAddress] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchChains().then((data) => {
-      setChains(data);
-    });
-    const getAddress = new URLSearchParams(window.location.search).get(
-      "address"
-    );
-    setAddress(getAddress);
-  }, []);
+export default async function ChainCombobox({
+  address,
+  networkId,
+}: {
+  address?: string;
+  networkId?: string;
+}) {
+  const data = await getChains();
 
   return (
     <PopoverContent className="w-[250px] p-0">
@@ -39,7 +31,7 @@ export default function ChainCombobox() {
         <CommandInput placeholder="Search chain..." />
         <CommandEmpty>No framework found.</CommandEmpty>
         <CommandGroup className="max-h-[200px] overflow-y-auto">
-          {chains.map(async (chain) => (
+          {data.map(async (chain: Chain) => (
             <a
               key={chain.chainId}
               href={`/explore?address=${address}&networkId=${

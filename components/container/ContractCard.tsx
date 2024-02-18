@@ -9,7 +9,7 @@ import ContractForm from "@/components/form/ContractForm";
 import ChainCombobox from "@components/container/ChainCombobox";
 import OrderbookSheet from "@components/container/OrderbookDrawer";
 
-export default function ContractCard({}: {}) {
+export default function ContractCard() {
   return (
     <Card className="rounded-xl">
       <CardHeader>

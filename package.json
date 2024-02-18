@@ -46,6 +46,7 @@
     "react-router-dom": "^6.12.1",
     "react-scripts": "5.0.1",
     "sonner": "^1.4.0",
+    "swr": "^2.2.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^2.13.0",

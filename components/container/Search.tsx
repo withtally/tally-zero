@@ -87,14 +87,14 @@ export default function Search() {
     provider,
     state,
   ]);
-
+  
   // When governor contract is found, find Proposals
   const blockRange = getBlockRange(dao) as number;
   const { proposals, searchProgress } = useSearchProposals(
     provider,
     contractAddress,
     blockRange,
-    Number.isNaN(deploymentBlock) && state.governor.deploymentBlock != null
+    deploymentBlock === null && state.governor.deploymentBlock != null
       ? state.governor.deploymentBlock
       : deploymentBlock,
     true
