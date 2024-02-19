@@ -2,8 +2,8 @@
 
 import * as z from "zod";
 import Image from "next/image";
-import React, { useState } from "react";
 import { UseFormReturn } from "react-hook-form";
+import React, { useState, useEffect } from "react";
 
 import { Icons } from "@components/Icons";
 import { ReloadIcon } from "@radix-ui/react-icons";
@@ -22,23 +22,28 @@ import { Sheet, SheetTrigger } from "@components/ui/Sheet";
 import { Popover, PopoverTrigger } from "@components/ui/Popover";
 
 import OrderbookSheet from "@components/container/OrderbookDrawer";
+import ChainCombobox from "@components/container/ChainCombobox";
 
-import { formSchema } from "@config/schema";
+import { formSchema, daoSchema } from "@config/schema";
 import { daos } from "@config/data";
 
 interface ContractFormProps {
   form: UseFormReturn<z.infer<typeof formSchema>>;
+  progress: number;
 }
 
-export default function ContractForm({ form }: ContractFormProps) {
+export default function ContractForm({ form, progress }: ContractFormProps) {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [currDao, setCurrDao] = useState<
+    z.infer<typeof daoSchema> | undefined
+  >();
 
-  const [formData, setFormData] = useState<z.infer<typeof formSchema> | null>(
-    null
-  );
+  const addressWatched = form.watch("address");
 
-  const dao = daos.find((dao) => dao.ethAddress === formData?.address);
+  useEffect(() => {
+    const dao = daos.find((dao) => dao.ethAddress === addressWatched);
+    setCurrDao(dao);
+  }, [addressWatched]);
 
   return (
     <div>
@@ -64,19 +69,19 @@ export default function ContractForm({ form }: ContractFormProps) {
                   </SheetTrigger>
                   <OrderbookSheet form={form} />
                 </Sheet>
-                {dao && (
+                {currDao && (
                   <>
                     <div className="absolute right-0 flex items-center space-x-2 justify-center h-full px-3 text-black bg-gray-200 hover:text-violet-500 hover:bg-gray-200 rounded-r-md transition-colors duration-200 ease-in-out">
                       <Image
-                        src={dao.imageUrl}
-                        alt={dao.name}
+                        src={currDao.imageUrl}
+                        alt={currDao.name}
                         width={50}
                         height={50}
                         className="rounded-md w-6 h-auto"
                         layout="fixed"
                       />
                       <span className="text-sm font-semibold hidden sm:block">
-                        {dao.name}
+                        {currDao.name}
                       </span>
                     </div>
                   </>
@@ -113,13 +118,7 @@ export default function ContractForm({ form }: ContractFormProps) {
                     >
                       <Icons.link className="w-10 h-auto" />
                     </PopoverTrigger>
-                    {/** @ts-ignore
-                     * Add the drawer component inside of the Form component
-                    React.cloneElement(combobox, {
-                      address: form.getValues("address"),
-                      networkId: form.getValues("networkId"),
-                    })
-                    */}
+                    {/*  <ChainCombobox form={form} /> */}
                   </Popover>
                 </div>
               </FormControl>
@@ -153,7 +152,7 @@ export default function ContractForm({ form }: ContractFormProps) {
         />
       </div>
 
-      {loading ? (
+      {progress > 0 && progress != 100 ? (
         <Button variant={"secondary"} disabled className="mt-6 w-full">
           <ReloadIcon className="animate-spin w-5 h-5" />
           <span className="ml-2">Connecting to contract...</span>

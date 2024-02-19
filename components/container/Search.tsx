@@ -19,6 +19,7 @@ import { initialState } from "@config/intial-state";
 import { useGovernorContract } from "@hooks/use-governor-contract";
 
 export default function Search() {
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState<State>(initialState);
   const [formContractParams, setFormContractParams] = useState<ContractParams>(
     {}
@@ -61,7 +62,7 @@ export default function Search() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col space-y-4"
       >
-        <ContractCard form={form} />
+        <ContractCard form={form} progress={overallProgress} />
 
         <section id="proposals-table">
           {overallProgress > 0 && overallProgress < 100 && (

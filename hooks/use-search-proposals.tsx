@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 import { Proposal, UseSearchProposals } from "@/types/proposal";
 
-const MAX_CLUSTER_SIZE = 40;
+const MAX_CLUSTER_SIZE = 200;
 
 export const useSearchProposals: UseSearchProposals = (
   provider,

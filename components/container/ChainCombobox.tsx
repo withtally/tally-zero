@@ -16,13 +16,7 @@ async function getChains() {
   return chains;
 }
 
-export default async function ChainCombobox({
-  address,
-  networkId,
-}: {
-  address?: string;
-  networkId?: string;
-}) {
+export default async function ChainCombobox({ address }: { address?: string }) {
   const data = await getChains();
 
   return (

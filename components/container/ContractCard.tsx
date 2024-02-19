@@ -13,9 +13,10 @@ import ContractForm from "@/components/form/ContractForm";
 
 interface ContractCardProps {
   form: UseFormReturn<z.infer<typeof formSchema>>;
+  progress: number;
 }
 
-export default function ContractCard({ form }: ContractCardProps) {
+export default function ContractCard({ form, progress }: ContractCardProps) {
   return (
     <Card className="rounded-xl">
       <CardHeader>
@@ -31,7 +32,7 @@ export default function ContractCard({ form }: ContractCardProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ContractForm form={form} />
+        <ContractForm form={form} progress={progress} />
       </CardContent>
     </Card>
   );

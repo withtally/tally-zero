@@ -2,6 +2,11 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@components/ui/HoverCard";
 import { Badge } from "@components/ui/Badge";
 import { DescriptionCell } from "@components/ui/DescriptionCell";
 import { ProposerCell } from "@components/container/ProposerCell";
@@ -20,8 +25,23 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Proposal ID" />
     ),
-    cell: ({ row }) => (
-      <div className="w-[60px] truncate">{row.getValue("id")}</div>
+    cell: ({ row }: { row: Record<string, any> }) => (
+      <HoverCard>
+        <HoverCardTrigger
+          className="underline hover:font-semibold hover:cursor-pointer 
+          transition-transform duration-200 ease-in-out transform hover:scale-105
+        "
+        >
+          {row.getValue("id").length > 6
+            ? row.getValue("id").substring(0, 5) +
+              "..." +
+              row.getValue("id").substring(row.getValue("id").length - 2)
+            : row.getValue("id")}
+        </HoverCardTrigger>
+        <HoverCardContent className="w-full">
+          {row.getValue("id")}
+        </HoverCardContent>
+      </HoverCard>
     ),
     enableHiding: false,
   },

@@ -65,11 +65,11 @@ export const daos = [
   },
   {
     name: "Aave",
-    networkId: 10,
+    networkId: 1,
     imageUrl:
       "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fde0e6dc7-1c07-4ae4-9f42-e46367984fd2_original.png&w=256&q=75",
     ethAddress: "0xEC568fffba86c094cf06b22134B23074DFE2252c",
-    maxBlockRange: 100000,
+    maxBlockRange: 50000,
   },
   {
     name: "Uniswap",

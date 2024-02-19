@@ -53,7 +53,7 @@ export function useGovernorContract({
         provider
       );
 
-      governorContractRef.current = governorContract; // Update the ref
+      governorContractRef.current = governorContract;
 
       setState((prevState) => ({
         ...prevState,
@@ -112,6 +112,9 @@ export function useGovernorContract({
     const combinedProgress = deploymentProgress * 0.2 + searchProgress * 0.8;
     setOverallProgress(combinedProgress);
   }, [deploymentProgress, searchProgress]);
+
+  // Reset blockNumber, success, and currentSearchBlock, proposals, and searchProgress
+
 
   return {
     overallProgress,
