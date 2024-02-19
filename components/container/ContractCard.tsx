@@ -1,3 +1,7 @@
+import { z } from "zod";
+import { formSchema } from "@config/schema";
+import { UseFormReturn } from "react-hook-form";
+
 import {
   Card,
   CardContent,
@@ -6,10 +10,12 @@ import {
   CardTitle,
 } from "@components/ui/Card";
 import ContractForm from "@/components/form/ContractForm";
-import ChainCombobox from "@components/container/ChainCombobox";
-import OrderbookSheet from "@components/container/OrderbookDrawer";
 
-export default function ContractCard() {
+interface ContractCardProps {
+  form: UseFormReturn<z.infer<typeof formSchema>>;
+}
+
+export default function ContractCard({ form }: ContractCardProps) {
   return (
     <Card className="rounded-xl">
       <CardHeader>
@@ -25,18 +31,7 @@ export default function ContractCard() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ContractForm
-          sheet={
-            <div>
-              <OrderbookSheet />
-            </div>
-          }
-          combobox={
-            <div>
-              <ChainCombobox />
-            </div>
-          }
-        />
+        <ContractForm form={form} />
       </CardContent>
     </Card>
   );

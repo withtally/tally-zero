@@ -1,138 +1,82 @@
 "use client";
 
-import { ethers } from "ethers";
-import { useProvider } from "wagmi";
-import { useEffect, useState } from "react";
-import { getBlockRange } from "@lib/block-range";
+import * as z from "zod";
+import { useState, useEffect } from "react";
 
-import { useDeploymentBlock } from "@hooks/use-deployment-block";
-import { useSearchProposals } from "@hooks/use-search-proposals";
-import { useParseProposals } from "@hooks/use-parse-proposals";
-import { useFormattedProposals } from "@/hooks/use-formatted-proposals";
-
-import { State, ContractParams } from "@/types/search";
-import { initialState } from "@config/intial-state";
-import GovernorABI from "@data/OzGovernor_ABI.json";
-import { daos } from "@config/data";
-import { daoSchema } from "@config/schema";
+import { useForm } from "react-hook-form";
+import { formSchema } from "@config/schema";
+import { Form } from "@/components/ui/Form";
+import { ContractParams } from "@/types/search";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Progress } from "@/components/ui/Progress";
 import { DataTable } from "@/components/table/DataTable";
 import { columns } from "@/components/table/ColumnsProposals";
+import ContractCard from "@/components/container/ContractCard";
+
+import { State } from "@/types/search";
+import { initialState } from "@config/intial-state";
+import { useGovernorContract } from "@hooks/use-governor-contract";
 
 export default function Search() {
-  const [networkId, setNetworkId] = useState<string | null>(null);
-  const [deploymentBlock, setDeploymentBlock] = useState<number | null>(null);
-  const [contractAddress, setContractAddress] = useState<
-    ContractParams["contractAddress"] | undefined
-  >(undefined);
-
-  useEffect(() => {
-    const getAddress = new URLSearchParams(window.location.search).get(
-      "address"
-    ) as ContractParams["contractAddress"];
-    const getNetworkId = new URLSearchParams(window.location.search).get(
-      "networkId"
-    );
-    const getDeploymentBlock = new URLSearchParams(window.location.search).get(
-      "deploymentBlock"
-    ) as unknown as number;
-
-    setContractAddress(getAddress);
-    setNetworkId(getNetworkId);
-    setDeploymentBlock(getDeploymentBlock);
-  }, []);
-
   const [state, setState] = useState<State>(initialState);
-  const [overallProgress, setOverallProgress] = useState(0);
-  const provider = useProvider({ chainId: parseInt(networkId as string) });
-  const dao = daos.find(
-    (dao) => dao.ethAddress === contractAddress
-  ) as unknown as typeof daoSchema;
+  const [formContractParams, setFormContractParams] = useState<ContractParams>(
+    {}
+  );
 
-  // Search for the Deployment block of Governor
-  const { blockNumber, success, currentSearchBlock, deploymentProgress } =
-    useDeploymentBlock(provider, contractAddress, deploymentBlock || 0);
-
-  // When governor is found, create a contract instance and set it to state
   useEffect(() => {
-    if (!state.governor.contract && success && blockNumber) {
-      const governorContract = new ethers.Contract(
-        contractAddress as string,
-        GovernorABI,
-        provider
-      );
-
+    if (formContractParams.contractAddress && formContractParams.networkId) {
+      setState(initialState);
       setState((prevState) => ({
         ...prevState,
-        system: {
-          ...prevState.system,
-          currentDeployBlock: currentSearchBlock
-            ? currentSearchBlock
-            : undefined,
-        },
         governor: {
           ...prevState.governor,
-          contract: governorContract,
-          deploymentBlock: blockNumber,
-          name: undefined,
+          address: formContractParams.contractAddress,
         },
       }));
     }
-  }, [
-    success,
-    blockNumber,
-    currentSearchBlock,
-    contractAddress,
-    provider,
+  }, [formContractParams]);
+
+  const { overallProgress, formattedProposals } = useGovernorContract({
+    values: formContractParams,
     state,
-  ]);
-  
-  // When governor contract is found, find Proposals
-  const blockRange = getBlockRange(dao) as number;
-  const { proposals, searchProgress } = useSearchProposals(
-    provider,
-    contractAddress,
-    blockRange,
-    deploymentBlock === null && state.governor.deploymentBlock != null
-      ? state.governor.deploymentBlock
-      : deploymentBlock,
-    true
-  );
+    setState,
+  });
 
-  // When Proposals, parse them into a more readable format
-  const parsedProposals = useParseProposals(
-    provider,
-    contractAddress,
-    proposals,
-    true
-  );
-  const formattedProposals = useFormattedProposals(parsedProposals);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
 
-  useEffect(() => {
-    const combinedProgress = deploymentProgress * 0.2 + searchProgress * 0.8;
-    setOverallProgress(combinedProgress);
-  }, [deploymentProgress, searchProgress]);
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    setFormContractParams({
+      contractAddress: `0x${values.address.slice(2)}`,
+      networkId: values.networkId,
+      deploymentBlock: values.deploymentBlock || 0,
+    });
+  }
 
   return (
-    <section id="proposals-table">
-      {contractAddress &&
-        networkId &&
-        overallProgress > 0 &&
-        overallProgress < 100 && (
-          <Progress className="mb-8" value={overallProgress} />
-        )}
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col space-y-4"
+      >
+        <ContractCard form={form} />
 
-      {contractAddress &&
-        networkId &&
-        overallProgress === 100 &&
-        formattedProposals && (
-          <DataTable
-            isPaginated={true}
-            columns={columns}
-            data={formattedProposals as any[]}
-          />
-        )}
-    </section>
+        <section id="proposals-table">
+          {overallProgress > 0 && overallProgress < 100 && (
+            <Progress className="mb-8" value={overallProgress} />
+          )}
+
+          {overallProgress === 100 && (
+            <DataTable
+              isPaginated={true}
+              columns={columns}
+              data={formattedProposals as any[]}
+            />
+          )}
+        </section>
+      </form>
+    </Form>
   );
 }

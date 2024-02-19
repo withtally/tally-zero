@@ -80,8 +80,9 @@ export const useSearchProposals: UseSearchProposals = (
               state: 0,
             };
           });
-
-          proposals = [...proposals, ...newProposals];
+          if (newProposals.length > 0) {
+            proposals = [...proposals, ...newProposals];
+          }
         }
 
         setProposals(proposals);

@@ -1,4 +1,8 @@
-import { z } from "zod";
+import * as z from "zod";
+
+import { daos } from "@config/data";
+import { formSchema } from "@config/schema";
+import { UseFormReturn } from "react-hook-form";
 
 import {
   SheetContent,
@@ -6,19 +10,13 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@components/ui/Sheet";
-
 import DaoCard from "@components/container/DaoCard";
 
-import { daoSchema } from "@config/schema";
-import { daos } from "@config/data";
-
-async function getDAOs() {
-  return z.array(daoSchema).parse(daos);
+interface OrderbookSheetProps {
+  form: UseFormReturn<z.infer<typeof formSchema>>;
 }
 
-export default async function OrderbookSheet() {
-  const daoList = await getDAOs();
-
+export default function OrderbookSheet({ form }: OrderbookSheetProps) {
   return (
     <SheetContent side="left" className="w-full sm:max-w-[550px]">
       <SheetHeader>
@@ -26,12 +24,12 @@ export default async function OrderbookSheet() {
         <SheetDescription>
           Explore the top DAOs on the platform and their current status.
         </SheetDescription>
+        <div className="py-8 text-left overflow-auto h-[calc(100vh-4rem)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          {daos.map((dao, index) => (
+            <DaoCard key={index} dao={dao} form={form} />
+          ))}
+        </div>
       </SheetHeader>
-      <div className="py-8 text-left overflow-auto h-[calc(100vh-4rem)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-        {daoList.map((dao, index) => (
-          <DaoCard key={index} {...dao} />
-        ))}
-      </div>
     </SheetContent>
   );
 }

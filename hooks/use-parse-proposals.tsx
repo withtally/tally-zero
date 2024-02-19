@@ -1,6 +1,8 @@
+import { ethers } from "ethers";
 import { useEffect, useState } from "react";
-import { Contract, ethers } from "ethers";
+
 import OzGovernor_ABI from "@data/OzGovernor_ABI.json";
+
 import { ContractAddress } from "@/types/search";
 import { Proposal, ParsedProposal } from "@/types/proposal";
 

@@ -1,13 +1,12 @@
 import * as z from "zod";
 
+// `0x${string}` is a valid Ethereum address
 const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
 
 export const formSchema = z.object({
   address: z.string().regex(ethAddressRegex, "Invalid Ethereum address"),
-  networkId: z
-    .string()
-    .refine((data) => data !== "", { message: "Please select a network" }),
-  deploymentBlock: z.string().optional(),
+  networkId: z.number(),
+  deploymentBlock: z.number().optional(),
 });
 
 export const voteSchema = z.object({
