@@ -25,24 +25,21 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Proposal ID" />
     ),
-    cell: ({ row }: { row: Record<string, any> }) => (
-      <HoverCard>
-        <HoverCardTrigger
-          className="underline hover:font-semibold hover:cursor-pointer 
-          transition-transform duration-200 ease-in-out transform hover:scale-105
-        "
-        >
-          {row.getValue("id").length > 6
-            ? row.getValue("id").substring(0, 5) +
-              "..." +
-              row.getValue("id").substring(row.getValue("id").length - 2)
-            : row.getValue("id")}
-        </HoverCardTrigger>
-        <HoverCardContent className="w-full">
-          {row.getValue("id")}
-        </HoverCardContent>
-      </HoverCard>
-    ),
+    cell: ({ row }: { row: Record<string, any> }) => {
+      const id = row.getValue("id");
+
+      return id.length < 6 ? (
+        <span>{id}</span>
+      ) : (
+        <HoverCard>
+          <HoverCardTrigger className="underline hover:font-semibold hover:cursor-pointer transition-transform duration-200 ease-in-out transform hover:scale-105">
+            {`${id.substring(0, 5)}...${id.substring(id.length - 2)}`}
+          </HoverCardTrigger>
+          <HoverCardContent className="w-full">{id}</HoverCardContent>
+        </HoverCard>
+      );
+    },
+
     enableHiding: false,
   },
   {
