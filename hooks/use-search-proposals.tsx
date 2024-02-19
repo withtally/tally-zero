@@ -67,6 +67,7 @@ export const useSearchProposals: UseSearchProposals = (
             } = event.args as any;
             return {
               id: proposalId.toString(),
+              contractAddress: contractAddress,
               proposer,
               targets,
               values: Array.isArray(values)
@@ -92,7 +93,7 @@ export const useSearchProposals: UseSearchProposals = (
       }
     };
 
-    fetchProposals().catch(console.log);
+    fetchProposals().catch(console.warn);
   }, [provider, contractAddress, startingBlock, enabled, blockRange]);
 
   return { proposals, searchProgress };

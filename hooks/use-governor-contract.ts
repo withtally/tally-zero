@@ -115,7 +115,6 @@ export function useGovernorContract({
 
   // Reset blockNumber, success, and currentSearchBlock, proposals, and searchProgress
 
-
   return {
     overallProgress,
     formattedProposals,

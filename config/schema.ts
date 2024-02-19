@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { ContractAddress } from "@/types/search";
 
 // `0x${string}` is a valid Ethereum address
 const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
@@ -18,6 +19,7 @@ export const voteSchema = z.object({
 export const proposalSchema = z.object({
   id: z.string(),
   proposer: z.string(),
+  contractAddress: z.string(),
   targets: z.array(z.string()),
   values: z.array(z.string()),
   signatures: z.array(z.string()),

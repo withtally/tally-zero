@@ -36,6 +36,7 @@ export function useParseProposals(
             startBlock: proposal.startBlock.toString(),
             endBlock: proposal.endBlock.toString(),
             state: proposalState,
+            contractAddress: contractAddress,
           };
         } catch (error) {
           console.error(

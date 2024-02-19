@@ -1,3 +1,4 @@
+import { z } from "zod";
 import ReactMarkdown from "react-markdown";
 
 import {
@@ -16,14 +17,14 @@ import { Badge } from "@components/ui/Badge";
 import VoteForm from "@components/form/VoteForm";
 
 import { cn } from "@lib/utils";
-import { ParsedProposal } from "@/types/proposal";
+import { proposalSchema } from "@config/schema";
 
 export default function VoteModel({
   proposal,
   stateValue,
   isDesktop,
 }: {
-  proposal: ParsedProposal;
+  proposal: z.infer<typeof proposalSchema>;
   stateValue: any;
   isDesktop: boolean;
 }) {

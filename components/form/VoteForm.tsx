@@ -1,7 +1,6 @@
 "use client";
 
 import { z } from "zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -23,13 +22,15 @@ import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
 import { toast } from "sonner";
-import { voteSchema } from "@config/schema";
-import { ParsedProposal } from "@/types/proposal";
+import { voteSchema, proposalSchema } from "@config/schema";
 
 import OZ_Governor_ABI from "@data/OzGovernor_ABI.json";
 
-export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
-  const [loading, setLoading] = useState(false);
+export default function VoteForm({
+  proposal,
+}: {
+  proposal: z.infer<typeof proposalSchema>;
+}) {
   const form = useForm<z.infer<typeof voteSchema>>({
     resolver: zodResolver(voteSchema),
   });
@@ -40,27 +41,22 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
     isError: isPrepareError,
   } = usePrepareContractWrite({
     abi: OZ_Governor_ABI,
-    address: new URLSearchParams(window.location.search).get(
-      "address"
-    ) as `0x${string}`,
+    address: `0x${proposal.contractAddress.slice(2)}`,
     functionName: "castVote",
     args: [proposal.id, form.getValues("vote")],
   });
 
   const { data, isLoading, isSuccess, write } = useContractWrite(config);
+  if (data) {
+    toast("Your vote has been submitted.");
+  }
 
   async function onSubmit(values: z.infer<typeof voteSchema>) {
-    setLoading(true);
-
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-
-      toast("Your vote has been submitted.");
       write?.();
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -128,7 +124,7 @@ export default function VoteForm({ proposal }: { proposal: ParsedProposal }) {
             </DialogClose>
 
             {proposal.state === "active" ? (
-              loading ? (
+              isLoading ? (
                 <Button variant="secondary" disabled>
                   <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
                   Voting

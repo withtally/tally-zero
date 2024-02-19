@@ -6,6 +6,7 @@ export function useFormattedProposals(proposals: Proposal[]): ParsedProposal[] {
   return useMemo(() => {
     const formattedProposals = proposals.map((proposal) => ({
       id: proposal.id,
+      contractAddress: proposal.contractAddress,
       proposer: proposal.proposer,
       targets: proposal.targets,
       values: proposal.values.map((value) => value.toString()),

@@ -3,6 +3,7 @@ import { ContractAddress } from "@/types/search";
 
 export type Proposal = {
   id: string;
+  contractAddress: ContractAddress;
   proposer: string;
   targets: string[];
   values: ethers.BigNumber[];
@@ -27,6 +28,7 @@ export type UseSearchProposals = (
 
 export type ParsedProposal = {
   id: string;
+  contractAddress: ContractAddress;
   proposer: string;
   targets: string[];
   values: string[];
