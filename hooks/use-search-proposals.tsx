@@ -16,6 +16,11 @@ export const useSearchProposals: UseSearchProposals = (
   const [searchProgress, setSearchProgress] = useState(0);
   const [proposals, setProposals] = useState<Proposal[]>([]);
 
+  const cancelSearch = () => {
+    setSearchProgress(0);
+    setProposals([]);
+  };
+
   useEffect(() => {
     if (!enabled || !provider || !contractAddress || !startingBlock) return;
 
@@ -89,6 +94,7 @@ export const useSearchProposals: UseSearchProposals = (
 
         setProposals(proposals);
         setSearchProgress(100);
+        return cancelSearch;
       } catch (error) {
         console.warn("Error fetching proposals:", error);
       }

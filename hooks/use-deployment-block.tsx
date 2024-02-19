@@ -18,10 +18,12 @@ export const useDeploymentBlock = (
     number | undefined
   >();
 
-  // reset blockNumber, success and currentSearchBlock from useDeploymentBlock when a new search is started
-
   const cancelSearch = () => {
     cancelSearchRef.current = true;
+    setSuccess(false);
+    setDeploymentProgress(0);
+    setCurrentSearchBlock(undefined);
+    setBlockNumber(undefined);
   };
 
   useEffect(() => {
