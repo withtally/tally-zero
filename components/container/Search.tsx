@@ -19,7 +19,6 @@ import { initialState } from "@config/intial-state";
 import { useGovernorContract } from "@hooks/use-governor-contract";
 
 export default function Search() {
-  const [loading, setLoading] = useState(false);
   const [state, setState] = useState<State>(initialState);
   const [formContractParams, setFormContractParams] = useState<ContractParams>(
     {}
@@ -27,7 +26,6 @@ export default function Search() {
 
   useEffect(() => {
     if (formContractParams.contractAddress && formContractParams.networkId) {
-      setState(initialState);
       setState((prevState) => ({
         ...prevState,
         governor: {
@@ -36,7 +34,7 @@ export default function Search() {
         },
       }));
     }
-  }, [formContractParams]);
+  }, [formContractParams, setState]);
 
   const { overallProgress, formattedProposals } = useGovernorContract({
     values: formContractParams,
@@ -49,6 +47,8 @@ export default function Search() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    setState(initialState);
+
     setFormContractParams({
       contractAddress: `0x${values.address.slice(2)}`,
       networkId: values.networkId,

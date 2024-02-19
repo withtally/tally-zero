@@ -26,6 +26,7 @@ export function useGovernorContract({
 }) {
   const [overallProgress, setOverallProgress] = useState(0);
 
+  // reset provider when networkId changes
   const provider = useProvider({
     chainId: parseInt(values.networkId?.toString() as string),
   });
@@ -112,8 +113,6 @@ export function useGovernorContract({
     const combinedProgress = deploymentProgress * 0.2 + searchProgress * 0.8;
     setOverallProgress(combinedProgress);
   }, [deploymentProgress, searchProgress]);
-
-  // Reset blockNumber, success, and currentSearchBlock, proposals, and searchProgress
 
   return {
     overallProgress,

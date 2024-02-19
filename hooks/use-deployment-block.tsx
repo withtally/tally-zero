@@ -10,13 +10,15 @@ export const useDeploymentBlock = (
   contractAddress: ContractAddress | undefined,
   deploymentBlock: number
 ): UseDeploymentBlockResult => {
-  const [blockNumber, setBlockNumber] = useState<number | undefined>();
+  const cancelSearchRef = useRef(false);
   const [success, setSuccess] = useState(false);
+  const [deploymentProgress, setDeploymentProgress] = useState(0);
+  const [blockNumber, setBlockNumber] = useState<number | undefined>();
   const [currentSearchBlock, setCurrentSearchBlock] = useState<
     number | undefined
   >();
-  const [deploymentProgress, setDeploymentProgress] = useState(0);
-  const cancelSearchRef = useRef(false);
+
+  // reset blockNumber, success and currentSearchBlock from useDeploymentBlock when a new search is started
 
   const cancelSearch = () => {
     cancelSearchRef.current = true;
@@ -75,6 +77,13 @@ export const useDeploymentBlock = (
         setBlockNumber(deployedBlockNumber);
         setSuccess(true);
         setDeploymentProgress(100);
+
+        //  reset blockNumber, success and currentSearchBlock from useDeploymentBlock when a new search is started
+        return () => {
+          setBlockNumber(undefined);
+          setSuccess(false);
+          setCurrentSearchBlock(undefined);
+        };
       }
     };
 

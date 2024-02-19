@@ -1,9 +1,10 @@
 import { Contract } from "ethers";
 import { useEffect, useState } from "react";
+
 import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 import { Proposal, UseSearchProposals } from "@/types/proposal";
 
-const MAX_CLUSTER_SIZE = 200;
+import { getClusterSize } from "@/lib/utils";
 
 export const useSearchProposals: UseSearchProposals = (
   provider,
@@ -26,7 +27,7 @@ export const useSearchProposals: UseSearchProposals = (
         const currentBlock = await provider.getBlockNumber();
         const proposalCreatedFilter = contract.filters.ProposalCreated();
         const startBlock = Math.max(
-          startingBlock - blockRange * MAX_CLUSTER_SIZE,
+          startingBlock - blockRange * getClusterSize(),
           0
         );
 
