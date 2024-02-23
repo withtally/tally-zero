@@ -64,3 +64,26 @@ export const states = [
     icon: ClockIcon,
   },
 ];
+
+export const optimismStates = [
+  {
+    value: "active",
+    label: "Active",
+    bgColor:
+      "bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-200",
+    icon: CheckCircledIcon,
+  },
+  {
+    value: "pending",
+    label: "Pending",
+    bgColor:
+      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/60 dark:text-yellow-400",
+    icon: UpdateIcon,
+  },
+  {
+    value: "closed",
+    label: "Closed",
+    bgColor: "bg-rose-100 text-rose-700 dark:bg-rose-900/60 dark:text-rose-200",
+    icon: CrossCircledIcon,
+  },
+];

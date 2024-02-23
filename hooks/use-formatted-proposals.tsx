@@ -1,8 +1,11 @@
 import { useMemo } from "react";
-import { ProposalState } from "@config/intial-state";
+import { ProposalState, ProposalOptimismState } from "@config/intial-state";
 import { Proposal, ParsedProposal } from "@/types/proposal";
 
-export function useFormattedProposals(proposals: Proposal[]): ParsedProposal[] {
+export function useFormattedProposals(
+  proposals: Proposal[],
+  networkId: string
+): ParsedProposal[] {
   return useMemo(() => {
     const formattedProposals = proposals.map((proposal) => ({
       id: proposal.id,
@@ -15,7 +18,11 @@ export function useFormattedProposals(proposals: Proposal[]): ParsedProposal[] {
       startBlock: proposal.startBlock.toString(),
       endBlock: proposal.endBlock.toString(),
       description: proposal.description,
-      state: (ProposalState[proposal.state] as string).toLowerCase(),
+      networkId: networkId,
+      state:
+        networkId === "10"
+          ? (ProposalOptimismState[proposal.state] as string).toLowerCase()
+          : (ProposalState[proposal.state] as string).toLowerCase(),
     }));
 
     return formattedProposals.sort((a, b) => {
@@ -25,7 +32,7 @@ export function useFormattedProposals(proposals: Proposal[]): ParsedProposal[] {
         return 1;
       }
 
-      return parseInt(a.id) - parseInt(b.id);
+      return parseInt(b.id) - parseInt(a.id);
     });
-  }, [proposals]);
+  }, [networkId, proposals]);
 }

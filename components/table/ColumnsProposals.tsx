@@ -14,7 +14,7 @@ import { DataTableRowActions } from "@components/table/RowActions";
 import { DataTableColumnHeader } from "@components/table/ColumnHeader";
 
 import { cn } from "@lib/utils";
-import { states } from "@data/table/data";
+import { states, optimismStates } from "@data/table/data";
 import { proposalSchema } from "@config/schema";
 
 import { DotIcon } from "lucide-react";
@@ -72,11 +72,12 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       <DataTableColumnHeader column={column} title="Block Range" />
     ),
     cell: ({ row }) => {
-      // @ts-ignore: startBlock and endBlock are always present
-      let blockRange = "[" + row.original.startBlock + ", " + row.original.endBlock + "]";
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[250px] truncate font-mono">{blockRange}</span>
+          <span className="max-w-[250px] truncate font-mono">
+            {/*// @ts-ignore: startBlock and endBlock are always present */}
+            {"[" + row.original.startBlock + ", " + row.original.endBlock + "]"}
+          </span>
         </div>
       );
     },
@@ -88,10 +89,21 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       <DataTableColumnHeader column={column} title="State" />
     ),
     cell: ({ row }) => {
-      const stateValue = states.find(
-        (state) => state.value === row.getValue("state")
-      );
-      if (!stateValue) return null;
+      // @ts-ignore: networkId is always present
+      const networkId = row.original.networkId;
+
+      let stateValue;
+      if (networkId === "10") {
+        stateValue = optimismStates.find(
+          (state) => state.value === row.getValue("state")
+        );
+        if (!stateValue) return null;
+      } else {
+        stateValue = states.find(
+          (state) => state.value === row.getValue("state")
+        );
+        if (!stateValue) return null;
+      }
 
       return (
         <Badge

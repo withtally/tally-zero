@@ -27,6 +27,7 @@ export const proposalSchema = z.object({
   startBlock: z.string(),
   endBlock: z.string(),
   description: z.string(),
+  networkId: z.string(),
   state: z.string(),
 });
 

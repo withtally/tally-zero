@@ -37,6 +37,7 @@ export type ParsedProposal = {
   startBlock: string;
   endBlock: string;
   description: string;
+  networkId: string;
   state: ProposalState | undefined;
 };
 

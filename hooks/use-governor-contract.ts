@@ -107,7 +107,10 @@ export function useGovernorContract({
     proposals,
     true
   );
-  const formattedProposals = useFormattedProposals(parsedProposals);
+  const formattedProposals = useFormattedProposals(
+    parsedProposals,
+    values.networkId?.toString() as string
+  );
 
   useEffect(() => {
     const combinedProgress = deploymentProgress * 0.2 + searchProgress * 0.8;
