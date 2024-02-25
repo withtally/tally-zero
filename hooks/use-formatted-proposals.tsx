@@ -33,6 +33,10 @@ export function useFormattedProposals(
         return 1;
       }
 
+      if (a.startBlock !== b.startBlock) {
+        return parseInt(b.startBlock) - parseInt(a.startBlock);
+      }
+
       return parseInt(b.id) - parseInt(a.id);
     });
   }, [networkId, proposals]);

@@ -6,7 +6,7 @@ const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
 
 export const formSchema = z.object({
   address: z.string().regex(ethAddressRegex, "Invalid Ethereum address"),
-  networkId: z.number(),
+  networkId: z.string(),
   deploymentBlock: z.number().optional(),
 });
 
