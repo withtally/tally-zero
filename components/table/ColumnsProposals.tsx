@@ -93,17 +93,17 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       const networkId = row.original.networkId;
 
       let stateValue;
-      if (networkId === "10") {
+      /*       if (networkId === "10") {
         stateValue = optimismStates.find(
           (state) => state.value === row.getValue("state")
         );
         if (!stateValue) return null;
-      } else {
-        stateValue = states.find(
-          (state) => state.value === row.getValue("state")
-        );
-        if (!stateValue) return null;
-      }
+      } else { */
+      stateValue = states.find(
+        (state) => state.value === row.getValue("state")
+      );
+      if (!stateValue) return null;
+      /* } */
 
       return (
         <Badge

@@ -19,10 +19,11 @@ export function useFormattedProposals(
       endBlock: proposal.endBlock.toString(),
       description: proposal.description,
       networkId: networkId,
-      state:
+      state: (ProposalState[proposal.state] as string).toLowerCase(),
+      /*       state:
         networkId === "10"
           ? (ProposalOptimismState[proposal.state] as string).toLowerCase()
-          : (ProposalState[proposal.state] as string).toLowerCase(),
+          : (ProposalState[proposal.state] as string).toLowerCase(), */
     }));
 
     return formattedProposals.sort((a, b) => {
