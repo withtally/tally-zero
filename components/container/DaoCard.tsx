@@ -32,7 +32,7 @@ export default function DaoCard({ dao, form }: DaoCardProps) {
 
   const updateForm = () => {
     form.setValue("address", dao.ethAddress);
-    form.setValue("networkId", dao.networkId);
+    form.setValue("networkId", dao.networkId.toString());
   };
 
   return (

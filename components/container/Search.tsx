@@ -51,7 +51,7 @@ export default function Search() {
 
     setFormContractParams({
       contractAddress: `0x${values.address.slice(2)}`,
-      networkId: values.networkId,
+      networkId: parseInt(values.networkId),
       deploymentBlock: values.deploymentBlock || 0,
     });
   }
