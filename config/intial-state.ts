@@ -19,18 +19,23 @@ export const initialState: State = {
 };
 
 export enum ProposalState {
-  Canceled,
-  Active,
-  Queued,
-  Executed,
-  Succeeded,
   Pending,
+  Active,
+  Canceled,
   Defeated,
+  Succeeded,
+  Queued,
   Expired,
+  Executed,
 }
 
 export enum ProposalOptimismState {
-  Active = 3,
   Pending,
-  Closed,
+  Active,
+  Canceled,
+  Defeated,
+  Succeeded,
+  Queued,
+  Expired,
+  Executed,
 }
