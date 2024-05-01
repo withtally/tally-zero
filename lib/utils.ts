@@ -10,5 +10,5 @@ export function formatPercent(percent: number): number {
 }
 
 export function getClusterSize() {
-  return process.env.NODE_ENV === "development" ? 300 : 300;
+  return process.env.NODE_ENV === "development" ? 20 : 300;
 }

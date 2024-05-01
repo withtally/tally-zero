@@ -4,9 +4,9 @@ export const siteConfig: SiteConfig = {
   name: "Tally Zero",
   description: "Tally is a frontend for onchain decentralized organizations.",
   url: "https://tally.xyz/",
-  ogImage: "https://docs.tally.xyz/og.jpg",
+  ogImage: "https://tally-zero-preview.vercel.app/og.png",
   links: {
     twitter: "https://twitter.com/tally-zero",
-    github: "https://github.com/function03-labs/TallyZero",
+    github: "https://github.com/function03-labs/tally-zero",
   },
 };

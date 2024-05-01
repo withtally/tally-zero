@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![hero](/public/og.png)
 
-## Getting Started
+<p align="center">
+	<h1 align="center"><b>TallyZero</b></h1>
+<p align="center">
+    Decentralized Voting Made Simple
+    <br />
+    <br />
+    <a href="https://go.findmalek.com/anPiuRx">Documentation</a>
+    .
+    <a href="https://tally-zero-preview.vercel.app/">Website</a>
+    ·
+    <a href="https://github.com/function03-labs/tally-zero/issues">Issues</a>
+  </p>
+</p>
 
-First, run the development server:
+# What is TallyZero
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> A robust, open-source platform for onchain voting, Tally Zero ensures accessibility and transparency, leveraging React and IPFS for true decentralization.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# App Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Yarn
+- React
+- TypeScript
+- Nextjs
+- TailwindCSS
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Hosting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Fleek (IPFS Hosting, deployment, build)
+- Github (Codebase, issues, PRs, actions)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Services
 
-## Deploy on Vercel
+- LogSnag (Events)
+- Nodemailer (Email)
+- Github Actions (CI/CD)
+- Web3Modal (Wallet connection)
+- Ethers (Fetching proposals)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Star History
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![Star History Chart](https://api.star-history.com/svg?repos=function03-labs/tally-zero&type=Date)](https://star-history.com/#function03-labs/tally-zero&Date)
+
+# Essential Guidelines
+
+For hosting options other than the ones provided, such as [IPFS Deployment](https://ipfs.thirdwebcdn.com/ipfs/QmfGUuMzLqHyAybnUsPG6aMwQ241V6Q69AmPxCWsVsTDcD) or [Vercel Deployment](https://tally-zero-preview.vercel.app/), we suggest visiting [Web3Modal](https://cloud.walletconnect.com/sign-in) to establish a new project. Subsequently, create a `.env` or `.env.local` file, or input it as an environment variable in your hosting provider. Ensure the naming convention is `NEXT_PUBLIC_WEB3STORAGE_PROJECT_ID`.
+
+The project's pages are located in the `/app` directory, with components organized as follows:
+
+- `container`: Components related to the interface
+- `form`: All forms are housed here
+- `navigation`: Components associated with the layout
+- `section`: Components for the marketing page
+- `table`: Self explanatory
+- `ui`: Components from [Shadcn UI](https://ui.shadcn.com/)
+
+The `/config` folder is crucial for maintenance purposes:
+
+- `chains.ts`: Contains all chains for Web3Modal connection
+- `data.ts`: Lists the chains supported by Tally Zero (refer to the image). You can add as many as required.
+
+![Supported Chains](/public/readme/chain.png)
+
+Lastly, the `/data` folder contains the ABI for TallyZero.

@@ -30,6 +30,7 @@ import {
   Link,
   WalletIcon,
   WifiIcon,
+  RotateCw,
   ListStartIcon,
   BlendIcon,
   Triangle,
@@ -170,4 +171,5 @@ export const Icons = {
   blend: BlendIcon,
   packageopen: PackageOpenIcon,
   triangle: Triangle,
+  refresh: RotateCw,
 };
