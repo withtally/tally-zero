@@ -18,7 +18,6 @@
 
 > A robust, open-source platform for onchain voting, Tally Zero ensures accessibility and transparency, leveraging React and IPFS for true decentralization.
 
-
 # App Architecture
 
 - Yarn
@@ -27,7 +26,6 @@
 - Nextjs
 - TailwindCSS
 
-
 ### Hosting
 
 - Fleek (IPFS Hosting, deployment, build)
@@ -35,8 +33,6 @@
 
 ### Services
 
-- LogSnag (Events)
-- Nodemailer (Email)
 - Github Actions (CI/CD)
 - Web3Modal (Wallet connection)
 - Ethers (Fetching proposals)
