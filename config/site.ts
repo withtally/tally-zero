@@ -7,6 +7,6 @@ export const siteConfig: SiteConfig = {
   ogImage: "https://tally-zero-preview.vercel.app/og.png",
   links: {
     twitter: "https://twitter.com/tally-zero",
-    github: "https://github.com/function03-labs/tally-zero",
+    github: "https://github.com/withtally/tally-zero",
   },
 };

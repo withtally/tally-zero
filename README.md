@@ -10,7 +10,7 @@
     .
     <a href="https://tally-zero-preview.vercel.app/">Website</a>
     ·
-    <a href="https://github.com/function03-labs/tally-zero/issues">Issues</a>
+    <a href="https://github.com/withtally/tally-zero/issues">Issues</a>
   </p>
 </p>
 
