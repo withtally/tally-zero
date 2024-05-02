@@ -1,59 +1,64 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+![hero](/public/og.png)
 
-## Available Scripts
+<p align="center">
+	<h1 align="center"><b>TallyZero</b></h1>
+<p align="center">
+    Decentralized Voting Made Simple
+    <br />
+    <br />
+    <a href="https://go.findmalek.com/anPiuRx">Documentation</a>
+    .
+    <a href="https://tally-zero-preview.vercel.app/">Website</a>
+    ·
+    <a href="https://github.com/withtally/tally-zero/issues">Issues</a>
+  </p>
+</p>
 
-In the project directory, you can run:
+# What is TallyZero
 
-### `npm start`
+> A robust, open-source platform for onchain voting, Tally Zero ensures accessibility and transparency, leveraging React and IPFS for true decentralization.
 
-Runs the app in the development mode.<br /> Open
-[http://localhost:3000](http://localhost:3000) to view it in the browser.
+# App Architecture
 
-The page will reload if you make edits.<br /> You will also see any lint errors
-in the console.
+- Yarn
+- React
+- TypeScript
+- Nextjs
+- TailwindCSS
 
-### `npm test`
+### Hosting
 
-Launches the test runner in the interactive watch mode.<br /> See the section
-about
-[running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-for more information.
+- Fleek (IPFS Hosting, deployment, build)
+- Github (Codebase, issues, PRs, actions)
 
-### `npm run build`
+### Services
 
-Builds the app for production to the `build` folder.<br /> It correctly bundles
-React in production mode and optimizes the build for the best performance.
+- Github Actions (CI/CD)
+- Web3Modal (Wallet connection)
+- Ethers (Fetching proposals)
 
-The build is minified and the filenames include the hashes.<br /> Your app is
-ready to be deployed!
+## Star History
 
-See the section about
-[deployment](https://facebook.github.io/create-react-app/docs/deployment) for
-more information.
+[![Star History Chart](https://api.star-history.com/svg?repos=function03-labs/tally-zero&type=Date)](https://star-history.com/#function03-labs/tally-zero&Date)
 
-### `npm run eject`
+# Essential Guidelines
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For hosting options other than the ones provided, such as [IPFS Deployment](https://ipfs.thirdwebcdn.com/ipfs/QmfGUuMzLqHyAybnUsPG6aMwQ241V6Q69AmPxCWsVsTDcD) or [Vercel Deployment](https://tally-zero-preview.vercel.app/), we suggest visiting [Web3Modal](https://cloud.walletconnect.com/sign-in) to establish a new project. Subsequently, create a `.env` or `.env.local` file, or input it as an environment variable in your hosting provider. Ensure the naming convention is `NEXT_PUBLIC_WEB3STORAGE_PROJECT_ID`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can
-`eject` at any time. This command will remove the single build dependency from
-your project.
+The project's pages are located in the `/app` directory, with components organized as follows:
 
-Instead, it will copy all the configuration files and the transitive
-dependencies (webpack, Babel, ESLint, etc) right into your project so you have
-full control over them. All of the commands except `eject` will still work, but
-they will point to the copied scripts so you can tweak them. At this point
-you’re on your own.
+- `container`: Components related to the interface
+- `form`: All forms are housed here
+- `navigation`: Components associated with the layout
+- `section`: Components for the marketing page
+- `table`: Self explanatory
+- `ui`: Components from [Shadcn UI](https://ui.shadcn.com/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for
-small and middle deployments, and you shouldn’t feel obligated to use this
-feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
+The `/config` folder is crucial for maintenance purposes:
 
-## Learn More
+- `chains.ts`: Contains all chains for Web3Modal connection
+- `data.ts`: Lists the chains supported by Tally Zero (refer to the image). You can add as many as required.
 
-You can learn more in the
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Supported Chains](/public/readme/chain.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Lastly, the `/data` folder contains the ABI for TallyZero.
