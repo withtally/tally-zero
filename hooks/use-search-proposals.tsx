@@ -1,10 +1,9 @@
-import { Contract } from "ethers";
+import { Contract, ethers } from "ethers";
 import { useEffect, useState } from "react";
 
 import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 import { Proposal, UseSearchProposals } from "@/types/proposal";
-
-import { getClusterSize } from "@/lib/utils";
+import { CLUSTER_SIZE } from "../lib/utils";
 
 export const useSearchProposals: UseSearchProposals = (
   provider,
@@ -32,7 +31,7 @@ export const useSearchProposals: UseSearchProposals = (
         const currentBlock = await provider.getBlockNumber();
         const proposalCreatedFilter = contract.filters.ProposalCreated();
         const startBlock = Math.max(
-          startingBlock - blockRange * getClusterSize(),
+          startingBlock - blockRange * CLUSTER_SIZE,
           0
         );
 
@@ -47,7 +46,7 @@ export const useSearchProposals: UseSearchProposals = (
             ((fromBlock - startBlock) / (currentBlock - startBlock)) * 100
           );
 
-          let events: any[] = [];
+          let events: Array<ethers.Event> = [];
           try {
             events = await contract.queryFilter(
               proposalCreatedFilter,
@@ -70,14 +69,14 @@ export const useSearchProposals: UseSearchProposals = (
               startBlock,
               endBlock,
               description,
-            } = event.args as any;
+            } = event.args as ethers.utils.Result;
             return {
               id: proposalId.toString(),
               contractAddress: contractAddress,
               proposer,
               targets,
               values: Array.isArray(values)
-                ? values.map((value: any) => value.toString())
+                ? values.map((value) => value.toString())
                 : [],
               signatures,
               calldatas,

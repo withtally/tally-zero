@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { env } from "../env";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -9,6 +10,5 @@ export function formatPercent(percent: number): number {
   return Number(percent.toFixed(2));
 }
 
-export function getClusterSize() {
-  return process.env.NODE_ENV === "development" ? 20 : 300;
-}
+export const CLUSTER_SIZE =
+  env.NEXT_PUBLIC_NODE_ENV === "development" ? 20 : 300;
