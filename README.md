@@ -6,8 +6,6 @@
     Decentralized Voting Made Simple
     <br />
     <br />
-    <a href="https://go.findmalek.com/anPiuRx">Documentation</a>
-    .
     <a href="https://tally-zero-preview.vercel.app/">Website</a>
     ·
     <a href="https://github.com/withtally/tally-zero/issues">Issues</a>
@@ -39,7 +37,7 @@
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=function03-labs/tally-zero&type=Date)](https://star-history.com/#function03-labs/tally-zero&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=withtally/tally-zero&type=Date)](https://star-history.com/#withtally/tally-zero&Date)
 
 # Essential Guidelines
 
