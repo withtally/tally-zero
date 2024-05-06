@@ -1,11 +1,11 @@
 import {
   CheckCircledIcon,
-  CrossCircledIcon,
-  UpdateIcon,
-  CommitIcon,
-  StopwatchIcon,
-  ExclamationTriangleIcon,
   ClockIcon,
+  CommitIcon,
+  CrossCircledIcon,
+  ExclamationTriangleIcon,
+  StopwatchIcon,
+  UpdateIcon,
 } from "@radix-ui/react-icons";
 
 export const states = [

@@ -3,18 +3,18 @@ import "@styles/globals.css";
 import { siteConfig } from "@config/site";
 import { GeistSans } from "geist/font/sans";
 
-import { cn } from "@lib/utils";
-import { marketingConfig } from "@config/marketing";
 import { Web3ModalProvider } from "@components/Web3ModalProvider";
+import { marketingConfig } from "@config/marketing";
+import { cn } from "@lib/utils";
 
 import { Toaster } from "@/components/ui/Sonner";
-import { MainNav } from "@components/navigation/MainNav";
 import { ButtonNav } from "@components/navigation/ButtonNav";
+import { MainNav } from "@components/navigation/MainNav";
 import { SiteFooter } from "@components/navigation/SiteFooter";
 
 import { Analytics } from "@components/Analytics";
-import { ThemeProvider } from "@components/ThemeProvider";
 import { TailwindIndicator } from "@components/TailwindIndicator";
+import { ThemeProvider } from "@components/ThemeProvider";
 
 export const metadata = {
   title: {

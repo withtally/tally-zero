@@ -1,19 +1,18 @@
 import { ethers } from "ethers";
+import { useEffect, useRef, useState } from "react";
 import { useProvider } from "wagmi";
-import { useEffect, useState, useRef } from "react";
 
+import { useFormattedProposals } from "@/hooks/use-formatted-proposals";
+import { useDeploymentBlock } from "@hooks/use-deployment-block";
 import { useParseProposals } from "@hooks/use-parse-proposals";
 import { useSearchProposals } from "@hooks/use-search-proposals";
-import { useDeploymentBlock } from "@hooks/use-deployment-block";
-import { useFormattedProposals } from "@/hooks/use-formatted-proposals";
 
+import { ContractParams, State } from "@/types/search";
 import { daos } from "@config/data";
-import { State } from "@/types/search";
 import { daoSchema } from "@config/schema";
-import { ContractParams } from "@/types/search";
 
-import { getBlockRange } from "@lib/block-range";
 import GovernorABI from "@data/OzGovernor_ABI.json";
+import { getBlockRange } from "@lib/block-range";
 
 export function useGovernorContract({
   values,

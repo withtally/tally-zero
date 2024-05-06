@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { cn } from "@lib/utils";
 import { siteConfig } from "@config/site";
+import { cn } from "@lib/utils";
 
-import { Icons } from "@components/Icons";
 import { ModeToggle } from "@/components/ModeToggel";
+import { Icons } from "@components/Icons";
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (

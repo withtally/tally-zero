@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { type StepType } from "@/types/steps";
+import Image from "next/image";
 
 import Step from "@components/section/how-it-works/Step";
 

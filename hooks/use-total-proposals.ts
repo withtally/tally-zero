@@ -1,6 +1,6 @@
+import { UseTotalProposalsReturn } from "@/types/proposal";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
-import { UseTotalProposalsReturn } from "@/types/proposal";
 
 import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 

@@ -1,18 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import * as z from "zod";
-import { useState, useEffect } from "react";
 
-import { useForm } from "react-hook-form";
-import { formSchema } from "@config/schema";
 import { Form } from "@/components/ui/Form";
 import { ContractParams } from "@/types/search";
+import { formSchema } from "@config/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
-import { Progress } from "@/components/ui/Progress";
-import { DataTable } from "@/components/table/DataTable";
-import { columns } from "@/components/table/ColumnsProposals";
 import ContractCard from "@/components/container/ContractCard";
+import { columns } from "@/components/table/ColumnsProposals";
+import { DataTable } from "@/components/table/DataTable";
+import { Progress } from "@/components/ui/Progress";
 
 import { State } from "@/types/search";
 import { initialState } from "@config/intial-state";

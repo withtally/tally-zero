@@ -1,7 +1,7 @@
 "use client";
 
 import { ethers } from "ethers";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 

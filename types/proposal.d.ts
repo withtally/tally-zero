@@ -1,4 +1,3 @@
-import { daoSchema } from "@config/schema";
 import { ContractAddress } from "@/types/search";
 
 export type Proposal = {

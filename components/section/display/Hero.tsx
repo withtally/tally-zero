@@ -1,9 +1,8 @@
-import Link from "next/link";
 import { siteConfig } from "@config/site";
+import Link from "next/link";
 
 import { Icons } from "@components/Icons";
 
-import { Badge } from "@components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
 export default function Hero() {

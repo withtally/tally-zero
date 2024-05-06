@@ -1,6 +1,6 @@
+import { ParsedProposal, Proposal } from "@/types/proposal";
+import { ProposalState } from "@config/intial-state";
 import { useMemo } from "react";
-import { ProposalState, ProposalOptimismState } from "@config/intial-state";
-import { Proposal, ParsedProposal } from "@/types/proposal";
 
 export function useFormattedProposals(
   proposals: Proposal[],

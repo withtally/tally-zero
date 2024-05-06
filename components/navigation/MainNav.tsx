@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import * as React from "react";
 
 import { siteConfig } from "@config/site";
 import { cn } from "@lib/utils";

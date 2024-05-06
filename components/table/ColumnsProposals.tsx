@@ -2,20 +2,20 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@components/ui/HoverCard";
+import { ProposerCell } from "@components/container/ProposerCell";
+import { DataTableColumnHeader } from "@components/table/ColumnHeader";
+import { DataTableRowActions } from "@components/table/RowActions";
 import { Badge } from "@components/ui/Badge";
 import { DescriptionCell } from "@components/ui/DescriptionCell";
-import { ProposerCell } from "@components/container/ProposerCell";
-import { DataTableRowActions } from "@components/table/RowActions";
-import { DataTableColumnHeader } from "@components/table/ColumnHeader";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@components/ui/HoverCard";
 
-import { cn } from "@lib/utils";
-import { states, optimismStates } from "@data/table/data";
 import { proposalSchema } from "@config/schema";
+import { states } from "@data/table/data";
+import { cn } from "@lib/utils";
 
 import { DotIcon } from "lucide-react";
 
