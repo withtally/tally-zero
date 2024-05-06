@@ -11,6 +11,7 @@ export type SiteConfig = {
   description: string;
   url: string;
   ogImage: string;
+  manifest: string;
   links: {
     twitter: string;
     github: string;
