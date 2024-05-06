@@ -1,9 +1,9 @@
-import { siteConfig } from "@config/site"
-import Link from "next/link"
+import { siteConfig } from "@config/site";
+import Link from "next/link";
 
-import { Icons } from "@components/Icons"
+import { Icons } from "@components/Icons";
 
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/Button";
 
 export default function Hero() {
   return (
@@ -32,5 +32,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

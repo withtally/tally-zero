@@ -1,6 +1,6 @@
-import { ParsedProposal, Proposal } from "@/types/proposal"
-import { ProposalState } from "@config/intial-state"
-import { useMemo } from "react"
+import { ParsedProposal, Proposal } from "@/types/proposal";
+import { ProposalState } from "@config/intial-state";
+import { useMemo } from "react";
 
 export function useFormattedProposals(
   proposals: Proposal[],
@@ -24,20 +24,20 @@ export function useFormattedProposals(
         networkId === "10"
           ? (ProposalOptimismState[proposal.state] as string).toLowerCase()
           : (ProposalState[proposal.state] as string).toLowerCase(), */
-    }))
+    }));
 
     return formattedProposals.sort((a, b) => {
       if (a.state === "active" && b.state !== "active") {
-        return -1
+        return -1;
       } else if (a.state !== "active" && b.state === "active") {
-        return 1
+        return 1;
       }
 
       if (a.startBlock !== b.startBlock) {
-        return parseInt(b.startBlock) - parseInt(a.startBlock)
+        return parseInt(b.startBlock) - parseInt(a.startBlock);
       }
 
-      return parseInt(b.id) - parseInt(a.id)
-    })
-  }, [networkId, proposals])
+      return parseInt(b.id) - parseInt(a.id);
+    });
+  }, [networkId, proposals]);
 }

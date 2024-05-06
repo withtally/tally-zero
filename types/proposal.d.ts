@@ -1,18 +1,18 @@
-import { ContractAddress } from "@/types/search"
+import { ContractAddress } from "@/types/search";
 
 export type Proposal = {
-  id: string
-  contractAddress: ContractAddress
-  proposer: string
-  targets: string[]
-  values: ethers.BigNumber[]
-  signatures: string[]
-  calldatas: string[]
-  startBlock: ethers.BigNumber
-  endBlock: ethers.BigNumber
-  description: string
-  state: number
-}
+  id: string;
+  contractAddress: ContractAddress;
+  proposer: string;
+  targets: string[];
+  values: ethers.BigNumber[];
+  signatures: string[];
+  calldatas: string[];
+  startBlock: ethers.BigNumber;
+  endBlock: ethers.BigNumber;
+  description: string;
+  state: number;
+};
 
 export type UseSearchProposals = (
   provider: ethers.providers.Provider | undefined,
@@ -21,27 +21,27 @@ export type UseSearchProposals = (
   startingBlock: number | null,
   enabled: boolean
 ) => {
-  proposals: Proposal[]
-  searchProgress: number
-}
+  proposals: Proposal[];
+  searchProgress: number;
+};
 
 export type ParsedProposal = {
-  id: string
-  contractAddress: ContractAddress
-  proposer: string
-  targets: string[]
-  values: string[]
-  signatures: string[]
-  calldatas: string[]
-  startBlock: string
-  endBlock: string
-  description: string
-  networkId: string
-  state: ProposalState | undefined
-}
+  id: string;
+  contractAddress: ContractAddress;
+  proposer: string;
+  targets: string[];
+  values: string[];
+  signatures: string[];
+  calldatas: string[];
+  startBlock: string;
+  endBlock: string;
+  description: string;
+  networkId: string;
+  state: ProposalState | undefined;
+};
 
 export type UseTotalProposalsReturn = {
-  totalProposals: number | null
-  isLoadingTotal: boolean
-  error: Error | null
-}
+  totalProposals: number | null;
+  isLoadingTotal: boolean;
+  error: Error | null;
+};

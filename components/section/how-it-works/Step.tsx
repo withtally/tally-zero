@@ -1,5 +1,5 @@
-import { type FeatureProps } from "@/types/feature"
-import clsx from "clsx"
+import { type FeatureProps } from "@/types/feature";
+import clsx from "clsx";
 
 export default function Step({
   step,
@@ -39,5 +39,5 @@ export default function Step({
         {step.description}
       </p>
     </div>
-  )
+  );
 }

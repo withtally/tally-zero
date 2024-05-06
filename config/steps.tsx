@@ -1,4 +1,4 @@
-import { Icons } from "@components/Icons"
+import { Icons } from "@components/Icons";
 
 export const steps = [
   {
@@ -25,4 +25,4 @@ export const steps = [
     image: "/steps/step-3.png",
     icon: Icons.contacts,
   },
-]
+];

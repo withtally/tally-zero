@@ -1,39 +1,39 @@
-"use client"
+"use client";
 
-import { DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { Row } from "@tanstack/react-table"
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { Row } from "@tanstack/react-table";
 
-import VoteModel from "@/components/container/VoteModel"
-import { Button } from "@components/ui/Button"
-import { Dialog, DialogTrigger } from "@components/ui/Dialog"
-import { Drawer, DrawerTrigger } from "@components/ui/Drawer"
+import VoteModel from "@/components/container/VoteModel";
+import { Button } from "@components/ui/Button";
+import { Dialog, DialogTrigger } from "@components/ui/Dialog";
+import { Drawer, DrawerTrigger } from "@components/ui/Drawer";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@components/ui/DropdownMenu"
+} from "@components/ui/DropdownMenu";
 
-import { proposalSchema } from "@config/schema"
-import { states } from "@data/table/data"
+import { proposalSchema } from "@config/schema";
+import { states } from "@data/table/data";
 
-import { useMediaQuery } from "@hooks/use-media-query"
+import { useMediaQuery } from "@hooks/use-media-query";
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData>;
 }
 
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const isDesktop = useMediaQuery("(min-width: 768px)")
-  const proposal = proposalSchema.parse(row.original)
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const proposal = proposalSchema.parse(row.original);
   const stateValue = states.find(
     (state) => state.value === row.getValue("state")
-  )
+  );
 
   if (!stateValue) {
-    return null
+    return null;
   }
 
   if (isDesktop) {
@@ -61,7 +61,7 @@ export function DataTableRowActions<TData>({
             </DialogTrigger>
             <DropdownMenuItem
               onClick={() => {
-                navigator.clipboard.writeText(proposal.id.toString())
+                navigator.clipboard.writeText(proposal.id.toString());
               }}
             >
               Copy Proposal ID
@@ -74,7 +74,7 @@ export function DataTableRowActions<TData>({
           isDesktop={isDesktop}
         />
       </Dialog>
-    )
+    );
   }
 
   return (
@@ -101,7 +101,7 @@ export function DataTableRowActions<TData>({
           </DrawerTrigger>
           <DropdownMenuItem
             onClick={() => {
-              navigator.clipboard.writeText(proposal.proposer)
+              navigator.clipboard.writeText(proposal.proposer);
             }}
           >
             Copy Proposer Address
@@ -114,5 +114,5 @@ export function DataTableRowActions<TData>({
         isDesktop={isDesktop}
       />
     </Drawer>
-  )
+  );
 }

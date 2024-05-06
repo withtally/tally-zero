@@ -1,18 +1,18 @@
-import { useState } from "react"
+import { useState } from "react";
 
-import { useIsomorphicLayoutEffect } from "usehooks-ts"
+import { useIsomorphicLayoutEffect } from "usehooks-ts";
 
 type UseMediaQueryOptions = {
-  defaultValue?: boolean
-  initializeWithValue?: boolean
-}
+  defaultValue?: boolean;
+  initializeWithValue?: boolean;
+};
 
-const IS_SERVER = typeof window === "undefined"
+const IS_SERVER = typeof window === "undefined";
 
 export function useMediaQuery(
   query: string,
   options?: UseMediaQueryOptions
-): boolean
+): boolean;
 /**
  * Custom hook for tracking the state of a media query.
  * @deprecated - this useMediaQuery's signature is deprecated, it now accepts an query parameter and an options object.
@@ -25,7 +25,7 @@ export function useMediaQuery(
  * const isSmallScreen = useMediaQuery('(max-width: 600px)');
  * // Use `isSmallScreen` to conditionally apply styles or logic based on the screen size.
  */
-export function useMediaQuery(query: string, defaultValue: boolean): boolean // defaultValue should be false by default
+export function useMediaQuery(query: string, defaultValue: boolean): boolean; // defaultValue should be false by default
 /**
  * Custom hook for tracking the state of a media query.
  * @param {string} query - The media query to track.
@@ -45,52 +45,52 @@ export function useMediaQuery(
 ): boolean {
   // TODO: Refactor this code after the deprecated signature has been removed.
   const defaultValue =
-    typeof options === "boolean" ? options : options?.defaultValue ?? false
+    typeof options === "boolean" ? options : options?.defaultValue ?? false;
   const initializeWithValue =
     typeof options === "boolean"
       ? undefined
-      : options?.initializeWithValue ?? undefined
+      : options?.initializeWithValue ?? undefined;
 
   const [matches, setMatches] = useState<boolean>(() => {
     if (initializeWithValue) {
-      return getMatches(query)
+      return getMatches(query);
     }
-    return defaultValue
-  })
+    return defaultValue;
+  });
 
   const getMatches = (query: string): boolean => {
     if (IS_SERVER) {
-      return defaultValue
+      return defaultValue;
     }
-    return window.matchMedia(query).matches
-  }
+    return window.matchMedia(query).matches;
+  };
 
   /** Handles the change event of the media query. */
   function handleChange() {
-    setMatches(getMatches(query))
+    setMatches(getMatches(query));
   }
 
   useIsomorphicLayoutEffect(() => {
-    const matchMedia = window.matchMedia(query)
+    const matchMedia = window.matchMedia(query);
 
     // Triggered at the first client-side load and if query changes
-    handleChange()
+    handleChange();
 
     // Use deprecated `addListener` and `removeListener` to support Safari < 14 (#135)
     if (matchMedia.addListener) {
-      matchMedia.addListener(handleChange)
+      matchMedia.addListener(handleChange);
     } else {
-      matchMedia.addEventListener("change", handleChange)
+      matchMedia.addEventListener("change", handleChange);
     }
 
     return () => {
       if (matchMedia.removeListener) {
-        matchMedia.removeListener(handleChange)
+        matchMedia.removeListener(handleChange);
       } else {
-        matchMedia.removeEventListener("change", handleChange)
+        matchMedia.removeEventListener("change", handleChange);
       }
-    }
-  }, [query])
+    };
+  }, [query]);
 
-  return matches
+  return matches;
 }

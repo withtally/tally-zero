@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useSelectedLayoutSegment } from "next/navigation"
-import * as React from "react"
+import Link from "next/link";
+import { useSelectedLayoutSegment } from "next/navigation";
+import * as React from "react";
 
-import { siteConfig } from "@config/site"
-import { cn } from "@lib/utils"
+import { siteConfig } from "@config/site";
+import { cn } from "@lib/utils";
 
-import { Icons } from "@/components/Icons"
-import { MobileNav } from "@components/navigation/MobileNav"
+import { Icons } from "@/components/Icons";
+import { MobileNav } from "@components/navigation/MobileNav";
 
-import { MainNavItem } from "@types"
+import { MainNavItem } from "@types";
 
 interface MainNavProps {
-  items?: MainNavItem[]
-  children?: React.ReactNode
+  items?: MainNavItem[];
+  children?: React.ReactNode;
 }
 
 export function MainNav({ items, children }: MainNavProps) {
-  const segment = useSelectedLayoutSegment()
-  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
+  const segment = useSelectedLayoutSegment();
+  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
 
   return (
     <div className="flex gap-6 md:gap-10">
@@ -58,5 +58,5 @@ export function MainNav({ items, children }: MainNavProps) {
         <MobileNav items={items}>{children}</MobileNav>
       )}
     </div>
-  )
+  );
 }

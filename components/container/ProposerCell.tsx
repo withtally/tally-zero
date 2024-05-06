@@ -1,8 +1,8 @@
-import { Addreth, AddrethConfig } from "addreth"
-import { useTheme } from "next-themes"
+import { Addreth, AddrethConfig } from "addreth";
+import { useTheme } from "next-themes";
 
 export function ProposerCell({ proposer }: { proposer: string }) {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
 
   return (
     <AddrethConfig>
@@ -13,5 +13,5 @@ export function ProposerCell({ proposer }: { proposer: string }) {
         theme={theme === "dark" ? "dark" : "light"}
       />
     </AddrethConfig>
-  )
+  );
 }

@@ -1,20 +1,20 @@
-import "@styles/globals.css"
+import "@styles/globals.css";
 
-import { siteConfig } from "@config/site"
-import { GeistSans } from "geist/font/sans"
+import { siteConfig } from "@config/site";
+import { GeistSans } from "geist/font/sans";
 
-import { Web3ModalProvider } from "@components/Web3ModalProvider"
-import { marketingConfig } from "@config/marketing"
-import { cn } from "@lib/utils"
+import { Web3ModalProvider } from "@components/Web3ModalProvider";
+import { marketingConfig } from "@config/marketing";
+import { cn } from "@lib/utils";
 
-import { Toaster } from "@/components/ui/Sonner"
-import { ButtonNav } from "@components/navigation/ButtonNav"
-import { MainNav } from "@components/navigation/MainNav"
-import { SiteFooter } from "@components/navigation/SiteFooter"
+import { Toaster } from "@/components/ui/Sonner";
+import { ButtonNav } from "@components/navigation/ButtonNav";
+import { MainNav } from "@components/navigation/MainNav";
+import { SiteFooter } from "@components/navigation/SiteFooter";
 
-import { Analytics } from "@components/Analytics"
-import { TailwindIndicator } from "@components/TailwindIndicator"
-import { ThemeProvider } from "@components/ThemeProvider"
+import { Analytics } from "@components/Analytics";
+import { TailwindIndicator } from "@components/TailwindIndicator";
+import { ThemeProvider } from "@components/ThemeProvider";
 
 export const metadata = {
   title: {
@@ -51,10 +51,10 @@ export const metadata = {
     apple: "/favicon/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
-}
+};
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -87,5 +87,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

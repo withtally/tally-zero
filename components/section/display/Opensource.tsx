@@ -1,5 +1,5 @@
-import { siteConfig } from "@config/site"
-import Link from "next/link"
+import { siteConfig } from "@config/site";
+import Link from "next/link";
 
 export default function Opensource() {
   return (
@@ -24,5 +24,5 @@ export default function Opensource() {
         </p>
       </div>
     </section>
-  )
+  );
 }

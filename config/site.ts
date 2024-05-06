@@ -1,4 +1,4 @@
-import { SiteConfig } from "@types"
+import { SiteConfig } from "@types";
 
 export const siteConfig: SiteConfig = {
   name: "Tally Zero",
@@ -9,4 +9,4 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/tally-zero",
     github: "https://github.com/withtally/tally-zero",
   },
-}
+};

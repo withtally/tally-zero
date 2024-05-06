@@ -1,6 +1,6 @@
-import { Stat } from "@/types/index"
-import { Icons } from "@components/Icons"
-import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/Card"
+import { Stat } from "@/types/index";
+import { Icons } from "@components/Icons";
+import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/Card";
 
 function Star({ children, stat }: { children?: React.ReactNode; stat: Stat }) {
   return (
@@ -11,7 +11,7 @@ function Star({ children, stat }: { children?: React.ReactNode; stat: Stat }) {
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
-  )
+  );
 }
 
 export default function StatCards() {
@@ -64,5 +64,5 @@ export default function StatCards() {
         </span>
       </Star>
     </div>
-  )
+  );
 }

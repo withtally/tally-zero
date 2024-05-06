@@ -1,4 +1,4 @@
-import { type SectionHeaderProps } from "@/types/section-header"
+import { type SectionHeaderProps } from "@/types/section-header";
 
 export default function SectionHeader({
   sectionTitle,
@@ -17,5 +17,5 @@ export default function SectionHeader({
         {description}
       </p>
     </div>
-  )
+  );
 }

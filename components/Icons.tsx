@@ -32,11 +32,11 @@ import {
   WalletIcon,
   WifiIcon,
   X,
-} from "lucide-react"
-import Image from "next/image"
-import { useId } from "react"
+} from "lucide-react";
+import Image from "next/image";
+import { useId } from "react";
 
-export type Icon = LucideIcon
+export type Icon = LucideIcon;
 
 function ContactsIcon() {
   return (
@@ -51,7 +51,7 @@ function ContactsIcon() {
         fill="#fff"
       />
     </>
-  )
+  );
 }
 
 function InventoryIcon() {
@@ -72,11 +72,11 @@ function InventoryIcon() {
         fill="#fff"
       />
     </>
-  )
+  );
 }
 
 function ReportingIcon() {
-  let id = useId()
+  let id = useId();
   return (
     <>
       <defs>
@@ -100,7 +100,7 @@ function ReportingIcon() {
         strokeLinejoin="round"
       />
     </>
-  )
+  );
 }
 
 function LogoIcon({ className }: { className?: string } = { className: "" }) {
@@ -113,7 +113,7 @@ function LogoIcon({ className }: { className?: string } = { className: "" }) {
       height={30}
       layout="fixed"
     />
-  )
+  );
 }
 
 export const Icons = {
@@ -171,4 +171,4 @@ export const Icons = {
   packageopen: PackageOpenIcon,
   triangle: Triangle,
   refresh: RotateCw,
-}
+};

@@ -1,5 +1,5 @@
-import { Icons } from "@components/Icons"
-import SectionHeader from "@components/ui/SectionHeader"
+import { Icons } from "@components/Icons";
+import SectionHeader from "@components/ui/SectionHeader";
 
 export default function Features() {
   return (
@@ -94,5 +94,5 @@ export default function Features() {
         </p>
       </div>
     </section>
-  )
+  );
 }
