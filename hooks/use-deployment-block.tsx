@@ -33,12 +33,12 @@ export const useDeploymentBlock = (
       cancelSearchRef.current = false;
 
       const currentCode = await provider.getCode(contractAddress);
-      const currentBlockNumber =
-        deploymentBlock || (await provider.getBlockNumber());
-
       if (currentCode === "0x") {
         throw new Error("Contract not currently deployed");
       }
+
+      const currentBlockNumber =
+        deploymentBlock || (await provider.getBlockNumber());
 
       let [lowerBound, upperBound] = [0, currentBlockNumber];
       let deployedBlockNumber: number | null = null;
