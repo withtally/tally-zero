@@ -31,7 +31,7 @@ import {
   skaleCalypso,
   skaleEuropa,
   songbird,
-} from "wagmi/chains";
+} from "wagmi/chains"
 
 export const chains = [
   arbitrum,
@@ -117,4 +117,4 @@ export const chains = [
   //zhejiang,
   //zkSync,
   //zkSyncTestnet,
-];
+]

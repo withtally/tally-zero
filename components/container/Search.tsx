@@ -1,28 +1,28 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import * as z from "zod";
+import { useEffect, useState } from "react"
+import * as z from "zod"
 
-import { Form } from "@/components/ui/Form";
-import { ContractParams } from "@/types/search";
-import { formSchema } from "@config/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Form } from "@/components/ui/Form"
+import { ContractParams } from "@/types/search"
+import { formSchema } from "@config/schema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 
-import ContractCard from "@/components/container/ContractCard";
-import { columns } from "@/components/table/ColumnsProposals";
-import { DataTable } from "@/components/table/DataTable";
-import { Progress } from "@/components/ui/Progress";
+import ContractCard from "@/components/container/ContractCard"
+import { columns } from "@/components/table/ColumnsProposals"
+import { DataTable } from "@/components/table/DataTable"
+import { Progress } from "@/components/ui/Progress"
 
-import { State } from "@/types/search";
-import { initialState } from "@config/intial-state";
-import { useGovernorContract } from "@hooks/use-governor-contract";
+import { State } from "@/types/search"
+import { initialState } from "@config/intial-state"
+import { useGovernorContract } from "@hooks/use-governor-contract"
 
 export default function Search() {
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState)
   const [formContractParams, setFormContractParams] = useState<ContractParams>(
     {}
-  );
+  )
 
   useEffect(() => {
     if (formContractParams.contractAddress && formContractParams.networkId) {
@@ -32,28 +32,28 @@ export default function Search() {
           ...prevState.governor,
           address: formContractParams.contractAddress,
         },
-      }));
+      }))
     }
-  }, [formContractParams, setState]);
+  }, [formContractParams, setState])
 
   const { overallProgress, formattedProposals } = useGovernorContract({
     values: formContractParams,
     state,
     setState,
-  });
+  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-  });
+  })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setState(initialState);
+    setState(initialState)
 
     setFormContractParams({
       contractAddress: `0x${values.address.slice(2)}`,
       networkId: parseInt(values.networkId),
       deploymentBlock: values.deploymentBlock || 0,
-    });
+    })
   }
 
   return (
@@ -79,5 +79,5 @@ export default function Search() {
         </section>
       </form>
     </Form>
-  );
+  )
 }

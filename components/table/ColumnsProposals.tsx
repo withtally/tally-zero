@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table"
 
-import { ProposerCell } from "@components/container/ProposerCell";
-import { DataTableColumnHeader } from "@components/table/ColumnHeader";
-import { DataTableRowActions } from "@components/table/RowActions";
-import { Badge } from "@components/ui/Badge";
-import { DescriptionCell } from "@components/ui/DescriptionCell";
+import { ProposerCell } from "@components/container/ProposerCell"
+import { DataTableColumnHeader } from "@components/table/ColumnHeader"
+import { DataTableRowActions } from "@components/table/RowActions"
+import { Badge } from "@components/ui/Badge"
+import { DescriptionCell } from "@components/ui/DescriptionCell"
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@components/ui/HoverCard";
+} from "@components/ui/HoverCard"
 
-import { proposalSchema } from "@config/schema";
-import { states } from "@data/table/data";
-import { cn } from "@lib/utils";
+import { proposalSchema } from "@config/schema"
+import { states } from "@data/table/data"
+import { cn } from "@lib/utils"
 
-import { DotIcon } from "lucide-react";
+import { DotIcon } from "lucide-react"
 
 export const columns: ColumnDef<typeof proposalSchema>[] = [
   {
@@ -26,7 +26,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
       <DataTableColumnHeader column={column} title="Proposal ID" />
     ),
     cell: ({ row }: { row: Record<string, any> }) => {
-      const id = row.getValue("id");
+      const id = row.getValue("id")
 
       return id.length < 6 ? (
         <span>{id}</span>
@@ -37,7 +37,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
           </HoverCardTrigger>
           <HoverCardContent className="w-full">{id}</HoverCardContent>
         </HoverCard>
-      );
+      )
     },
 
     enableHiding: false,
@@ -63,7 +63,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
         <div className="flex space-x-2 max-w-[225px] lg:max-w-[400px] truncate">
           <DescriptionCell mdxContent={row.getValue("description")} />
         </div>
-      );
+      )
     },
   },
   {
@@ -79,7 +79,7 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
             {"[" + row.original.startBlock + ", " + row.original.endBlock + "]"}
           </span>
         </div>
-      );
+      )
     },
   },
 
@@ -90,19 +90,17 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
     ),
     cell: ({ row }) => {
       // @ts-ignore: networkId is always present
-      const networkId = row.original.networkId;
+      const networkId = row.original.networkId
 
-      let stateValue;
+      let stateValue
       /*       if (networkId === "10") {
         stateValue = optimismStates.find(
           (state) => state.value === row.getValue("state")
         );
         if (!stateValue) return null;
       } else { */
-      stateValue = states.find(
-        (state) => state.value === row.getValue("state")
-      );
-      if (!stateValue) return null;
+      stateValue = states.find((state) => state.value === row.getValue("state"))
+      if (!stateValue) return null
       /* } */
 
       return (
@@ -115,14 +113,14 @@ export const columns: ColumnDef<typeof proposalSchema>[] = [
           <DotIcon className="mr-1" style={{ strokeWidth: "3" }} />
           {stateValue.label}
         </Badge>
-      );
+      )
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value.includes(row.getValue(id))
     },
   },
   {
     id: "vote",
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
-];
+]

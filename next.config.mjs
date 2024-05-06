@@ -5,6 +5,6 @@ const nextConfig = {
     unoptimized: true,
     domains: ["placehold.co", "www.tally.xyz", "raw.githubusercontent.com"],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
-import { cn } from "@lib/utils";
-import { Web3Button, Web3NetworkSwitch } from "@web3modal/react";
+import { cn } from "@lib/utils"
+import { Web3Button, Web3NetworkSwitch } from "@web3modal/react"
 
-import { Icons } from "@components/Icons";
-import { buttonVariants } from "@components/ui/Button";
+import { Icons } from "@components/Icons"
+import { buttonVariants } from "@components/ui/Button"
 
 const Skeleton = ({ className }: { className?: string }) => (
   <div aria-live="polite" aria-busy="true" className={className}>
@@ -17,7 +17,7 @@ const Skeleton = ({ className }: { className?: string }) => (
     </span>
     <br />
   </div>
-);
+)
 
 const LoadingSkeleton = () => (
   <>
@@ -25,20 +25,20 @@ const LoadingSkeleton = () => (
       <Skeleton className="w-[158px]  max-w-full" />
     </div>
   </>
-);
+)
 
 export function ButtonNav() {
-  const pathname = usePathname();
-  const isExplore = pathname === "/explore";
-  const [loading, setLoading] = useState(true);
+  const pathname = usePathname()
+  const isExplore = pathname === "/explore"
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+      setLoading(false)
+    }, 1000)
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <nav>
@@ -69,5 +69,5 @@ export function ButtonNav() {
         </Link>
       )}
     </nav>
-  );
+  )
 }

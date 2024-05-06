@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { UseFormReturn } from "react-hook-form";
-import * as z from "zod";
+import Image from "next/image"
+import { useEffect, useState } from "react"
+import { UseFormReturn } from "react-hook-form"
+import * as z from "zod"
 
-import { Icons } from "@components/Icons";
-import { ReloadIcon } from "@radix-ui/react-icons";
+import { Icons } from "@components/Icons"
+import { ReloadIcon } from "@radix-ui/react-icons"
 
 import {
   FormControl,
@@ -15,29 +15,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@components/ui/Button";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
+import { Button } from "@components/ui/Button"
 
-import { daos } from "@config/data";
-import { daoSchema, formSchema } from "@config/schema";
+import { daos } from "@config/data"
+import { daoSchema, formSchema } from "@config/schema"
 
 interface ContractFormProps {
-  form: UseFormReturn<z.infer<typeof formSchema>>;
-  progress: number;
+  form: UseFormReturn<z.infer<typeof formSchema>>
+  progress: number
 }
 
 export default function ContractForm({ form, progress }: ContractFormProps) {
   const [currDao, setCurrDao] = useState<
     z.infer<typeof daoSchema> | undefined
-  >();
+  >()
 
-  const addressWatched = form.watch("address");
+  const addressWatched = form.watch("address")
 
   useEffect(() => {
-    const dao = daos.find((dao) => dao.ethAddress === addressWatched);
-    setCurrDao(dao);
-  }, [addressWatched]);
+    const dao = daos.find((dao) => dao.ethAddress === addressWatched)
+    setCurrDao(dao)
+  }, [addressWatched])
 
   return (
     <div>
@@ -158,5 +158,5 @@ export default function ContractForm({ form, progress }: ContractFormProps) {
         </Button>
       )}
     </div>
-  );
+  )
 }

@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useContractWrite, usePrepareContractWrite } from "wagmi"
 
-import { Button } from "@components/ui/Button";
-import { Card, CardContent } from "@components/ui/Card";
-import { DialogClose, DialogFooter } from "@components/ui/Dialog";
+import { Button } from "@components/ui/Button"
+import { Card, CardContent } from "@components/ui/Card"
+import { DialogClose, DialogFooter } from "@components/ui/Dialog"
 import {
   Form,
   FormControl,
@@ -17,23 +17,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@components/ui/Form";
-import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
-import { ReloadIcon } from "@radix-ui/react-icons";
+} from "@components/ui/Form"
+import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup"
+import { ReloadIcon } from "@radix-ui/react-icons"
 
-import { proposalSchema, voteSchema } from "@config/schema";
-import { toast } from "sonner";
+import { proposalSchema, voteSchema } from "@config/schema"
+import { toast } from "sonner"
 
-import OZ_Governor_ABI from "@data/OzGovernor_ABI.json";
+import OZ_Governor_ABI from "@data/OzGovernor_ABI.json"
 
 export default function VoteForm({
   proposal,
 }: {
-  proposal: z.infer<typeof proposalSchema>;
+  proposal: z.infer<typeof proposalSchema>
 }) {
   const form = useForm<z.infer<typeof voteSchema>>({
     resolver: zodResolver(voteSchema),
-  });
+  })
 
   const {
     config,
@@ -44,19 +44,19 @@ export default function VoteForm({
     address: `0x${proposal.contractAddress.slice(2)}`,
     functionName: "castVote",
     args: [proposal.id, form.getValues("vote")],
-  });
+  })
 
-  const { data, isLoading, isSuccess, write } = useContractWrite(config);
+  const { data, isLoading, isSuccess, write } = useContractWrite(config)
   if (data) {
-    toast("Your vote has been submitted.");
+    toast("Your vote has been submitted.")
   }
 
   async function onSubmit(values: z.infer<typeof voteSchema>) {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      write?.();
+      await new Promise((resolve) => setTimeout(resolve, 500))
+      write?.()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -145,5 +145,5 @@ export default function VoteForm({
         </form>
       </Form>
     </Card>
-  );
+  )
 }

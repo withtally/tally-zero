@@ -1,9 +1,9 @@
-import Search from "@/components/container/Search";
-import StatCards from "@/components/container/StatCard";
+import Search from "@/components/container/Search"
+import StatCards from "@/components/container/StatCard"
 
 export const metadata = {
   title: "Explore DAOs",
-};
+}
 
 export default function IndexPage() {
   return (
@@ -13,5 +13,5 @@ export default function IndexPage() {
         <Search />
       </div>
     </div>
-  );
+  )
 }

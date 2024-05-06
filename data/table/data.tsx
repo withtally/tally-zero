@@ -6,7 +6,7 @@ import {
   ExclamationTriangleIcon,
   StopwatchIcon,
   UpdateIcon,
-} from "@radix-ui/react-icons";
+} from "@radix-ui/react-icons"
 
 export const states = [
   {
@@ -63,7 +63,7 @@ export const states = [
     bgColor: "bg-rose-100 text-rose-700 dark:bg-rose-900/60 dark:text-rose-200",
     icon: ClockIcon,
   },
-];
+]
 
 export const optimismStates = [
   {
@@ -86,4 +86,4 @@ export const optimismStates = [
     bgColor: "bg-rose-100 text-rose-700 dark:bg-rose-900/60 dark:text-rose-200",
     icon: CrossCircledIcon,
   },
-];
+]

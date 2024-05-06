@@ -1,4 +1,4 @@
-import { State } from "@/types/search";
+import { State } from "@/types/search"
 
 export const initialState: State = {
   system: {
@@ -16,7 +16,7 @@ export const initialState: State = {
     deploymentBlock: null,
   },
   proposals: [],
-};
+}
 
 export enum ProposalState {
   Pending,

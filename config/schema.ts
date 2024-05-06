@@ -1,19 +1,19 @@
-import * as z from "zod";
+import * as z from "zod"
 
 // `0x${string}` is a valid Ethereum address
-const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
+const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/
 
 export const formSchema = z.object({
   address: z.string().regex(ethAddressRegex, "Invalid Ethereum address"),
   networkId: z.string(),
   deploymentBlock: z.number().optional(),
-});
+})
 
 export const voteSchema = z.object({
   vote: z.string().refine((data) => ["0", "1", "2"].includes(data), {
     message: "Please select a valid vote option",
   }),
-});
+})
 
 export const proposalSchema = z.object({
   id: z.string(),
@@ -28,9 +28,9 @@ export const proposalSchema = z.object({
   description: z.string(),
   networkId: z.string(),
   state: z.string(),
-});
+})
 
-export type proposal = z.infer<typeof proposalSchema>;
+export type proposal = z.infer<typeof proposalSchema>
 
 export const statsSchema = z.array(
   z.object({
@@ -39,7 +39,7 @@ export const statsSchema = z.array(
     unit: z.string(),
     description: z.string(),
   })
-);
+)
 
 export const daoSchema = z.object({
   name: z.string(),
@@ -47,4 +47,4 @@ export const daoSchema = z.object({
   imageUrl: z.string(),
   ethAddress: z.string().regex(ethAddressRegex),
   maxBlockRange: z.number(),
-});
+})

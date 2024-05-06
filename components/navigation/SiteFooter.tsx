@@ -1,10 +1,10 @@
-import Link from "next/link";
+import Link from "next/link"
 
-import { siteConfig } from "@config/site";
-import { cn } from "@lib/utils";
+import { siteConfig } from "@config/site"
+import { cn } from "@lib/utils"
 
-import { ModeToggle } from "@/components/ModeToggel";
-import { Icons } from "@components/Icons";
+import { ModeToggle } from "@/components/ModeToggel"
+import { Icons } from "@components/Icons"
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
@@ -46,5 +46,5 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
         <ModeToggle />
       </div>
     </footer>
-  );
+  )
 }

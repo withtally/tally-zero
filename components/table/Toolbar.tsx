@@ -1,34 +1,34 @@
-"use client";
+"use client"
 
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Cross2Icon } from "@radix-ui/react-icons";
-import { Table } from "@tanstack/react-table";
-import { SearchIcon } from "lucide-react";
+import { Cross2Icon } from "@radix-ui/react-icons"
+import { Table } from "@tanstack/react-table"
+import { SearchIcon } from "lucide-react"
 
-import { DataTableViewOptions } from "@components/table/ViewOptions";
-import { Button } from "@components/ui/Button";
-import { Input } from "@components/ui/Input";
+import { DataTableViewOptions } from "@components/table/ViewOptions"
+import { Button } from "@components/ui/Button"
+import { Input } from "@components/ui/Input"
 
-import { DataTableFacetedFilter } from "@components/table/FacetedFilter";
-import { states } from "@data/table/data";
+import { DataTableFacetedFilter } from "@components/table/FacetedFilter"
+import { states } from "@data/table/data"
 
 interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
+  table: Table<TData>
 }
 
 export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
-  const [searchValue, setSearchValue] = useState("");
+  const isFiltered = table.getState().columnFilters.length > 0
+  const [searchValue, setSearchValue] = useState("")
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setSearchValue(value);
-    table.getColumn("description")?.setFilterValue(value);
-    table.getColumn("name")?.setFilterValue(value);
-  };
+    const value = event.target.value
+    setSearchValue(value)
+    table.getColumn("description")?.setFilterValue(value)
+    table.getColumn("name")?.setFilterValue(value)
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -64,5 +64,5 @@ export function DataTableToolbar<TData>({
       </div>
       <DataTableViewOptions table={table} />
     </div>
-  );
+  )
 }

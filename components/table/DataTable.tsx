@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   ColumnDef,
@@ -13,8 +13,8 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import * as React from "react";
+} from "@tanstack/react-table"
+import * as React from "react"
 
 import {
   Table,
@@ -23,15 +23,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@components/ui/Table";
+} from "@components/ui/Table"
 
-import { DataTablePagination } from "@components/table/Pagination";
-import { DataTableToolbar } from "@components/table/Toolbar";
+import { DataTablePagination } from "@components/table/Pagination"
+import { DataTableToolbar } from "@components/table/Toolbar"
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  isPaginated: boolean;
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
+  isPaginated: boolean
 }
 
 export function DataTable<TData, TValue>({
@@ -39,13 +39,13 @@ export function DataTable<TData, TValue>({
   data,
   isPaginated = true,
 }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+    React.useState<VisibilityState>({})
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  );
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  )
+  const [sorting, setSorting] = React.useState<SortingState>([])
 
   const table = useReactTable({
     data,
@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  });
+  })
 
   return (
     <div className="space-y-4">
@@ -87,7 +87,7 @@ export function DataTable<TData, TValue>({
                             header.getContext()
                           )}
                     </TableHead>
-                  );
+                  )
                 })}
               </TableRow>
             ))}
@@ -125,5 +125,5 @@ export function DataTable<TData, TValue>({
 
       {isPaginated && <DataTablePagination table={table} />}
     </div>
-  );
+  )
 }

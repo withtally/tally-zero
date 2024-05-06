@@ -1,7 +1,7 @@
-import { Progress } from "@/components/ui/Progress";
-import { formatPercent } from "@lib/utils";
+import { Progress } from "@/components/ui/Progress"
+import { formatPercent } from "@lib/utils"
 
-import { SearchProps } from "@/types/search";
+import { SearchProps } from "@/types/search"
 
 export function SearchStatus(props: SearchProps) {
   return (
@@ -11,7 +11,7 @@ export function SearchStatus(props: SearchProps) {
         <span className="font-bold">Current block:</span> {props.currentBlock}
       </p>
     </div>
-  );
+  )
 }
 
 /* 

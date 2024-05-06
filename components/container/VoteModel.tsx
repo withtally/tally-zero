@@ -1,32 +1,32 @@
-import ReactMarkdown from "react-markdown";
-import { z } from "zod";
+import ReactMarkdown from "react-markdown"
+import { z } from "zod"
 
-import VoteForm from "@components/form/VoteForm";
-import { Badge } from "@components/ui/Badge";
+import VoteForm from "@components/form/VoteForm"
+import { Badge } from "@components/ui/Badge"
 import {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@components/ui/Dialog";
+} from "@components/ui/Dialog"
 import {
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-} from "@components/ui/Drawer";
+} from "@components/ui/Drawer"
 
-import { proposalSchema } from "@config/schema";
-import { cn } from "@lib/utils";
+import { proposalSchema } from "@config/schema"
+import { cn } from "@lib/utils"
 
 export default function VoteModel({
   proposal,
   stateValue,
   isDesktop,
 }: {
-  proposal: z.infer<typeof proposalSchema>;
-  stateValue: any;
-  isDesktop: boolean;
+  proposal: z.infer<typeof proposalSchema>
+  stateValue: any
+  isDesktop: boolean
 }) {
   if (isDesktop) {
     return (
@@ -60,7 +60,7 @@ export default function VoteModel({
         </DialogHeader>
         <VoteForm proposal={proposal} />
       </DialogContent>
-    );
+    )
   }
 
   return (
@@ -96,5 +96,5 @@ export default function VoteModel({
         <VoteForm proposal={proposal} />
       </DrawerContent>
     </>
-  );
+  )
 }

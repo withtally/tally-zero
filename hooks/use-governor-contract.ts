@@ -1,38 +1,38 @@
-import { ethers } from "ethers";
-import { useEffect, useRef, useState } from "react";
-import { useProvider } from "wagmi";
+import { ethers } from "ethers"
+import { useEffect, useRef, useState } from "react"
+import { useProvider } from "wagmi"
 
-import { useFormattedProposals } from "@/hooks/use-formatted-proposals";
-import { useDeploymentBlock } from "@hooks/use-deployment-block";
-import { useParseProposals } from "@hooks/use-parse-proposals";
-import { useSearchProposals } from "@hooks/use-search-proposals";
+import { useFormattedProposals } from "@/hooks/use-formatted-proposals"
+import { useDeploymentBlock } from "@hooks/use-deployment-block"
+import { useParseProposals } from "@hooks/use-parse-proposals"
+import { useSearchProposals } from "@hooks/use-search-proposals"
 
-import { ContractParams, State } from "@/types/search";
-import { daos } from "@config/data";
-import { daoSchema } from "@config/schema";
+import { ContractParams, State } from "@/types/search"
+import { daos } from "@config/data"
+import { daoSchema } from "@config/schema"
 
-import GovernorABI from "@data/OzGovernor_ABI.json";
-import { getBlockRange } from "@lib/block-range";
+import GovernorABI from "@data/OzGovernor_ABI.json"
+import { getBlockRange } from "@lib/block-range"
 
 export function useGovernorContract({
   values,
   state,
   setState,
 }: {
-  values: ContractParams;
-  state: State;
-  setState: React.Dispatch<React.SetStateAction<State>>;
+  values: ContractParams
+  state: State
+  setState: React.Dispatch<React.SetStateAction<State>>
 }) {
-  const [overallProgress, setOverallProgress] = useState(0);
+  const [overallProgress, setOverallProgress] = useState(0)
 
   // reset provider when networkId changes
   const provider = useProvider({
     chainId: parseInt(values.networkId?.toString() as string),
-  });
+  })
 
   const dao = daos.find(
     (dao) => dao.ethAddress === values.contractAddress
-  ) as unknown as typeof daoSchema;
+  ) as unknown as typeof daoSchema
 
   // Search for the Deployment block of Governor
   const { blockNumber, success, currentSearchBlock, deploymentProgress } =
@@ -40,10 +40,10 @@ export function useGovernorContract({
       provider,
       values.contractAddress,
       values.deploymentBlock || 0
-    );
+    )
 
   // When governor is found, create a contract instance and set it to state
-  const governorContractRef = useRef(state.governor.contract);
+  const governorContractRef = useRef(state.governor.contract)
 
   useEffect(() => {
     if (!governorContractRef.current && success && blockNumber) {
@@ -51,9 +51,9 @@ export function useGovernorContract({
         values.contractAddress?.toString() as string,
         GovernorABI,
         provider
-      );
+      )
 
-      governorContractRef.current = governorContract;
+      governorContractRef.current = governorContract
 
       setState((prevState) => ({
         ...prevState,
@@ -69,7 +69,7 @@ export function useGovernorContract({
           deploymentBlock: blockNumber,
           name: undefined,
         },
-      }));
+      }))
     }
   }, [
     provider,
@@ -80,15 +80,15 @@ export function useGovernorContract({
     state.governor.contract,
     values.state?.governor.contract,
     setState,
-  ]);
+  ])
 
   // Update the ref when state.governor.contract changes outside of this useEffect
   useEffect(() => {
-    governorContractRef.current = state.governor.contract;
-  }, [state.governor.contract]);
+    governorContractRef.current = state.governor.contract
+  }, [state.governor.contract])
 
   // When governor contract is found, find Proposals
-  const blockRange = getBlockRange(dao) as number;
+  const blockRange = getBlockRange(dao) as number
   const { proposals, searchProgress } = useSearchProposals(
     provider,
     values.contractAddress,
@@ -97,7 +97,7 @@ export function useGovernorContract({
       ? state.governor.deploymentBlock
       : values.deploymentBlock ?? null,
     true
-  );
+  )
 
   // When Proposals, parse them into a more readable format
   const parsedProposals = useParseProposals(
@@ -105,19 +105,19 @@ export function useGovernorContract({
     values.contractAddress,
     proposals,
     true
-  );
+  )
   const formattedProposals = useFormattedProposals(
     parsedProposals,
     values.networkId?.toString() as string
-  );
+  )
 
   useEffect(() => {
-    const combinedProgress = deploymentProgress * 0.2 + searchProgress * 0.8;
-    setOverallProgress(combinedProgress);
-  }, [deploymentProgress, searchProgress]);
+    const combinedProgress = deploymentProgress * 0.2 + searchProgress * 0.8
+    setOverallProgress(combinedProgress)
+  }, [deploymentProgress, searchProgress])
 
   return {
     overallProgress,
     formattedProposals,
-  };
+  }
 }

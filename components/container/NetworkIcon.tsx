@@ -1,14 +1,14 @@
-import { daos } from "@config/data";
-import Image from "next/image";
+import { daos } from "@config/data"
+import Image from "next/image"
 
 export function NetworkIcon({
   address,
   className,
 }: {
-  address: string;
-  className?: string;
+  address: string
+  className?: string
 }) {
-  let dao = daos.find((dao) => dao.ethAddress === address);
+  let dao = daos.find((dao) => dao.ethAddress === address)
   return (
     <div className="flex items-center space-x-3 cursor-pointer">
       <Image
@@ -21,5 +21,5 @@ export function NetworkIcon({
       />
       {dao?.name || "Tally Zero"}
     </div>
-  );
+  )
 }

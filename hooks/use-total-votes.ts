@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import { ethers } from "ethers";
-import { useEffect, useState } from "react";
+import { ethers } from "ethers"
+import { useEffect, useState } from "react"
 
-import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
+import OZGovernor_ABI from "@data/OzGovernor_ABI.json"
 
 export const useTotalVotes = ({
   userAddress,
   governanceContractAddress,
 }: {
-  userAddress: string | null;
-  governanceContractAddress: string;
+  userAddress: string | null
+  governanceContractAddress: string
 }) => {
-  const [totalVotes, setTotalVotes] = useState<number | null>(null);
-  const [isLoadingVote, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [totalVotes, setTotalVotes] = useState<number | null>(null)
+  const [isLoadingVote, setIsLoading] = useState<boolean>(true)
+  const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
     const fetchTotalVotes = async () => {
@@ -22,29 +22,29 @@ export const useTotalVotes = ({
         try {
           const provider = new ethers.providers.Web3Provider(
             window.ethereum as ethers.providers.ExternalProvider
-          );
+          )
           const contract = new ethers.Contract(
             governanceContractAddress,
             OZGovernor_ABI,
             provider
-          );
+          )
 
-          const votes = await contract.getTotalVotes(userAddress);
-          setTotalVotes(votes.toNumber());
+          const votes = await contract.getTotalVotes(userAddress)
+          setTotalVotes(votes.toNumber())
         } catch (err) {
-          console.error(err);
-          setError(err as Error);
+          console.error(err)
+          setError(err as Error)
         } finally {
-          setIsLoading(false);
+          setIsLoading(false)
         }
       } else {
-        setError(new Error("Ethereum wallet is not available"));
-        setIsLoading(false);
+        setError(new Error("Ethereum wallet is not available"))
+        setIsLoading(false)
       }
-    };
+    }
 
     if (userAddress) {
-      fetchTotalVotes();
+      fetchTotalVotes()
     }
   }, [
     userAddress,
@@ -52,7 +52,7 @@ export const useTotalVotes = ({
     setTotalVotes,
     setIsLoading,
     setError,
-  ]);
+  ])
 
-  return { totalVotes, isLoadingVote, error };
-};
+  return { totalVotes, isLoadingVote, error }
+}

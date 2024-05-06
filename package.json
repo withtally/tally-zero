@@ -11,7 +11,7 @@
     "prepare": "husky install"
   },
   "prettier": {
-    "semi": true,
+    "semi": false,
     "trailingComma": "es5",
     "plugins": [
       "prettier-plugin-organize-imports"
