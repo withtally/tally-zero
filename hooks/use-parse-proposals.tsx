@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import OzGovernor_ABI from "@data/OzGovernor_ABI.json";
 
+import { ParsedProposal, Proposal } from "@/types/proposal";
 import { ContractAddress } from "@/types/search";
-import { Proposal, ParsedProposal } from "@/types/proposal";
 
 export function useParseProposals(
   provider: ethers.providers.Provider,

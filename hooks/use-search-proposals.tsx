@@ -1,8 +1,8 @@
 import { Contract, ethers } from "ethers";
 import { useEffect, useState } from "react";
 
-import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 import { Proposal, UseSearchProposals } from "@/types/proposal";
+import OZGovernor_ABI from "@data/OzGovernor_ABI.json";
 import { CLUSTER_SIZE } from "../lib/utils";
 
 export const useSearchProposals: UseSearchProposals = (

@@ -2,9 +2,9 @@
 
 import { steps } from "@config/steps";
 
-import SectionHeader from "@components/ui/SectionHeader";
 import HowItWorksDesktop from "@components/section/how-it-works/HowItWorksDesktop";
 import HowItWorksMobile from "@components/section/how-it-works/HowItWorksMobile";
+import SectionHeader from "@components/ui/SectionHeader";
 
 export default function HowItWorks() {
   return (

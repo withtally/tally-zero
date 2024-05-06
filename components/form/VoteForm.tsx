@@ -1,11 +1,14 @@
 "use client";
 
-import { z } from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { usePrepareContractWrite, useContractWrite } from "wagmi";
+import { useContractWrite, usePrepareContractWrite } from "wagmi";
 
+import { Button } from "@components/ui/Button";
+import { Card, CardContent } from "@components/ui/Card";
+import { DialogClose, DialogFooter } from "@components/ui/Dialog";
 import {
   Form,
   FormControl,
@@ -15,14 +18,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@components/ui/Form";
-import { Card, CardContent } from "@components/ui/Card";
-import { Button } from "@components/ui/Button";
-import { DialogClose, DialogFooter } from "@components/ui/Dialog";
 import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
+import { proposalSchema, voteSchema } from "@config/schema";
 import { toast } from "sonner";
-import { voteSchema, proposalSchema } from "@config/schema";
 
 import OZ_Governor_ABI from "@data/OzGovernor_ABI.json";
 

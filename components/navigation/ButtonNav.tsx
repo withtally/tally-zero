@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { cn } from "@lib/utils";
-import { Web3NetworkSwitch, Web3Button } from "@web3modal/react";
+import { Web3Button, Web3NetworkSwitch } from "@web3modal/react";
 
 import { Icons } from "@components/Icons";
 import { buttonVariants } from "@components/ui/Button";

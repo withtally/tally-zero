@@ -1,9 +1,9 @@
 "use client";
 
-import * as z from "zod";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
-import React, { useState, useEffect } from "react";
+import * as z from "zod";
 
 import { Icons } from "@components/Icons";
 import { ReloadIcon } from "@radix-ui/react-icons";
@@ -19,8 +19,8 @@ import {
 import { Input } from "@/components/ui/Input";
 import { Button } from "@components/ui/Button";
 
-import { formSchema, daoSchema } from "@config/schema";
 import { daos } from "@config/data";
+import { daoSchema, formSchema } from "@config/schema";
 
 interface ContractFormProps {
   form: UseFormReturn<z.infer<typeof formSchema>>;

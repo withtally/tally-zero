@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import Image from "next/image";
 
-import { Tab } from "@headlessui/react";
 import { type StepType } from "@/types/steps";
+import { Tab } from "@headlessui/react";
 
 import Step from "@components/section/how-it-works/Step";
 

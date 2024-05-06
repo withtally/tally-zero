@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,42 +18,18 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@components/*": [
-        "./components/*"
-      ],
-      "@pages/*": [
-        "./pages/*"
-      ],
-      "@styles/*": [
-        "./styles/*"
-      ],
-      "@lib/*": [
-        "./lib/*"
-      ],
-      "@types/*": [
-        "./types/*"
-      ],
-      "@hooks/*": [
-        "./hooks/*"
-      ],
-      "@config/*": [
-        "./config/*"
-      ],
-      "@assets/*": [
-        "./assets/*"
-      ],
-      "@types": [
-        "./types"
-      ],
-      "@data/*": [
-        "./data/*"
-      ],
-      "@context/*": [
-        "./context/*"
-      ]
+      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@pages/*": ["./pages/*"],
+      "@styles/*": ["./styles/*"],
+      "@lib/*": ["./lib/*"],
+      "@types/*": ["./types/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@config/*": ["./config/*"],
+      "@assets/*": ["./assets/*"],
+      "@types": ["./types"],
+      "@data/*": ["./data/*"],
+      "@context/*": ["./context/*"]
     }
   },
   "include": [
@@ -67,7 +39,5 @@
     ".next/types/**/*.ts",
     "out/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

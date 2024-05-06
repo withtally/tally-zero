@@ -1,21 +1,21 @@
 "use client";
 
-import { Row } from "@tanstack/react-table";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { Row } from "@tanstack/react-table";
 
+import VoteModel from "@/components/container/VoteModel";
+import { Button } from "@components/ui/Button";
+import { Dialog, DialogTrigger } from "@components/ui/Dialog";
+import { Drawer, DrawerTrigger } from "@components/ui/Drawer";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@components/ui/DropdownMenu";
-import { Button } from "@components/ui/Button";
-import { Dialog, DialogTrigger } from "@components/ui/Dialog";
-import { Drawer, DrawerTrigger } from "@components/ui/Drawer";
-import VoteModel from "@/components/container/VoteModel";
 
-import { states } from "@data/table/data";
 import { proposalSchema } from "@config/schema";
+import { states } from "@data/table/data";
 
 import { useMediaQuery } from "@hooks/use-media-query";
 

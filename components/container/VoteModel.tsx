@@ -1,6 +1,8 @@
-import { z } from "zod";
 import ReactMarkdown from "react-markdown";
+import { z } from "zod";
 
+import VoteForm from "@components/form/VoteForm";
+import { Badge } from "@components/ui/Badge";
 import {
   DialogContent,
   DialogDescription,
@@ -13,11 +15,9 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@components/ui/Drawer";
-import { Badge } from "@components/ui/Badge";
-import VoteForm from "@components/form/VoteForm";
 
-import { cn } from "@lib/utils";
 import { proposalSchema } from "@config/schema";
+import { cn } from "@lib/utils";
 
 export default function VoteModel({
   proposal,

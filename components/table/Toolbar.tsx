@@ -3,15 +3,15 @@
 import React, { useState } from "react";
 
 import { Cross2Icon } from "@radix-ui/react-icons";
-import { SearchIcon } from "lucide-react";
 import { Table } from "@tanstack/react-table";
+import { SearchIcon } from "lucide-react";
 
+import { DataTableViewOptions } from "@components/table/ViewOptions";
 import { Button } from "@components/ui/Button";
 import { Input } from "@components/ui/Input";
-import { DataTableViewOptions } from "@components/table/ViewOptions";
 
-import { states } from "@data/table/data";
 import { DataTableFacetedFilter } from "@components/table/FacetedFilter";
+import { states } from "@data/table/data";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -29,7 +29,7 @@ export function DataTableToolbar<TData>({
     table.getColumn("description")?.setFilterValue(value);
     table.getColumn("name")?.setFilterValue(value);
   };
-  
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">

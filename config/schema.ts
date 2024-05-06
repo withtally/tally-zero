@@ -1,5 +1,4 @@
 import * as z from "zod";
-import { ContractAddress } from "@/types/search";
 
 // `0x${string}` is a valid Ethereum address
 const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
