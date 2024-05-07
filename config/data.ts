@@ -79,4 +79,12 @@ export const daos = [
     ethAddress: "0x408ED6354d4973f66138C91495F2f2FCbd8724C3",
     maxBlockRange: 50000,
   },
+  {
+    name: "ENS",
+    networkId: 1,
+    imageUrl:
+      "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F52dcc4c6-eac8-4ce4-b50e-a258a21abd7e_400x400.jpg&w=256&q=75",
+    ethAddress: "0x323A76393544d5ecca80cd6ef2A560C6a395b7E3",
+    maxBlockRange: 50000,
+  },
 ];
