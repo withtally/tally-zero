@@ -36,7 +36,7 @@ export default function ContractForm({ form, progress }: ContractFormProps) {
 
   useEffect(() => {
     const dao = daos.find(
-      (dao) => dao.ethAddress.toLowerCase() === addressWatched
+      (dao) => dao.ethAddress.toLowerCase() === addressWatched?.toLowerCase()
     );
     setCurrDao(dao);
     // avoid overriding networkId if user has already entered it
