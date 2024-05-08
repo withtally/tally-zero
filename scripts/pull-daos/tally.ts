@@ -17,33 +17,15 @@ const organizationSchema = z.object({
     icon: z.string(),
   }),
 });
+/**
+ * Fetch top DAOs from Tally.
+ */
 export async function fetchDAOs() {
   const TALLY_API_KEY = z.string().parse(process.env.TALLY_API_KEY);
   const myHeaders = new Headers();
 
-  myHeaders.append("accept", "*/*");
-  myHeaders.append("accept-language", "en-US,en;q=0.9");
   myHeaders.append("api-key", TALLY_API_KEY);
-  myHeaders.append("cache-control", "no-cache");
   myHeaders.append("content-type", "application/json");
-  myHeaders.append("origin", "https://www.tally.xyz");
-  myHeaders.append("pragma", "no-cache");
-  myHeaders.append("priority", "u=1, i");
-  myHeaders.append("referer", "https://www.tally.xyz/");
-  myHeaders.append(
-    "sec-ch-ua",
-    '"Chromium";v="124", "Brave";v="124", "Not-A.Brand";v="99"'
-  );
-  myHeaders.append("sec-ch-ua-mobile", "?0");
-  myHeaders.append("sec-ch-ua-platform", '"macOS"');
-  myHeaders.append("sec-fetch-dest", "empty");
-  myHeaders.append("sec-fetch-mode", "cors");
-  myHeaders.append("sec-fetch-site", "same-site");
-  myHeaders.append("sec-gpc", "1");
-  myHeaders.append(
-    "user-agent",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-  );
 
   const graphql = JSON.stringify({
     query: `query ExploreOrgs($input: OrganizationsInput!) {
@@ -87,7 +69,6 @@ export async function fetchDAOs() {
       organizations.sort((a, b) => b.delegatesCount - a.delegatesCount)
     );
 
-  console.log("len: ", organizations.length);
   const daos = organizations.map(formatAsDAO);
   return daos;
 }
@@ -102,6 +83,7 @@ function formatAsDAO(organization: z.infer<typeof organizationSchema>): DAO {
     "https://static.tally.xyz/",
     ""
   );
+  // these images are already optimized for size better than the originals
   const imageUrl = `https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F${imageId}&w=256&q=75`;
   return {
     name,
