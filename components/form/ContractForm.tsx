@@ -59,9 +59,14 @@ export default function ContractForm({ form, progress }: ContractFormProps) {
                   {...field}
                 />
                 <div className="absolute left-0 flex items-center justify-center h-full px-3 text-black bg-gray-200/45 hover:text-violet-500 hover:bg-gray-200 rounded-l-md transition-colors duration-200 ease-in-out">
-                  <div className="flex items-center space-x-3">
-                    <Icons.orderbook className="w-5 h-auto" />
-                  </div>
+                  <a
+                    href="https://github.com/withtally/tally-zero/blob/main/config/daos.json"
+                    target="_blank"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <Icons.orderbook className="w-5 h-auto" />
+                    </div>
+                  </a>
                 </div>
                 {currDao && (
                   <div className="absolute right-0 flex items-center space-x-2 justify-center h-full px-3 text-black bg-gray-200 hover:text-violet-500 hover:bg-gray-200 rounded-r-md transition-colors duration-200 ease-in-out">
