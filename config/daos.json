@@ -75,6 +75,13 @@
     "maxBlockRange": 50000
   },
   {
+    "name": "OpenDollar",
+    "networkId": 42161,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F002e7178-5ad0-4764-aa8b-803ad13bba50_original.png&w=256&q=75",
+    "ethAddresses": ["0xf704735ce81165261156b41d33ab18a08803b86f"],
+    "maxBlockRange": 50000
+  },
+  {
     "name": "Lil Nouns",
     "networkId": 1,
     "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F6b7f8135-d235-41c8-827b-ee8eecc5a2b2_original.png&w=256&q=75",
@@ -82,10 +89,213 @@
     "maxBlockRange": 50000
   },
   {
+    "name": "Diva Staking",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F00c9ecd3-0887-4e59-92ba-cb2f61be56c4_original.png&w=256&q=75",
+    "ethAddresses": ["0xfb6b7c11a55c57767643f1ff65c34c8693a11a70"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "SpellsDAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F65636b9e-7b57-4d68-aa58-d7b2c025598c_original.png&w=256&q=75",
+    "ethAddresses": ["0x2f8da73e52ec56feb0ae63fbdd50c01dd04e8cc9"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Moonwell",
+    "networkId": 1284,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Ff9ac362d-e9d1-4563-9a03-852c2318f0a8_original.jpeg&w=256&q=75",
+    "ethAddresses": ["0xfc4dfb17101a12c5cec5eedd8e92b5b16557666d"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "HAI",
+    "networkId": 10,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F1552e0c9-8ca9-4152-be43-61f27d772a6d_original.png&w=256&q=75",
+    "ethAddresses": ["0xe807f3282f3391d237ba8b9becb0d8ea3ba23777"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Ondo DAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F28a0e1d0-1aa0-4587-a751-3f55a55de833_original.png&w=256&q=75",
+    "ethAddresses": ["0x336505ec1bcc1a020eede459f57581725d23465a"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Euler",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F9a1bd5cd-11c2-4638-a0ca-4b5887c07631_original.png&w=256&q=75",
+    "ethAddresses": ["0xd8e2114f6bcbaee83cdeb1bd6650a28bbcf144d5"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Yam Finance",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F925ada58-23fc-4025-9e43-a27776757e99_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0x2da253835967d6e721c6c077157f9c9742934aea"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Seamless Protocol Governor Long",
+    "networkId": 8453,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fe1d90a69-d535-4887-a6b6-a7f2284090de_original.png&w=256&q=75",
+    "ethAddresses": ["0x04faa2826dbb38a7a4e9a5e3db26b9e389e761b6"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Seamless Protocol",
+    "networkId": 8453,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F9ee059d0-710e-4fa6-95fe-2b57226007aa_original.png&w=256&q=75",
+    "ethAddresses": ["0x8768c789c6df8af1a92d96de823b4f80010db294"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "TrueFi",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F424f4510-f966-416d-aac2-249a340805a1_original.png&w=256&q=75",
+    "ethAddresses": ["0x585cca060422ef1779fb0dd710a49e7c49a823c9"],
+    "maxBlockRange": 50000
+  },
+  {
     "name": "Nouns Dao",
     "networkId": 1,
     "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F1decbb17-b472-4eb9-9141-92c3f86770de_400x400.jpg&w=256&q=75",
     "ethAddresses": ["0x6f3e6272a167e8accb32072d08e0957f9c79223d"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "PoolTogether",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F0d2f9100-f0f7-4781-9d7b-c546ed6a73d3_400x400.jpg&w=256&q=75",
+    "ethAddresses": [
+      "0xb3a87172f555ae2a2ab79be60b336d2f7d0187f0",
+      "0x8a907de47e00830a2b742db65e938a3ea1070a2e"
+    ],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Gas Dao",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F285b3971-0dbc-4fdb-a7e6-6b998cb04a3c_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0x5b1751306597a76c8e6d2bfb8e952f8855ed976d"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Indexed",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F2ceb8659-4a73-46d1-b2a2-1309b4246945_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0x95129751769f99cc39824a0793ef4933dd8bb74b"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Rari Capital",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F3222d0f0-2e45-4209-b610-3ec0d16c591e_400x400.jpg&w=256&q=75",
+    "ethAddresses": [
+      "0x91d9c2b5cf81d55a5f2ecc0fc84e62f9cd2cefd6",
+      "0x637deeed4e4deb1d222650bd4b64192abf002c00"
+    ],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Fei",
+    "networkId": 4,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fc1809255-e73d-4d54-a9ba-b586305c8fe5_400x400.jpg&w=256&q=75",
+    "ethAddresses": [
+      "0x0a773fb7d23592e2baf5da72ea69cea24e087be2",
+      "0xf17c8b2e1d0fdc3781f930301448fd4732511875",
+      "0x6394f912446afacd9eda199c00fe66e1fd59afa2",
+      "0x0bef27feb58e857046d630b2c03dfb7bae567494"
+    ],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Tribe NopeDAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F3fd69663-c5d5-4d56-9244-e754c3b7cd23_original.png&w=256&q=75",
+    "ethAddresses": ["0x6c7af43ce97686e0c8acbbc03b2e4f313c0394c7"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Rari DAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F761ec77f-7666-4a51-867c-1e49f9cb0c15_original.jpeg&w=256&q=75",
+    "ethAddresses": ["0x6552c8fb228f7776fc0e4056aa217c139d4bada1"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Inverse",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F805187f5-a562-4bb8-8b06-2ca6967301ed_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0x35d9f4953748b318f18c30634ba299b237eedfff"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "MahaDAO [Depreciated]",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F93a41fa1-05ab-4812-b4ff-12aaf15d7f88_original.png&w=256&q=75",
+    "ethAddresses": ["0x0fbd92ea11e23d959e1489a9abb84ae2e4778d31"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Maha Master [Depreciated]",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Ff73f7729-01a0-4386-9545-4d5b5c564a42_original.png&w=256&q=75",
+    "ethAddresses": ["0xadaa4758f532f3e7a6e2c0f08ed66362c3d118c2"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "MahaDAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Ff7c3307b-8353-4d3c-b19c-0d266e992eb5_original.png&w=256&q=75",
+    "ethAddresses": ["0xe7d23c2b3e9148c46cec796f018842ab72d5867f"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Collab.Land",
+    "networkId": 10,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fe9964d8b-ea37-4950-9da4-0e5b727655ee_original.png&w=256&q=75",
+    "ethAddresses": ["0xb18c10e49bc7c5f09a564f3a8daf28df54dc6672"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "DaxioDAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fca2416ce-a4a4-4e23-8e77-c0d1791a968d_original.png&w=256&q=75",
+    "ethAddresses": ["0xda9c9ed96f6d42f7e74f3c7eea6772d64ed84bdf"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "SoftDAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Ff8ee2903-7d35-4fbb-be50-f3a000647849_original.png&w=256&q=75",
+    "ethAddresses": ["0x0add6d42bbfe6c40e15b02a2c8a1b81b36a2b326"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "MetaStonez DAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fc6679817-a03a-4d33-b82b-3e7e617819db_original.png&w=256&q=75",
+    "ethAddresses": ["0x1e9dbb304d1e65429eff0d4b0c38d813a6135ad9"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Inedible",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fbcb87a71-c4e4-4b2c-a41e-e95b49798933_original.png&w=256&q=75",
+    "ethAddresses": ["0xb787139b526c6aecf5d21b1288539b94e9769bf3"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Ampleforth",
+    "networkId": 4,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F13ad53f3-b68f-4910-8321-5839d4e6606b_400x400.jpg&w=256&q=75",
+    "ethAddresses": [
+      "0x35840397f9b61fc8520722343738a5e193785854",
+      "0x8a994c6f55be1fd2b4d0dc3b8f8f7d4e3a2da8f1"
+    ],
     "maxBlockRange": 50000
   },
   {
@@ -103,10 +313,94 @@
     "maxBlockRange": 50000
   },
   {
+    "name": "DIMO",
+    "networkId": 137,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fecea97aa-82ad-45de-87fe-4d11ab4cbe93_original.png&w=256&q=75",
+    "ethAddresses": ["0xd203e37d96cc0b9b7dc00fc3fdfcf1b1a2e8c547"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "sudoswap DAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fc8e4a42a-b60f-41a6-9cff-3f78cd22bfaf_original.png&w=256&q=75",
+    "ethAddresses": ["0x6853f8865ba8e9fbd9c8cce3155ce5023fb7eeb0"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Radworks",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F27b89303-1412-45b6-acfc-4e93aa4f4630_original.png&w=256&q=75",
+    "ethAddresses": ["0x690e775361ad66d1c4a25d89da9fcd639f5198ed"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Lucidao",
+    "networkId": 137,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fc8415fa4-8f40-40b5-9b95-7923833a3e43_original.png&w=256&q=75",
+    "ethAddresses": ["0xac1fdca2be645e3e06c7832613a78c72135da945"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Defrag",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fa5407542-2c34-497a-902b-8677998e8c8a_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0x5ff6d58defdbd783f4f88e80e94d9481e2bb0a45"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Union",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F7873aa6b-9eb3-45f4-8e94-87fdb2077686_original.png&w=256&q=75",
+    "ethAddresses": ["0xe1b3f07a9032f0d3dedf3e96c395a4da74130f6e"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "GMX",
+    "networkId": 42161,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F3e47a2b7-8969-40cc-abcc-96963b82d0a6_original.png&w=256&q=75",
+    "ethAddresses": ["0x03e8f708e9c85edceaa6ad7cd06824ceb82a7e68"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Silo",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F9c5c9d1a-2fa7-4860-8516-bd958acfc22a_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0xa89163f7b2d68a8fba6ca36beed32bd4f3eeaf61"],
+    "maxBlockRange": 50000
+  },
+  {
     "name": "Public Nouns",
     "networkId": 1,
     "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F8302cf81-6e0b-447b-8637-dd206c74b4a8_original.png&w=256&q=75",
     "ethAddresses": ["0x2bbebfeca0febde8c70ef8501c991f3ab2095862"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "[old] Idle DAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fbccbeff1-6321-4aa9-bcf9-526e0e32dd53_original.png&w=256&q=75",
+    "ethAddresses": ["0x2256b25cfc8e35c3135664fd03e77595042fe31b"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Idle DAO",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fc67b7c6f-e868-4d04-870f-b79ef8c8aa7e_original.png&w=256&q=75",
+    "ethAddresses": ["0x3d5fc645320be0a085a32885f078f7121e5e5375"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Blur",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F13e8e68b-c46d-4ee5-ae67-fcb366e81e0a_original.png&w=256&q=75",
+    "ethAddresses": ["0xf7967b43949fb0cec48e63e345512d5ea5845810"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Internet Token DAO",
+    "networkId": 8453,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F02974840-0a30-4c58-a466-957dbf31486f_original.png&w=256&q=75",
+    "ethAddresses": ["0xc5c3a1882eff9539527d88e2453cab10d9bc1581"],
     "maxBlockRange": 50000
   },
   {
@@ -127,31 +421,38 @@
     "maxBlockRange": 50000
   },
   {
-    "name": "Exodus Town",
-    "networkId": 137,
-    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fc1e5dfa1-3073-458c-8e7d-86ad80468765_original.png&w=256&q=75",
-    "ethAddresses": ["0x7e96f5242d1256e56e15b46eb2fa1b1152df5923"],
-    "maxBlockRange": 50000
-  },
-  {
-    "name": "KarratCo",
+    "name": "InstaDapp",
     "networkId": 1,
-    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F5f1a7f95-2f5a-4f03-9d65-379c58f00c08_original.png&w=256&q=75",
-    "ethAddresses": ["0xbaccc25ad3c77898e7563c6c98ea1b5cad910615"],
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Ff92e852c-0c8a-4e75-9918-b4ba1592ffcd_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0x0204cd037b2ec03605cfdfe482d8e257c765fa1b"],
     "maxBlockRange": 50000
   },
   {
-    "name": "Content Guild (Arbitrum - OLD)",
-    "networkId": 42161,
-    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fdf498f27-f210-472a-b5df-3bbfa67b39b6_original.png&w=256&q=75",
-    "ethAddresses": ["0x495bab6a5df4a721623e10055087e8ce4c1d4e4a"],
+    "name": "DegenX Ecosystem",
+    "networkId": 43114,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F320e4d0c-92a7-4335-a800-a16c8e104c08_original.png&w=256&q=75",
+    "ethAddresses": ["0xbda8dceb22b0e06ad612f339c41539ea2ddccef8"],
     "maxBlockRange": 50000
   },
   {
-    "name": "RnDAO",
-    "networkId": 42161,
-    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fca339634-20d2-4d0e-b373-e9ce49849fab_original.jpeg&w=256&q=75",
-    "ethAddresses": ["0xf73ee8b7ae7dda64cf88cd4f722241bf88237157"],
+    "name": "Babylon Finance",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F0ae786cd-eb5d-4459-9892-f97f088a0fb2_400x400.jpg&w=256&q=75",
+    "ethAddresses": ["0xbec3de5b14902c660bd2c7efd2f259998424cc24"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "Degen Dogs",
+    "networkId": 137,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2Fb5aa23b1-10ac-472b-b4c0-42d67c57e758_original.png&w=256&q=75",
+    "ethAddresses": ["0x18288e01e2247166d7df094743a5669bf7fdaad2"],
+    "maxBlockRange": 50000
+  },
+  {
+    "name": "DAFO Club",
+    "networkId": 1,
+    "imageUrl": "https://www.tally.xyz/_next/image?url=https%3A%2F%2Fstatic.tally.xyz%2F785ec80a-5fcd-49e8-b50b-26c9dcd7c7b8_original.jpeg&w=256&q=75",
+    "ethAddresses": ["0x41fa7898cc5067eb1ee73a2205ee30cc514d6c71"],
     "maxBlockRange": 50000
   }
 ]

@@ -17,10 +17,14 @@ const organizationSchema = z.object({
     icon: z.string(),
   }),
 });
-/**
- * Fetch top DAOs from Tally.
- */
-export async function fetchDAOs() {
+const apiResponseSchema = z.object({
+  nodes: z.array(organizationSchema),
+  pageInfo: z.object({
+    lastCursor: z.string(),
+  }),
+});
+
+function fetchOrganizations(firstCursor: string | null = null) {
   const TALLY_API_KEY = z.string().parse(process.env.TALLY_API_KEY);
   const myHeaders = new Headers();
 
@@ -29,26 +33,32 @@ export async function fetchDAOs() {
 
   const graphql = JSON.stringify({
     query: `query ExploreOrgs($input: OrganizationsInput!) {
-	organizations(input: $input) {
-	  nodes {
-		... on Organization {
-		  slug
-		  name
-		  delegatesCount
-		  governorIds
-		  metadata {
-			icon
+	  organizations(input: $input) {
+		nodes {
+		  ... on Organization {
+			slug
+			name
+			delegatesCount
+			governorIds
+			metadata {
+			  icon
+			}
 		  }
+		}
+		pageInfo {
+			lastCursor
 		}
 	  }
 	}
-  }
-  `,
+	`,
     variables: {
       input: {
         sort: { isDescending: true, sortBy: "EXPLORE" },
         filters: { hasLogo: true },
-        page: { limit: 99999 },
+        page: {
+          limit: 99999,
+          ...(firstCursor && { afterCursor: firstCursor }),
+        },
       },
     },
   });
@@ -57,19 +67,34 @@ export async function fetchDAOs() {
     headers: myHeaders,
     body: graphql,
   } as any;
-
-  const organizations = await fetch(
-    "https://api.tally.xyz/query",
-    requestOptions
-  )
+  return fetch("https://api.tally.xyz/query", requestOptions)
     .then((response) => response.json())
-    .then((res) => res.data.organizations.nodes)
-    .then(z.array(organizationSchema).parse)
-    .then((organizations) =>
-      organizations.sort((a, b) => b.delegatesCount - a.delegatesCount)
-    );
+    .then((res) => res.data.organizations)
+    .then((data) => {
+      return data;
+    })
+    .then(apiResponseSchema.parse);
+}
+/**
+ * Fetch top DAOs from Tally.
+ */
+export async function fetchDAOs() {
+  let organizations: z.infer<typeof organizationSchema>[] = [];
+  console.log("Fetching organizations...");
+  let organizationResponse = await fetchOrganizations();
+  organizations = organizations.concat(organizationResponse.nodes);
 
-  const daos = organizations.map(formatAsDAO);
+  do {
+    organizationResponse = await fetchOrganizations(
+      organizationResponse.pageInfo.lastCursor
+    );
+    organizations = organizations.concat(organizationResponse.nodes);
+  } while (organizationResponse.pageInfo.lastCursor);
+
+  const daos = organizations
+    .filter((organization) => organization.delegatesCount > 75)
+    .sort((a, b) => b.delegatesCount - a.delegatesCount)
+    .map(formatAsDAO);
   return daos;
 }
 
@@ -89,7 +114,6 @@ function formatAsDAO(organization: z.infer<typeof organizationSchema>): DAO {
     name,
     networkId: Number(networkId),
     imageUrl,
-
     ethAddresses,
     maxBlockRange: customMaxBlockRanges[name] || DEFAULT_MAX_BLOCK_RANGE,
   };
