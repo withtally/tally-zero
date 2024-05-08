@@ -1,8 +1,8 @@
-import { ContractAddress } from "@/types/search";
+import { Address } from "@/types/search";
 
 export type Proposal = {
   id: string;
-  contractAddress: ContractAddress;
+  contractAddress: Address;
   proposer: string;
   targets: string[];
   values: ethers.BigNumber[];
@@ -16,7 +16,7 @@ export type Proposal = {
 
 export type UseSearchProposals = (
   provider: ethers.providers.Provider | undefined,
-  contract: ContractAddress | undefined,
+  contract: Address | undefined,
   blockRange: number,
   startingBlock: number | null,
   enabled: boolean
@@ -27,7 +27,7 @@ export type UseSearchProposals = (
 
 export type ParsedProposal = {
   id: string;
-  contractAddress: ContractAddress;
+  contractAddress: Address;
   proposer: string;
   targets: string[];
   values: string[];

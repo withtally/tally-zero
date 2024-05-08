@@ -8,11 +8,9 @@ import { useParseProposals } from "@hooks/use-parse-proposals";
 import { useSearchProposals } from "@hooks/use-search-proposals";
 
 import { ContractParams, State } from "@/types/search";
-import { daos } from "@config/data";
-import { daoSchema } from "@config/schema";
 
+import { getBlockRange, selectDAOByGovernorAddress } from "@/lib/dao";
 import GovernorABI from "@data/OzGovernor_ABI.json";
-import { getBlockRange } from "@lib/block-range";
 
 export function useGovernorContract({
   values,
@@ -30,9 +28,7 @@ export function useGovernorContract({
     chainId: parseInt(values.networkId?.toString() as string),
   });
 
-  const dao = daos.find(
-    (dao) => dao.ethAddress === values.contractAddress
-  ) as unknown as typeof daoSchema;
+  const dao = selectDAOByGovernorAddress(values.contractAddress);
 
   // Search for the Deployment block of Governor
   const { blockNumber, success, currentSearchBlock, deploymentProgress } =

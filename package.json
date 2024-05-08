@@ -6,9 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "npx serve@latest out",
-    "lint": "next lint",
-    "test": "npm run lint && tsc",
-    "prepare": "husky install"
+    "lint": "next lint --fix",
+    "test": "npm run lint && tsc && vitest run",
+    "prepare": "husky install",
+    "build:latest-daos": "npx tsx scripts/pull-daos/pull-daos.ts"
   },
   "prettier": {
     "semi": true,
@@ -67,6 +68,7 @@
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
     "autoprefixer": "^10.0.1",
+    "dotenv": "^16.4.5",
     "eslint": "8",
     "eslint-config-next": "14.2.3",
     "husky": "^9.0.11",
@@ -76,6 +78,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   }
 }

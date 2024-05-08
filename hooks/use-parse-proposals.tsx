@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import OzGovernor_ABI from "@data/OzGovernor_ABI.json";
 
 import { ParsedProposal, Proposal } from "@/types/proposal";
-import { ContractAddress } from "@/types/search";
+import { Address } from "@/types/search";
 
 export function useParseProposals(
   provider: ethers.providers.Provider,
-  contractAddress: ContractAddress | undefined,
+  contractAddress: Address | undefined,
   proposals: Proposal[],
   enabled: boolean
 ): ParsedProposal[] {
