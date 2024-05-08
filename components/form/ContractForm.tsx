@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@components/ui/Button";
 
 import { daos } from "@config/data";
-import { daoSchema, formSchema } from "@config/schema";
+import { DAO, formSchema } from "@config/schema";
 
 interface ContractFormProps {
   form: UseFormReturn<z.infer<typeof formSchema>>;
@@ -28,15 +28,15 @@ interface ContractFormProps {
 }
 
 export default function ContractForm({ form, progress }: ContractFormProps) {
-  const [currDao, setCurrDao] = useState<
-    z.infer<typeof daoSchema> | undefined
-  >();
+  const [currDao, setCurrDao] = useState<DAO | undefined>();
 
   const addressWatched = form.watch("address");
 
   useEffect(() => {
-    const dao = daos.find(
-      (dao) => dao.ethAddress.toLowerCase() === addressWatched?.toLowerCase()
+    const dao = daos.find((dao) =>
+      dao.ethAddresses.some(
+        (ethAddress) => ethAddress === addressWatched?.toLowerCase()
+      )
     );
     setCurrDao(dao);
     // avoid overriding networkId if user has already entered it

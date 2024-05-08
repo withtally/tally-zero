@@ -1,6 +1,6 @@
-import { daoSchema } from "@config/schema";
+import { DAO } from "@config/schema";
 
-export function getBlockRange(dao: typeof daoSchema | undefined) {
+export function getBlockRange(dao?: DAO) {
   if (dao && "maxBlockRange" in dao) {
     return dao.maxBlockRange;
   }

@@ -8,7 +8,9 @@ export function NetworkIcon({
   address: string;
   className?: string;
 }) {
-  let dao = daos.find((dao) => dao.ethAddress === address);
+  const dao = daos.find((dao) =>
+    dao.ethAddresses.some((ethAddress) => ethAddress === address?.toLowerCase())
+  );
   return (
     <div className="flex items-center space-x-3 cursor-pointer">
       <Image

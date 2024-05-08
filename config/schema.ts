@@ -30,21 +30,11 @@ export const proposalSchema = z.object({
   state: z.string(),
 });
 
-export type proposal = z.infer<typeof proposalSchema>;
-
-export const statsSchema = z.array(
-  z.object({
-    title: z.string(),
-    value: z.string(),
-    unit: z.string(),
-    description: z.string(),
-  })
-);
-
 export const daoSchema = z.object({
   name: z.string(),
   networkId: z.number(),
   imageUrl: z.string(),
-  ethAddress: z.string().regex(ethAddressRegex),
+  ethAddresses: z.array(z.string().regex(ethAddressRegex)),
   maxBlockRange: z.number(),
 });
+export type DAO = z.infer<typeof daoSchema>;
