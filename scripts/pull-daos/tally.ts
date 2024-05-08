@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import "dotenv/config";
 import { DAO } from "../../config/schema";
+import { DEFAULT_MAX_BLOCK_RANGE } from "../../lib/dao";
 
 const customMaxBlockRanges: Record<string, number> = {
   Arbitrum: 100_000,
@@ -108,6 +109,6 @@ function formatAsDAO(organization: z.infer<typeof organizationSchema>): DAO {
     imageUrl,
 
     ethAddresses,
-    maxBlockRange: customMaxBlockRanges[name] || 50_000,
+    maxBlockRange: customMaxBlockRanges[name] || DEFAULT_MAX_BLOCK_RANGE,
   };
 }

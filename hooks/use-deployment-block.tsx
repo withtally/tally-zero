@@ -1,5 +1,5 @@
 import { UseDeploymentBlockResult } from "@/types/deployment";
-import { ContractAddress } from "@/types/search";
+import { Address } from "@/types/search";
 import { providers } from "ethers";
 import { useEffect, useRef, useState } from "react";
 
@@ -7,7 +7,7 @@ const MAX_BLOCK_DIFF = 128;
 
 export const useDeploymentBlock = (
   provider: providers.Provider,
-  contractAddress: ContractAddress | undefined,
+  contractAddress: Address | undefined,
   deploymentBlock: number
 ): UseDeploymentBlockResult => {
   const cancelSearchRef = useRef(false);

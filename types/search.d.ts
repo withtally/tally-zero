@@ -3,10 +3,10 @@ export type Contract = {
   networkId: string;
 };
 
-export type ContractAddress = `0x${string}`;
+export type Address = `0x${string}`;
 
 export interface ContractParams {
-  contractAddress?: ContractAddress;
+  contractAddress?: Address;
   networkId?: number;
   deploymentBlock?: number;
   state?: State;
@@ -19,14 +19,14 @@ export interface SearchProps {
 }
 
 export interface GovernorState {
-  address: ContractAddress | undefined;
+  address: Address | undefined;
   contract: ethers.Contract | null;
   deploymentBlock: number | null;
   name: string | undefined;
 }
 
 export interface TokenState {
-  address: ContractAddress | undefined;
+  address: Address | undefined;
   contract: ethers.Contract | null;
   deploymentBlock: number | null;
 }
