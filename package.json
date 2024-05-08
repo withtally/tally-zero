@@ -8,7 +8,8 @@
     "start": "npx serve@latest out",
     "lint": "next lint",
     "test": "npm run lint && tsc",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build:latest-daos": "npx tsx scripts/pull-daos/pull-daos.ts"
   },
   "prettier": {
     "semi": true,
